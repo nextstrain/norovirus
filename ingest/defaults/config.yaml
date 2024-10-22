@@ -4,11 +4,8 @@
 # Define optional config parameters with their default values here so that users
 # do not have to dig through the workflows to figure out the default values
 
-# Required to fetch from Entrez
-entrez_search_term: ""
-
 # Required to fetch from NCBI Datasets
-ncbi_taxon_id: ""
+ncbi_taxon_id: "142786"
 
 # The list of NCBI Datasets fields to include from NCBI Datasets output
 # These need to be the "mnemonics" of the NCBI Datasets fields, see docs for full list of fields
