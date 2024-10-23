@@ -119,7 +119,7 @@ rule curate:
 
 rule subset_metadata:
     input:
-        metadata="data/all_metadata.tsv",
+       metadata="data/all_metadata.tsv",
     output:
         subset_metadata="data/subset_metadata.tsv",
     params:
