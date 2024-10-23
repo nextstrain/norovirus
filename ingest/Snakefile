@@ -28,6 +28,7 @@ rule all:
 # by build-specific rules.
 include: "rules/fetch_from_ncbi.smk"
 include: "rules/curate.smk"
+include: "rules/join_genotype_metadata.smk"
 
 
 # We are pushing to standardize ingest workflows with Nextclade runs to include

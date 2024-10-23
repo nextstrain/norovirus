@@ -118,4 +118,6 @@ curate:
     "authors",
     "abbr_authors",
     "institution",
+    "ORF2_type",
+    "ORF1_type",
   ]
