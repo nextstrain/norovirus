@@ -7,64 +7,64 @@ rule all:
         expand("auspice/norovirus_{group}_{gene}.json", gene=GENES, group=GROUP),
 auspice_config = "config/auspice_config.json"
 
-rule parse:
-    input:
-        sequences = "data/sequences_vipr.fasta",
-    output:
-        sequences = "results/sequences.fasta",
-        metadata = "results/metadata_vipr.tsv"
-    params:
-        fields = ["strain","strain_name","segment","date","host","country"]
-    shell:
-        """
-        augur parse \
-            --sequences {input.sequences} \
-            --output-sequences {output.sequences} \
-            --output-metadata {output.metadata} \
-            --fix-dates monthfirst \
-            --fields {params.fields}
-        """
-
-rule clean_dates_and_country:
-    input:
-        metadata = "results/metadata_vipr.tsv"
-    output:
-        result = "results/metadata_vipr_cleaned_dates.tsv"
-    params:
-        columns = ["strain","strain_name","segment","date","host","country"]
-    shell:
-        """
-        cat {input.metadata} | csvtk replace -t -f "country" -p "Viet_Nam" -r 'Vietnam' \
-            | ./scripts/tsv-to-ndjson \
-            | ./scripts/transform-date-fields --expected-date-formats "%Y_%m_%d" "%Y_%m_%dT%H:%M:%SZ" "%Y_%m" "%Y-%m-%d" "%Y-XX-XX" "%Y-%m" --date-fields date \
-            | ./scripts/ndjson-to-tsv --metadata-columns {params.columns} --metadata {output.result}
-        """
-rule prepare_genotype_metadata:
-    input:
-        metadata = expand("data/genomicdetective_results{i}.csv", i = [1,2,3])
-    output:
-        result = "results/metadata_genomicdetective.tsv"
-    params:
-        fields = "ORF2_type,strain,ORF1_type"
-    shell:
-        """
-        csvtk concat {input.metadata} \
-            | csvtk rename -f "ORF2 type" -n "ORF2_type" \
-            | csvtk rename -f "ORF1 type" -n "ORF1_type" \
-            | csvtk cut -f {params.fields} \
-            | csvtk --out-tabs replace -f "strain" -p "\|.*$" -r "" > {output.result}
-        """
-
-rule join_metadata:
-    input:
-        genomicdetective_metadata = "results/metadata_genomicdetective.tsv",
-        vipr_metadata = "results/metadata_vipr_cleaned_dates.tsv"
-    output:
-        result = "results/metadata.tsv"
-    shell:
-        """
-        csvtk -t join -f "strain" {input.vipr_metadata} {input.genomicdetective_metadata} --left-join --na "NA" > {output.result}
-        """
+# rule parse:
+#     input:
+#         sequences = "data/sequences_vipr.fasta",
+#     output:
+#         sequences = "results/sequences.fasta",
+#         metadata = "results/metadata_vipr.tsv"
+#     params:
+#         fields = ["strain","strain_name","segment","date","host","country"]
+#     shell:
+#         """
+#         augur parse \
+#             --sequences {input.sequences} \
+#             --output-sequences {output.sequences} \
+#             --output-metadata {output.metadata} \
+#             --fix-dates monthfirst \
+#             --fields {params.fields}
+#         """
+#
+# rule clean_dates_and_country:
+#     input:
+#         metadata = "results/metadata_vipr.tsv"
+#     output:
+#         result = "results/metadata_vipr_cleaned_dates.tsv"
+#     params:
+#         columns = ["strain","strain_name","segment","date","host","country"]
+#     shell:
+#         """
+#         cat {input.metadata} | csvtk replace -t -f "country" -p "Viet_Nam" -r 'Vietnam' \
+#             | ./scripts/tsv-to-ndjson \
+#             | ./scripts/transform-date-fields --expected-date-formats "%Y_%m_%d" "%Y_%m_%dT%H:%M:%SZ" "%Y_%m" "%Y-%m-%d" "%Y-XX-XX" "%Y-%m" --date-fields date \
+#             | ./scripts/ndjson-to-tsv --metadata-columns {params.columns} --metadata {output.result}
+#         """
+# rule prepare_genotype_metadata:
+#     input:
+#         metadata = expand("data/genomicdetective_results{i}.csv", i = [1,2,3])
+#     output:
+#         result = "results/metadata_genomicdetective.tsv"
+#     params:
+#         fields = "ORF2_type,strain,ORF1_type"
+#     shell:
+#         """
+#         csvtk concat {input.metadata} \
+#             | csvtk rename -f "ORF2 type" -n "ORF2_type" \
+#             | csvtk rename -f "ORF1 type" -n "ORF1_type" \
+#             | csvtk cut -f {params.fields} \
+#             | csvtk --out-tabs replace -f "strain" -p "\|.*$" -r "" > {output.result}
+#         """
+#
+# rule join_metadata:
+#     input:
+#         genomicdetective_metadata = "results/metadata_genomicdetective.tsv",
+#         vipr_metadata = "results/metadata_vipr_cleaned_dates.tsv"
+#     output:
+#         result = "results/metadata.tsv"
+#     shell:
+#         """
+#         csvtk -t join -f "strain" {input.vipr_metadata} {input.genomicdetective_metadata} --left-join --na "NA" > {output.result}
+#         """
 
 rule filter:
     message:
@@ -77,14 +77,15 @@ rule filter:
           - minimum genome length of {params.min_length} (67% of Norovirus virus genome)
         """
     input:
-        sequences = "results/sequences.fasta",
-        metadata = "results/metadata.tsv",
+        sequences = "ingest/results/sequences.fasta",
+        metadata = "ingest/results/metadata.tsv",
         exclude = "config/dropped_strains.txt"
     output:
         sequences = "results/{group}/{gene}/filtered.fasta",
         metadata = "results/{group}/{gene}/filtered_metadata.tsv",
         log = "results/{group}/{gene}/filtered_log.tsv"
     params:
+        metadata_id_columns = "accession",
         group_by = "year ORF2_type ORF1_type",
         sequences_per_group = 30,
         min_date = 1950,
@@ -97,6 +98,7 @@ rule filter:
             --sequences {input.sequences} \
             --query "{params.query}" \
             --metadata {input.metadata} \
+            --metadata-id-columns {params.metadata_id_columns} \
             --exclude {input.exclude} \
             --output-sequences {output.sequences} \
             --output-metadata {output.metadata} \
@@ -104,7 +106,7 @@ rule filter:
             --min-date {params.min_date} \
             --group-by {params.group_by} \
             --sequences-per-group {params.sequences_per_group} \
-            --exclude-ambiguous-dates-by {params.ambiguous_exclude}\
+            --exclude-ambiguous-dates-by {params.ambiguous_exclude} \
             --min-length {params.min_length}
         """
 rule parse_reference:
@@ -194,6 +196,7 @@ rule refine:
             --clock-filter-iqd {params.clock_filter_iqd} \
             --alignment {input.alignment} \
             --metadata {input.metadata} \
+            --metadata-id-columns "accession" \
             --output-tree {output.tree} \
             --output-node-data {output.node_data} \
             --timetree \
@@ -253,6 +256,7 @@ rule export:
         augur export v2 \
             --tree {input.tree} \
             --metadata {input.metadata} \
+            --metadata-id-columns "accession" \
             --node-data {input.branch_lengths} {input.nt_muts} {input.aa_muts} \
             --auspice-config {input.auspice_config} \
             --output {output.auspice_json} \
