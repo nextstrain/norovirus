@@ -1,3 +1,11 @@
+# nextstrain.org/norovirus - WIP
+
+This repository contains workflows for the analysis of Norovirus data:
+
+- [`ingest/`](./ingest) - Download data from GenBank, clean and curate it, append Genomic Detective result columns, and upload it to S3
+
+The `phylogenetic` and `nextclade` workflows are still being refactored from the original https://github.com/blab/norovirus repository
+
 # Phylogenetic Modeling Analysis of Norovirus Reveals Varying Genotype and Gene Adaptive Mutation Rates
 
 Allison Li, John Huddleston, Katie Kistler, Trevor Bedford
@@ -21,7 +29,7 @@ Activate the environment to use the workflow.
 
 `conda activate nextstrain-norovirus`
 
-Run workflow 
+Run workflow
 
 `snakemake --cores 4`
 
@@ -37,7 +45,7 @@ Steps for creating genomic detective annotation files:
 ## Data Curation
 All sequence data is from Vipr or Genbank. The full Norovirus genomic length is ~7,547 bp long. In this build, we filtered for human Norovirus sequences that are at least 5032bp long (2/3 of the full length). We ended up with a dataset of 1981 sequences from 1968-2022, from 42 countries.
 
-## Adaptive Evolution 
+## Adaptive Evolution
 <p align="center">
      <img src="images/all-genes-norovirus-plot.png" alt="norovirus all strains plot" width="300"/>
 </p>
@@ -45,7 +53,7 @@ All sequence data is from Vipr or Genbank. The full Norovirus genomic length is 
 <img src="images/norovirus_adaptation_accumulation.png" alt="norovirus all genes plot" width="400"/><img src="images/norovirus_gii4_rates_allgenes_new.png" alt="norovirus comparison plot" width="400"/>
 
 ## Analysis
-From our analysis, we found that out of all the genotypes in the dataset, GII.4 had the highest rate of adaptive mutations, followed by GII.3. Out of the genes, we found that the VP1 protein had the highest adaptive mutation rate, followed by P22 and VP2. Based on our data, we can hypothesize that VP1, P22, and VP2 are possibly undergoing immune evasion, and could be potential targets for vaccine development. We can also hypothesize that if a vaccine were to be developed for the GII.4 genotype, it would need to be updated rather regularly to match the mutation rate of the virus.  
+From our analysis, we found that out of all the genotypes in the dataset, GII.4 had the highest rate of adaptive mutations, followed by GII.3. Out of the genes, we found that the VP1 protein had the highest adaptive mutation rate, followed by P22 and VP2. Based on our data, we can hypothesize that VP1, P22, and VP2 are possibly undergoing immune evasion, and could be potential targets for vaccine development. We can also hypothesize that if a vaccine were to be developed for the GII.4 genotype, it would need to be updated rather regularly to match the mutation rate of the virus.
 
 ## Further Reading
 Relevant papers for further reading:
