@@ -8,6 +8,12 @@ workdir: workflow.current_basedir
 # Use default configuration values. Override with Snakemake's --configfile/--config options.
 configfile: "defaults/config.yaml"
 
+GENES = ['3CLpro', 'NTPase', 'p22', 'p48', 'rdrp', 'VP1', 'VP2', 'VPg', 'genome']
+GROUPS = ['GII.6', 'GII.4', 'GII.2', 'GII.3', 'GII.17', 'all']
+
+wildcard_constraints:
+    gene="|".join(GENES),
+    group="|".join(GROUPS)
 
 # This is the default rule that Snakemake will run when there are no specified targets.
 # The default output of the phylogenetic workflow is usually the final
@@ -17,7 +23,7 @@ configfile: "defaults/config.yaml"
 rule all:
     input:
         # Fill in path(s) to the final exported Auspice JSON(s)
-        auspice_json="",
+        auspice_json=expand("auspice/norovirus_{group}_{gene}.json", group=GROUPS, gene=GENES),
 
 
 # These rules are imported in the order that they are expected to run.

@@ -3,3 +3,18 @@
 #
 # Define optional config parameters with their default values here so that users
 # do not have to dig through the workflows to figure out the default values
+
+# Sequences must be FASTA and metadata must be TSV
+# Both files must be zstd compressed
+sequences_url: "https://data.nextstrain.org/files/workflows/norovirus/sequences.fasta.zst"
+metadata_url: "https://data.nextstrain.org/files/workflows/norovirus/metadata.tsv.zst"
+
+strain_id_field: "accession"
+# Will be used to generate the group and gene level references
+reference: defaults/norovirus_outgroup_{group}.gb
+
+filter:
+  exclude: defaults/exclude.txt
+  # minimum length is 67% of Norovirus virus genome
+  min_length: 5032
+  filter_params: --group-by year ORF2_type ORF1_type --sequences-per-group 30 --min-date 1950 --exclude-ambiguous-dates-by year
