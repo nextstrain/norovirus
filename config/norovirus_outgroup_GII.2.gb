@@ -1,9 +1,9 @@
-LOCUS       MN493873                7530 bp    RNA     linear   VRL 28-SEP-2019
+LOCUS       MN493873_REF                7530 bp    RNA     linear   VRL 28-SEP-2019
 DEFINITION  Norovirus GII isolate Hu/US/2017/GII.P16-GII.2/CA-RGDS-1075
             nonstructural polyprotein (ORF1), VP1 (ORF2), and VP2 (ORF3) genes,
             complete CDS.
-ACCESSION   MN493873
-VERSION     MN493873.1
+ACCESSION   MN493873_REF
+VERSION     MN493873_REF
 KEYWORDS    .
 SOURCE      Norovirus GII
   ORGANISM  Norovirus GII

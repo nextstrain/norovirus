@@ -1,7 +1,7 @@
-LOCUS       KJ407072                7526 bp ss-RNA     linear   VRL 17-SEP-2015
+LOCUS       KJ407072_REF                7526 bp ss-RNA     linear   VRL 17-SEP-2015
 DEFINITION  Norovirus Hu/GII.6/HS245/2010/USA, complete genome.
-ACCESSION   KJ407072
-VERSION     KJ407072.2
+ACCESSION   KJ407072_REF
+VERSION     KJ407072_REF
 DBLINK      BioProject: PRJNA222778
 KEYWORDS    .
 SOURCE      Norovirus Hu/GII.6/HS245/2010/USA
