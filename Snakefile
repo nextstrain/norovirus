@@ -190,14 +190,14 @@ rule refine:
         """
         augur refine \
             --tree {input.tree} \
-            --root "best" \
-            --clock-filter-iqd {params.clock_filter_iqd} \
+            --root mid_point \
             --alignment {input.alignment} \
             --metadata {input.metadata} \
             --output-tree {output.tree} \
-            --output-node-data {output.node_data} \
-            --timetree \
-            --date-confidence \
+            --output-node-data {output.node_data}
+            #--clock-filter-iqd {params.clock_filter_iqd} \
+            #--timetree \
+            #--date-confidence \
         """
 
 rule ancestral:
