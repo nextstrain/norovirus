@@ -7,52 +7,6 @@ rule all:
         expand("auspice/norovirus_{group}_{gene}.json", gene=GENES, group=GROUP),
 auspice_config = "config/auspice_config.json"
 
-rule tree:
-    message: "Building tree"
-    input:
-        alignment = "results/{group}/{gene}/aligned.fasta"
-    output:
-        tree = "results/{group}/{gene}/tree_raw.nwk"
-    shell:
-        """
-        augur tree \
-            --alignment {input.alignment} \
-            --output {output.tree} \
-            --nthreads 4
-        """
-
-rule refine:
-    message:
-        """
-        Refining tree
-          - estimate timetree
-          - estimate {params.date_inference} node dates
-          - filter tips more than {params.clock_filter_iqd} IQDs from clock expectation
-        """
-    input:
-        tree = "results/{group}/{gene}/tree_raw.nwk",
-        alignment = "results/{group}/{gene}/aligned.fasta",
-        metadata = "results/{group}/{gene}/filtered_metadata.tsv"
-    output:
-        tree = "results/{group}/{gene}/tree.nwk",
-        node_data = "results/{group}/{gene}/branch_lengths.json"
-    params:
-        date_inference = "marginal",
-        clock_filter_iqd = 4
-    shell:
-        """
-        augur refine \
-            --tree {input.tree} \
-            --root mid_point \
-            --alignment {input.alignment} \
-            --metadata {input.metadata} \
-            --output-tree {output.tree} \
-            --output-node-data {output.node_data}
-            #--clock-filter-iqd {params.clock_filter_iqd} \
-            #--timetree \
-            #--date-confidence \
-        """
-
 rule ancestral:
     message: "Reconstructing ancestral sequences and mutations"
     input:
