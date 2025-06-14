@@ -30,3 +30,50 @@ See Augur's usage docs for these commands for more details.
 Custom node data files can also be produced by build-specific scripts in addition
 to the ones produced by Augur commands.
 """
+
+rule ancestral:
+    """Reconstructing ancestral sequences and mutations"""
+    input:
+        tree = "results/{group}/{gene}/tree.nwk",
+        alignment = "results/{group}/{gene}/aligned.fasta"
+    output:
+        node_data = "results/{group}/{gene}/nt_muts.json"
+    benchmark:
+        "benchmarks/{group}/{gene}/ancestral.txt",
+    log:
+        "logs/{group}/{gene}/ancestral.txt",
+    params:
+        inference = "joint"
+    shell:
+        r"""
+        exec &> >(tee {log:q})
+
+        augur ancestral \
+            --tree {input.tree} \
+            --alignment {input.alignment} \
+            --output-node-data {output.node_data} \
+            --inference {params.inference}
+        """
+
+rule translate:
+    """Translating amino acid sequences"""
+    input:
+        tree = "results/{group}/{gene}/tree.nwk",
+        node_data = "results/{group}/{gene}/nt_muts.json",
+        reference = "results/defaults/norovirus_reference_{group}_{gene}.gb"
+    output:
+        node_data = "results/{group}/{gene}/aa_muts.json"
+    benchmark:
+        "benchmarks/{group}/{gene}/translate.txt",
+    log:
+        "logs/{group}/{gene}/translate.txt",
+    shell:
+        r"""
+        exec &> >(tee {log:q})
+
+        augur translate \
+            --tree {input.tree} \
+            --ancestral-sequences {input.node_data} \
+            --reference-sequence {input.reference} \
+            --output-node-data {output.node_data}
+        """

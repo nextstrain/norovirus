@@ -7,41 +7,6 @@ rule all:
         expand("auspice/norovirus_{group}_{gene}.json", gene=GENES, group=GROUP),
 auspice_config = "config/auspice_config.json"
 
-rule ancestral:
-    message: "Reconstructing ancestral sequences and mutations"
-    input:
-        tree = "results/{group}/{gene}/tree.nwk",
-        alignment = "results/{group}/{gene}/aligned.fasta"
-    output:
-        node_data = "results/{group}/{gene}/nt_muts.json"
-    params:
-        inference = "joint"
-    shell:
-        """
-        augur ancestral \
-            --tree {input.tree} \
-            --alignment {input.alignment} \
-            --output-node-data {output.node_data} \
-            --inference {params.inference}
-        """
-
-rule translate:
-    message: "Translating amino acid sequences"
-    input:
-        tree = "results/{group}/{gene}/tree.nwk",
-        node_data = "results/{group}/{gene}/nt_muts.json",
-        reference = "config/norovirus_reference_{group}_{gene}.gb"
-    output:
-        node_data = "results/{group}/{gene}/aa_muts.json"
-    shell:
-        """
-        augur translate \
-            --tree {input.tree} \
-            --ancestral-sequences {input.node_data} \
-            --reference-sequence {input.reference} \
-            --output-node-data {output.node_data} \
-        """
-
 rule export:
     message: "Exporting data files for for auspice"
     input:
