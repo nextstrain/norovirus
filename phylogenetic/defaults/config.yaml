@@ -18,3 +18,6 @@ filter:
   # minimum length is 67% of Norovirus virus genome
   min_length: 5032
   filter_params: --group-by year ORF2_type ORF1_type --sequences-per-group 30 --min-date 1950 --exclude-ambiguous-dates-by year
+
+export:
+  auspice_config: defaults/auspice_config.json
