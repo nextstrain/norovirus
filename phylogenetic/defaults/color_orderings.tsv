@@ -1,0 +1,313 @@
+# Asia
+country	Israel
+country	Palestine
+country	Lebanon
+country	Jordan
+country	Syria
+country	Georgia
+country	Iraq
+country	Armenia
+country	Saudi Arabia
+country	Kuwait
+country	Yemen
+country	Bahrain
+country	Qatar
+country	Iran
+country	United Arab Emirates
+country	Oman
+country	Uzbekistan
+country	Afghanistan
+country	Kazakhstan
+country	Pakistan
+country	Tajikistan
+country	Maldives
+country	Kyrgyzstan
+country	India
+country	Sri Lanka
+country	Nepal
+country	Asia
+country	Bangladesh
+country	Myanmar
+country	Thailand
+country	Malaysia
+country	Mongolia
+country	Laos
+country	Singapore
+country	China
+country	Cambodia
+country	Vietnam
+country	Hong Kong
+country	Indonesia
+country	Brunei
+country	Taiwan
+country	Philippines
+country	Timor-Leste
+country	South Korea
+country	Japan
+
+# Oceania
+country	French Polynesia
+country	Palau
+country	Australia
+country	Papua New Guinea
+country	Oceania
+country	Micronesia
+country	Solomon Islands
+country	Vanuatu
+country	Marshall Islands
+country	New Zealand
+country	Kiribati
+country	Fiji
+
+# Africa
+country	Cabo Verde
+country	Gambia
+country	Guinea-Bissau
+country	Senegal
+country	Sierra Leone
+country	Guinea
+country	Liberia
+country	Mauritania
+country	Côte d'Ivoire
+country	Morocco
+country	Mali
+country	Burkina Faso
+country	Ghana
+country	Togo
+country	Benin
+country	Algeria
+country	Sao Tome and Principe
+country	Nigeria
+country	Tunisia
+country	Niger
+country	Equatorial Guinea
+country	Gabon
+country	Cameroon
+country	Republic of the Congo
+country	Libya
+country	Namibia
+country	Angola
+country	Chad
+country	Central African Republic
+country	Democratic Republic of the Congo
+country	Africa
+country	Botswana
+country	South Africa
+country	Zambia
+country	Lesotho
+country	Sudan
+country	South Sudan
+country	Zimbabwe
+country	Burundi
+country	Rwanda
+country	Egypt
+country	Eswatini
+country	Uganda
+country	Malawi
+country	Mozambique
+country	Tanzania
+country	Kenya
+country	Ethiopia
+country	Djibouti
+country	Union of the Comoros
+country	Madagascar
+country	Somalia
+country	Seychelles
+country	Mauritius
+
+# Europe
+country	Iceland
+country	Portugal
+country	Ireland
+country	Spain
+country	United Kingdom
+country	Andorra
+country	France
+country	Belgium
+country	Netherlands
+country	Luxembourg
+country	Monaco
+country	Switzerland
+country	Norway
+country	Denmark
+country	Liechtenstein
+country	Germany
+country	Europe
+country	Italy
+country	Malta
+country	Slovenia
+country	Sweden
+country	Austria
+country	Croatia
+country	Czech Republic
+country	Bosnia and Herzegovina
+country	Poland
+country	Slovakia
+country	Montenegro
+country	Albania
+country	Hungary
+country	Serbia
+country	Kosovo
+country	North Macedonia
+country	Greece
+country	Lithuania
+country	Romania
+country	Bulgaria
+country	Latvia
+country	Estonia
+country	Finland
+country	Belarus
+country	Moldova
+country	Ukraine
+country	Cyprus
+country	Turkey
+country	Azerbaijan
+country	Russia
+
+# South America
+country	Argentina
+country	Uruguay
+country	Chile
+country	Paraguay
+country	Bolivia
+country	South America
+country	Brazil
+country	Peru
+country	Ecuador
+country	Colombia
+country	Suriname
+country	Guyana
+country	Venezuela
+country	Trinidad and Tobago
+country	Bonaire
+country	Curacao
+country	Aruba
+
+# North America
+country	Panama
+country	Costa Rica
+country	Grenada
+country	Nicaragua
+country	Saint Vincent and the Grenadines
+country	Barbados
+country	El Salvador
+country	Saint Lucia
+country	Honduras
+country	Dominica
+country	Guatemala
+country	Guadeloupe
+country	Belize
+country	Antigua and Barbuda
+country	Saint Kitts and Nevis
+country	Saint Barthélemy
+country	Sint Maarten
+country	Saint Martin
+country	Jamaica
+country	Dominican Republic
+country	Haiti
+country	Mexico
+country	Cuba
+country	Bahamas
+country	North America
+country	Bermuda
+country	USA
+country	Canada
+
+################
+
+region	Asia
+region	Oceania
+region	Africa
+region	Europe
+region	South America
+region	North America
+
+# ################
+
+ORF2_type	GI.1
+ORF2_type	GI.2
+ORF2_type	GI.3
+ORF2_type	GI.4
+ORF2_type	GI.5
+ORF2_type	GI.6
+ORF2_type	GI.7
+ORF2_type	GI.8
+ORF2_type	GI.9
+ORF2_type	GII.1
+ORF2_type	GII.2
+ORF2_type	GII.3
+ORF2_type	GII.4
+ORF2_type	GII.5
+ORF2_type	GII.6
+ORF2_type	GII.7
+ORF2_type	GII.8
+ORF2_type	GII.10
+ORF2_type	GII.12
+ORF2_type	GII.13
+ORF2_type	GII.14
+ORF2_type	GIX.1 (GII.15)
+ORF2_type	GII.16
+ORF2_type	GII.17
+ORF2_type	GII.21
+ORF2_type	GII.22
+ORF2_type	GII.23
+ORF2_type	GVIII.1 (GII.23)
+ORF2_type	GII.24
+ORF2_type	GII.25 (GII.22)
+ORF2_type	GII.26
+ORF2_type	GII.27
+ORF2_type	GII.NA1
+ORF2_type	GII.NA2
+
+ORF1_type	GI.P1
+ORF1_type	GI.P2
+ORF1_type	GI.P3
+ORF1_type	GI.P4
+ORF1_type	GI.P6
+ORF1_type	GI.P7
+ORF1_type	GI.P8
+ORF1_type	GI.P9
+ORF1_type	GI.P10 (GI.Pa)
+ORF1_type	GI.P11 (GI.Pb)
+ORF1_type	GI.P12 (GI.Pc)
+ORF1_type	GI.P13 (GI.Pd)
+ORF1_type	GI.P14 (GI.Pf)
+ORF1_type	GI.PNA1 (GI.Pb)
+ORF1_type	GI.PNA2
+ORF1_type	GI.PNA4 (GI.Pg)
+ORF1_type	GII.P1
+ORF1_type	GII.P2
+ORF1_type	GII.P3
+ORF1_type	GII.P4
+ORF1_type	GII.P5
+ORF1_type	GII.P6
+ORF1_type	GII.P7
+ORF1_type	GII.P8
+ORF1_type	GII.P12
+ORF1_type	GII.P13
+ORF1_type	GII.P15
+ORF1_type	GII.P16
+ORF1_type	GII.P17
+ORF1_type	GII.P21 (GII.Pb)
+ORF1_type	GII.P22
+ORF1_type	GII.P23
+ORF1_type	GII.P24
+ORF1_type	GII.P25
+ORF1_type	GII.P26
+ORF1_type	GII.P27
+ORF1_type	GII.P28
+ORF1_type	GII.P29 (GII.Pa)
+ORF1_type	GII.P30 (GII.Pc)
+ORF1_type	GII.P31 (GII.Pe)
+ORF1_type	GII.P32 (GII.Pf)
+ORF1_type	GII.P33 (GII.Pg)
+ORF1_type	GII.P35 (GII.Pj)
+ORF1_type	GII.P37 (GII.Pm)
+ORF1_type	GII.P39 (GII.P1)
+ORF1_type	GII.P40 (GII.P22)
+ORF1_type	GII.P41 (GII.Pg)
+ORF1_type	GII.PNA1
+ORF1_type	GII.PNA2
+ORF1_type	GII.PNA3
+ORF1_type	GII.PNA5
+ORF1_type	GII.PNA7 (GII.Pr)

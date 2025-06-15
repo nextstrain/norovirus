@@ -36,7 +36,8 @@
      "entropy"
   ],
   "display_defaults": {
-    "map_triplicate": true
+    "map_triplicate": true,
+    "color_by":"ORF2_type"
   },
   "filters": [
     "country",

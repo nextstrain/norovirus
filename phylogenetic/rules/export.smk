@@ -25,6 +25,28 @@ This part of the workflow usually includes the following steps:
 See Augur's usage docs for these commands for more details.
 """
 
+rule colors:
+    """Generate color pallete for color by metadata in auspice"""
+    input:
+        color_schemes = config['colors']['color_schemes'],
+        color_orderings = config['colors']['color_orderings'],
+        metadata = "results/{group}/{gene}/metadata.tsv",
+    output:
+        colors = "results/{group}/{gene}/colors.tsv"
+    log:
+        "logs/{group}/{gene}/colors.txt",
+    benchmark:
+        "benchmarks/{group}/{gene}/colors.txt"
+    shell:
+        r"""
+        python3 scripts/assign-colors.py \
+            --color-schemes {input.color_schemes:q} \
+            --ordering {input.color_orderings:q} \
+            --metadata {input.metadata:q} \
+            --output {output.colors:q} \
+            2>&1 | tee {log}
+        """
+
 rule export:
     """Exporting data files for for auspice"""
     input:
@@ -33,6 +55,7 @@ rule export:
         branch_lengths = "results/{group}/{gene}/branch_lengths.json",
         nt_muts = "results/{group}/{gene}/nt_muts.json",
         aa_muts = "results/{group}/{gene}/aa_muts.json",
+        colors = "results/{group}/{gene}/colors.tsv",
         auspice_config = config['export']['auspice_config']
     output:
         auspice_json = "auspice/norovirus_{group}_{gene}.json",
@@ -52,6 +75,7 @@ rule export:
             --metadata {input.metadata} \
             --metadata-id-columns {params.id_field} \
             --node-data {input.branch_lengths} {input.nt_muts} {input.aa_muts} \
+            --colors {input.colors} \
             --auspice-config {input.auspice_config} \
             --output {output.auspice_json} \
             --title "{params.title}"
