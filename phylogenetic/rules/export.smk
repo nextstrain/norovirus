@@ -56,7 +56,8 @@ rule export:
         nt_muts = "results/{group}/{gene}/nt_muts.json",
         aa_muts = "results/{group}/{gene}/aa_muts.json",
         colors = "results/{group}/{gene}/colors.tsv",
-        auspice_config = config['export']['auspice_config']
+        auspice_config = config['export']['auspice_config'],
+        description = config['export']['description'],
     output:
         auspice_json = "auspice/norovirus_{group}_{gene}.json",
     benchmark:
@@ -77,6 +78,7 @@ rule export:
             --node-data {input.branch_lengths} {input.nt_muts} {input.aa_muts} \
             --colors {input.colors} \
             --auspice-config {input.auspice_config} \
+            --description {input.description} \
             --output {output.auspice_json} \
             --title "{params.title}"
         """
