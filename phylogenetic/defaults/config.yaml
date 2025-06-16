@@ -19,6 +19,22 @@ filter:
   min_length: 5032
   filter_params: --group-by year ORF2_type ORF1_type --sequences-per-group 30 --min-date 1950 --exclude-ambiguous-dates-by year
 
+refine:
+  root:
+    default: best --timetree --date-confidence --clock-filter-iqd 4 --date-inference marginal
+    all:
+      p48: DQ366347 --timetree --date-confidence --clock-filter-iqd 4 --date-inference marginal
+      VP2: best --timetree
+      genome: best --timetree
+    GII.4:
+      p48: mid_point --timetree
+      genome: best --timetree
+      VPg: mid_point --timetree
+      rdrp: best --timetree
+    GII.3:
+      3CLpro: best --timetree
+
+
 colors:
   color_schemes: defaults/color_schemes.tsv
   color_orderings: defaults/color_orderings.tsv

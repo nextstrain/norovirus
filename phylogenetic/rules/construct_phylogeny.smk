@@ -61,7 +61,7 @@ rule refine:
     params:
         date_inference = "marginal",
         clock_filter_iqd = 4,
-        root = "mid_point",
+        root = lambda wildcards: config['refine']['root'].get(wildcards.group, {}).get(wildcards.gene, config['refine']['root']['default']),
         id_field = config['strain_id_field'],
     shell:
         r"""
