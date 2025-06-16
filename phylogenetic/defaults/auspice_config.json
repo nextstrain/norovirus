@@ -1,9 +1,15 @@
 {
   "title": "Norovirus Build",
   "maintainers": [
-    {"name": "Trevor Bedford", "url": "http://bedford.io/team/trevor-bedford/"}
+    {"name": "the Nextstrain team", "url": "https://nextstrain.org/team"}
   ],
-  "build_url": "https://github.com/blab/norovirus",
+  "data_provenance": [
+    {
+      "name": "GenBank",
+      "url": "https://www.ncbi.nlm.nih.gov/genbank/"
+    }
+  ],
+  "build_url": "https://github.com/nextstrain/norovirus",
   "colorings": [
     {
       "key": "ORF2_type",
@@ -39,9 +45,15 @@
     "map_triplicate": true,
     "color_by":"ORF2_type"
   },
+  "metadata_columns": [
+    "strain",
+    "host",
+    "is_lab_host"
+  ],
   "filters": [
     "country",
     "ORF2_type",
-    "ORF1_type"
+    "ORF1_type",
+    "author"
   ]
 }
