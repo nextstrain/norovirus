@@ -4,3 +4,12 @@
 # If creating a general rule, then the raw field value can be substituted with '*'
 # Lines starting with '#' will be ignored as comments.
 # Trailing '#' will be ignored as comments.
+North America/USA/Cincinnati/Oh	North America/USA/Ohio/Cincinnati
+North America/USA/Door County/Wi	North America/USA/Wisconsin/Door County
+North America/USA/Flafstaff/Az	North America/USA/Arizona/Flagstaff
+North America/USA/Wooster/Oh	North America/USA/Ohio/Wooster
+North America/Canada/Regina/Saskatchewan	North America/Canada/Saskatchewan/Regina
+North America/Canada/Winnipeg/Manitoba	North America/Canada/Manitoba/Winnipeg
+Africa/Nigeria/Ugbuwamgwe/*	Africa/Nigeria/Ugbuwangwe/*
+Asia/Japan/Hiroshima City/*	Asia/Japan/Hiroshima/Hiroshima City
+Asia/Japan/Hiroshimacity/*	Asia/Japan/Hiroshima/Hiroshima City
