@@ -22,6 +22,11 @@
       "type": "categorical"
     },
     {
+      "key": "host",
+      "title": "Host",
+      "type": "categorical"
+    },
+    {
       "key": "num_date",
       "title": "Date",
       "type": "continuous"
