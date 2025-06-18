@@ -85,7 +85,7 @@ rule filter:
         id_field = config['strain_id_field'],
         min_length = config['filter']['min_length'],
         filter_params = config['filter']['filter_params'],
-        query = lambda wildcards: f"ORF2_type == '{wildcards.group}'" if wildcards.group != 'all' else "ORF2_type in ['GII.6', 'GII.4', 'GII.2', 'GII.3', 'GII.17']"
+        query = lambda wildcards: f"ORF2_type == '{wildcards.group}'" if wildcards.group != 'all' else "is_lab_host != 'true'"
     shell:
         r"""
         exec &> >(tee {log:q})
