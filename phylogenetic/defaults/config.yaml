@@ -45,3 +45,11 @@ colors:
 export:
   auspice_config: defaults/auspice_config.json
   description: defaults/description.md
+
+tip_frequencies:
+  # 2004 since there is an increase in norovirus samples at that time
+  min_date: "2004-01-01"
+  max_date: "3M"
+  # Quarterly narrow_bandwidth or every 3 months (3 /12.0 = 0.25)
+  narrow_bandwidth: 0.25
+  proportion_wide: 0.0

@@ -146,7 +146,8 @@ rule align:
             --reference-sequence {input.reference:q} \
             --output {output.alignment:q} \
             --fill-gaps \
-            --nthreads 4
+            --nthreads 4 \
+            --remove-reference
         """
 
 rule parse_gene:
