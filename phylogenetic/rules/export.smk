@@ -81,6 +81,7 @@ rule export:
             --auspice-config {input.auspice_config} \
             --description {input.description} \
             --output {output.auspice_json} \
+            --include-root-sequence-inline \
             --title "{params.title}"
         """
 
