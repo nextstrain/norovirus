@@ -56,5 +56,33 @@
     "ORF2_type",
     "ORF1_type",
     "author"
-  ]
+  ],
+  "extensions": {
+    "nextclade": {
+      "clade_node_attrs": [
+        {
+          "name": "ORF2_type",
+          "displayName": "Vp1 Genotype",
+          "description": "Norovirus Vp1 Genotype (based on current tree)"
+        },
+        {
+          "name": "ORF1_type",
+          "displayName": "Rdrp Genotype",
+          "description": "Norovirus Rdrp Genotype (based on current tree)"
+        }
+      ],
+      "pathogen": {
+        "schemaVersion":"3.0.0",
+        "attributes": {
+          "name": "Norovirus live tree",
+          "reference name": "Reconstructed ancestor",
+          "reference accession": "none"
+        },
+        "alignmentParams": {
+          "alignmentPreset": "high-diversity",
+          "minSeedCover": 0.01
+        }
+      }
+    }
+  }
 }
