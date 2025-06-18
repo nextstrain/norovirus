@@ -74,7 +74,8 @@ rule refine:
             --metadata {input.metadata:q} \
             --metadata-id-columns {params.id_field} \
             --output-tree {output.tree:q} \
-            --output-node-data {output.node_data:q}
+            --output-node-data {output.node_data:q} \
+            --stochastic-resolve
             #--clock-filter-iqd {params.clock_filter_iqd} \
             #--timetree \
             #--date-confidence \
