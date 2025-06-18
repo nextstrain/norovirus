@@ -41,7 +41,7 @@ refine:
       3CLpro: best --timetree --date-confidence
 
 traits:
-  default: region country ORF1_type ORF2_type
+  default: region country ORF1_type ORF2_type host
   sampling_bias_correction: 3
 
 colors:
