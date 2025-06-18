@@ -34,6 +34,9 @@ refine:
     GII.3:
       3CLpro: best --timetree
 
+traits:
+  default: region country ORF1_type ORF2_type
+  sampling_bias_correction: 3
 
 colors:
   color_schemes: defaults/color_schemes.tsv

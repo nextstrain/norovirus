@@ -55,6 +55,7 @@ rule export:
         branch_lengths = "results/{group}/{gene}/branch_lengths.json",
         nt_muts = "results/{group}/{gene}/nt_muts.json",
         aa_muts = "results/{group}/{gene}/aa_muts.json",
+        traits = "results/{group}/{gene}/traits.json",
         colors = "results/{group}/{gene}/colors.tsv",
         auspice_config = config['export']['auspice_config'],
         description = config['export']['description'],
@@ -75,7 +76,7 @@ rule export:
             --tree {input.tree} \
             --metadata {input.metadata} \
             --metadata-id-columns {params.id_field} \
-            --node-data {input.branch_lengths} {input.nt_muts} {input.aa_muts} \
+            --node-data {input.branch_lengths} {input.nt_muts} {input.aa_muts} {input.traits} \
             --colors {input.colors} \
             --auspice-config {input.auspice_config} \
             --description {input.description} \

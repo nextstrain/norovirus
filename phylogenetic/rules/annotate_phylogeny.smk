@@ -77,3 +77,35 @@ rule translate:
             --reference-sequence {input.reference} \
             --output-node-data {output.node_data}
         """
+
+rule traits:
+    """
+    Inferring ancestral traits for {params.columns!s}
+      - increase uncertainty of reconstruction by {params.sampling_bias_correction} to partially account for sampling bias
+    """
+    input:
+        tree = "results/{group}/{gene}/tree.nwk",
+        metadata = "results/{group}/{gene}/metadata.tsv",
+    output:
+        node_data = "results/{group}/{gene}/traits.json",
+    log:
+        "logs/{group}/{gene}/traits.txt",
+    benchmark:
+        "benchmarks/{group}/{gene}/traits.txt",
+    params:
+        columns = lambda wildcards: config['traits'].get(wildcards.group, {}).get(wildcards.gene, config['traits']['default']),
+        sampling_bias_correction = config["traits"]["sampling_bias_correction"],
+        strain_id = config.get("strain_id_field", "strain"),
+    shell:
+        r"""
+        exec &> >(tee {log:q})
+
+        augur traits \
+            --tree {input.tree:q} \
+            --metadata {input.metadata:q} \
+            --metadata-id-columns {params.strain_id:q} \
+            --output {output.node_data:q} \
+            --columns {params.columns} \
+            --confidence \
+            --sampling-bias-correction {params.sampling_bias_correction:q}
+        """
