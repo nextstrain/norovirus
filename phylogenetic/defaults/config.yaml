@@ -30,15 +30,15 @@ refine:
     default: best --timetree --date-confidence --clock-filter-iqd 4 --date-inference marginal
     all:
       p48: DQ366347 --timetree --date-confidence --clock-filter-iqd 4 --date-inference marginal
-      VP2: best --timetree
-      genome: best --timetree
+      VP2: best --timetree --date-confidence
+      genome: best --timetree --date-confidence
     GII.4:
-      p48: mid_point --timetree
-      genome: best --timetree
-      VPg: mid_point --timetree
-      rdrp: best --timetree
+      p48: mid_point --timetree --date-confidence
+      genome: best --timetree --date-confidence
+      VPg: mid_point --timetree --date-confidence
+      rdrp: mid_point --timetree
     GII.3:
-      3CLpro: best --timetree
+      3CLpro: best --timetree --date-confidence
 
 traits:
   default: region country ORF1_type ORF2_type
