@@ -7,3 +7,5 @@ KC597139
 KJ196286
 MH218591
 KT589391
+MG557657 # Low quality, may break all/VPg
+KX158285 # Perhaps too diverged, may break GII.4/genome
