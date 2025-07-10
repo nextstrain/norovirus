@@ -1,9 +1,0 @@
-channels:
-  - conda-forge
-  - bioconda
-  - default
-dependencies:
-  - augur
-  - snakemake
-  - csvtk
-  - biopython
