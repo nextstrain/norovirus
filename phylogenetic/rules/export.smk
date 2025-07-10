@@ -25,6 +25,8 @@ This part of the workflow usually includes the following steps:
 See Augur's usage docs for these commands for more details.
 """
 
+import json
+
 rule colors:
     """Generate color pallete for color by metadata in auspice"""
     input:
@@ -47,6 +49,112 @@ rule colors:
             2>&1 | tee {log}
         """
 
+rule prepare_auspice_config:
+    """Prepare the auspice config file for each serotypes"""
+    output:
+        auspice_config="results/defaults/{group}/{gene}/auspice_config.json",
+    benchmark:
+        "benchmarks/{group}/{gene}/prepare_auspice_config.txt"
+    params:
+        title = "Real-time tracking of Norovirus {group} {gene} virus evolution",
+        default_color_by = lambda wildcard: r"ORF2_type" if wildcard.group in ['all'] else r"ORF1_type",
+    run:
+        data = {
+            "title": params.title,
+            "maintainers": [
+              {"name": "the Nextstrain team", "url": "https://nextstrain.org/team"}
+            ],
+            "data_provenance": [
+              {
+                "name": "GenBank",
+                "url": "https://www.ncbi.nlm.nih.gov/genbank/"
+              }
+            ],
+            "build_url": "https://github.com/nextstrain/norovirus",
+            "colorings": [
+              {
+                "key": "ORF2_type",
+                "title": "Vp1 Genotype",
+                "type": "categorical"
+              },
+              {
+                "key": "ORF1_type",
+                "title": "Rdrp Genotype",
+                "type": "categorical"
+              },
+              {
+                "key": "host",
+                "title": "Host",
+                "type": "categorical"
+              },
+              {
+                "key": "num_date",
+                "title": "Date",
+                "type": "continuous"
+              },
+              {
+                "key": "country",
+                "title": "Country",
+                "type": "categorical"
+              }
+            ],
+            "geo_resolutions": [
+              "country",
+              "region"
+            ],
+            "panels": [
+               "tree",
+               "map",
+               "entropy",
+               "frequencies"
+            ],
+            "display_defaults": {
+              "map_triplicate": True,
+              "color_by": params.default_color_by
+            },
+            "metadata_columns": [
+              "strain",
+              "host",
+              "is_lab_host"
+            ],
+            "filters": [
+              "country",
+              "ORF2_type",
+              "ORF1_type",
+              "author"
+            ],
+            "extensions": {
+              "nextclade": {
+                "clade_node_attrs": [
+                  {
+                    "name": "ORF2_type",
+                    "displayName": "Vp1 Genotype",
+                    "description": "Norovirus Vp1 Genotype (based on current tree)"
+                  },
+                  {
+                    "name": "ORF1_type",
+                    "displayName": "Rdrp Genotype",
+                    "description": "Norovirus Rdrp Genotype (based on current tree)"
+                  }
+                ],
+                "pathogen": {
+                  "schemaVersion":"3.0.0",
+                  "attributes": {
+                    "name": "Norovirus live tree",
+                    "reference name": "Reconstructed ancestor",
+                    "reference accession": "none"
+                  },
+                  "alignmentParams": {
+                    "alignmentPreset": "high-diversity",
+                    "minSeedCover": 0.01
+                  }
+                }
+              }
+            }
+        }
+        with open(output.auspice_config, 'w') as fh:
+            json.dump(data, fh, indent=2)
+
 rule export:
     """Exporting data files for for auspice"""
     input:
@@ -66,7 +174,6 @@ rule export:
     log:
         "logs/{group}/{gene}/export.txt",
     params:
-        title = "Norovirus {group} {gene} Build",
         id_field = config['strain_id_field']
     shell:
         r"""
@@ -81,8 +188,7 @@ rule export:
             --auspice-config {input.auspice_config} \
             --description {input.description} \
             --output {output.auspice_json} \
-            --include-root-sequence-inline \
-            --title "{params.title}"
+            --include-root-sequence-inline
         """
 
 rule tip_frequencies:

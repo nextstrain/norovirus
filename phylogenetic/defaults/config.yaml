@@ -44,7 +44,7 @@ colors:
   color_orderings: defaults/color_orderings.tsv
 
 export:
-  auspice_config: defaults/auspice_config.json
+  auspice_config: results/defaults/{group}/{gene}/auspice_config.json
   description: defaults/description.md
 
 tip_frequencies:
