@@ -17,7 +17,7 @@ metadata_url: "https://data.nextstrain.org/files/workflows/norovirus/metadata.ts
 
 strain_id_field: "accession"
 # Will be used to generate the group and gene level references
-reference: defaults/norovirus_outgroup_{group}.gb
+reference: defaults/{group}/reference.gb
 
 filter:
   exclude: defaults/exclude.txt
