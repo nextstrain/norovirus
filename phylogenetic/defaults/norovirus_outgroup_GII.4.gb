@@ -1,9 +1,9 @@
-LOCUS       MK073894                7499 bp    RNA     linear   VRL 07-FEB-2019
+LOCUS       MK073894_REF                7499 bp    RNA     linear   VRL 07-FEB-2019
 DEFINITION  Norovirus GII.4 isolate Hu/USA/2016/GII.P16-GII.4
             Sydney/Nashville-0085 nonstructural polyprotein (ORF1) and VP1
             (ORF2) genes, complete cds; and VP2 (ORF3) gene, partial cds.
-ACCESSION   MK073894
-VERSION     MK073894.1
+ACCESSION   MK073894_REF
+VERSION     MK073894_REF
 DBLINK      BioProject: PRJNA322324
 KEYWORDS    .
 SOURCE      Norovirus GII.4

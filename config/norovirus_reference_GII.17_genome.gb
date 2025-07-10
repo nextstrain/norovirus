@@ -1,7 +1,7 @@
-LOCUS       NC_039475               7556 bp    RNA     linear   VRL 09-AUG-2019
+LOCUS       NC_039475_REF               7556 bp    RNA     linear   VRL 09-AUG-2019
 DEFINITION  Norovirus GII.17, complete genome.
-ACCESSION   NC_039475
-VERSION     NC_039475.1
+ACCESSION   NC_039475_REF
+VERSION     NC_039475_REF
 DBLINK      BioProject: PRJNA485481
 KEYWORDS    RefSeq.
 SOURCE      Norovirus GII.17

@@ -1,7 +1,7 @@
-LOCUS       JX846924                7527 bp ss-RNA     linear   VRL 24-OCT-2013
+LOCUS       JX846924_REF                7527 bp ss-RNA     linear   VRL 24-OCT-2013
 DEFINITION  Norovirus Hu/GII.3/HK71/1978/CHN, complete genome.
-ACCESSION   JX846924
-VERSION     JX846924
+ACCESSION   JX846924_REF
+VERSION     JX846924_REF
 DBLINK      BioProject: PRJNA70471
 KEYWORDS    .
 SOURCE      Norovirus Hu/GII.3/HK71/1978/CHN
