@@ -8,7 +8,7 @@
 # {group} represents different genotypes to be analyzed
 groups: ['GII.6', 'GII.4', 'GII.2', 'GII.3', 'GII.17', 'all']
 # {gene} represents the norovirus genes to focus on in each build
-genes: ['3CLpro', 'NTPase', 'p22', 'p48', 'rdrp', 'VP1', 'VP2', 'VPg', 'genome']
+genes: ['genome']
 
 # Sequences must be FASTA and metadata must be TSV
 # Both files must be zstd compressed
@@ -33,12 +33,7 @@ refine:
       VP2: best --timetree --date-confidence
       genome: best --timetree --date-confidence
     GII.4:
-      p48: mid_point --timetree --date-confidence
       genome: mid_point --timetree --date-confidence
-      VPg: mid_point --timetree --date-confidence
-      rdrp: mid_point --timetree
-    GII.3:
-      3CLpro: best --timetree --date-confidence
 
 traits:
   default: region country ORF1_type ORF2_type host

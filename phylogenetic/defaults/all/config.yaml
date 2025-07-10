@@ -1,0 +1,11 @@
+# This configuration file should contain all required configuration parameters
+# for the phylogenetic workflow to run to completion.
+#
+# Define optional config parameters with their default values here so that users
+# do not have to dig through the workflows to figure out the default values
+
+# Define wildcards used for building trees in the workflow, also used in the intermediate files or auxillariary default file names.
+# {group} represents different genotypes to be analyzed
+groups: ['all']
+# {gene} represents the norovirus genes to focus on in each build
+genes: ['3CLpro', 'NTPase', 'p22', 'p48', 'rdrp', 'VP1', 'VP2', 'VPg']
