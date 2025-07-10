@@ -34,7 +34,7 @@ refine:
       genome: best --timetree --date-confidence
     GII.4:
       p48: mid_point --timetree --date-confidence
-      genome: best --timetree --date-confidence
+      genome: mid_point --timetree --date-confidence
       VPg: mid_point --timetree --date-confidence
       rdrp: mid_point --timetree
     GII.3:
