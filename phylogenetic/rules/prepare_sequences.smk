@@ -73,6 +73,8 @@ rule filter:
     input:
         sequences = "data/sequences.fasta",
         metadata = "data/metadata.tsv",
+        root_sequence = "defaults/all/root.fasta",
+        root_metadata = "defaults/all/root.tsv",
         exclude = config['filter']['exclude']
     output:
         sequences = "results/{group}/{gene}/filtered.fasta",
@@ -97,8 +99,15 @@ rule filter:
             --query "{params.query}" \
             {params.filter_params} \
             --exclude {input.exclude:q} \
-            --output-sequences {output.sequences:q} \
-            --output-metadata {output.metadata:q}
+            --output-sequences {output.sequences:q}_temp \
+            --output-metadata {output.metadata:q}_temp
+
+        augur merge \
+          --metadata a={output.metadata:q}_temp b={input.root_metadata:q} \
+          --sequences {output.sequences:q}_temp {input.root_sequence:q} \
+          --metadata-id-columns accession \
+          --output-metadata {output.metadata:q} \
+          --output-sequences {output.sequences:q}
         """
 
 rule parse_reference:

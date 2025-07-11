@@ -9,3 +9,10 @@
 groups: ['all']
 # {gene} represents the norovirus genes to focus on in each build
 genes: ['3CLpro', 'NTPase', 'p22', 'p48', 'rdrp', 'VP1', 'VP2', 'VPg']
+
+refine:
+  root:
+    default: root_sequence --remove-outgroup --timetree --date-confidence --clock-filter-iqd 4 --date-inference marginal
+    all:
+      p48: root_sequence --remove-outgroup --timetree --date-confidence --clock-filter-iqd 4 --date-inference marginal
+      VP2: root_sequence --remove-outgroup --timetree --date-confidence --clock-filter-iqd 4 --date-inference marginal
