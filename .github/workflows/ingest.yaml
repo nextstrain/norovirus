@@ -40,8 +40,8 @@ on:
       trial_name:
         description: |
           Trial name for outputs.
-          If not set, outputs will overwrite files at s3://nextstrain-data/files/workflows/zika/
-          If set, outputs will be uploaded to s3://nextstrain-data/files/workflows/zika/trials/<trial_name>/
+          If not set, outputs will overwrite files at s3://nextstrain-data/files/workflows/norovirus/
+          If set, outputs will be uploaded to s3://nextstrain-data/files/workflows/norovirus/trials/<trial_name>/
         required: false
         type: string
 
@@ -63,7 +63,7 @@ jobs:
         declare -a config
 
         if [[ "$TRIAL_NAME" ]]; then
-          config+=("s3_dst=s3://nextstrain-data/files/workflows/zika/trials/$TRIAL_NAME")
+          config+=("s3_dst=s3://nextstrain-data/files/workflows/norovirus/trials/$TRIAL_NAME")
         fi
 
         nextstrain build \
