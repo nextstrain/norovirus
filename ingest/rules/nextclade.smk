@@ -21,43 +21,51 @@ https://docs.nextstrain.org/projects/nextclade/page/user/nextclade-cli.html
 DATASET_NAME = config["nextclade"]["dataset_name"]
 
 
-rule get_nextclade_dataset:
-    """Download Nextclade dataset"""
-    output:
-        dataset=f"data/nextclade_data/{DATASET_NAME}.zip",
-    params:
-        dataset_name=DATASET_NAME
-    shell:
-        """
-        nextclade3 dataset get \
-            --name={params.dataset_name:q} \
-            --output-zip={output.dataset} \
-            --verbose
-        """
+# rule get_nextclade_dataset:
+#     """Download Nextclade dataset"""
+#     output:
+#         dataset=f"data/nextclade_data/{DATASET_NAME}.zip",
+#     params:
+#         dataset_name=DATASET_NAME
+#     shell:
+#         """
+#         nextclade3 dataset get \
+#             --name={params.dataset_name:q} \
+#             --output-zip={output.dataset} \
+#             --verbose
+#         """
 
 
 rule run_nextclade:
     input:
-        dataset=f"data/nextclade_data/{DATASET_NAME}.zip",
+        # dataset=f"data/nextclade_data/{DATASET_NAME}.zip",
+        input_ref="../phylogenetic/defaults/all/reference.fasta",
+        input_annotation="../phylogenetic/defaults/all/reference.gff3",
         sequences="results/sequences.fasta",
     output:
         nextclade="results/nextclade.tsv",
-        alignment="results/alignment.fasta",
-        translations="results/translations.zip",
+        #alignment="results/alignment.fasta",
+        #translations="results/translations.zip",
     params:
         # The lambda is used to deactivate automatic wildcard expansion.
         # https://github.com/snakemake/snakemake/blob/384d0066c512b0429719085f2cf886fdb97fd80a/snakemake/rules.py#L997-L1000
         translations=lambda w: "results/translations/{cds}.fasta",
+        min_seed_cover=0.05 # Smallest gene based on GFF/Genome length (398/7500)
     shell:
         """
         nextclade3 run \
             {input.sequences} \
-            --input-dataset {input.dataset} \
+            --input-ref {input.input_ref} \
+            --input-annotation {input.input_annotation} \
             --output-tsv {output.nextclade} \
-            --output-fasta {output.alignment} \
-            --output-translations {params.translations}
+            --min-seed-cover {params.min_seed_cover} \
+            --silent
+            #--output-fasta output.alignment \
+            #--output-translations params.translations
 
-        zip -rj {output.translations} results/translations
+        # --input-dataset input.dataset \
+
+        #zip -rj output.translations results/translations
         """
 
 
@@ -81,24 +89,27 @@ rule nextclade_metadata:
         > {output.nextclade_metadata:q}
         """
 
-
 rule join_metadata_and_nextclade:
     input:
         metadata="data/subset_metadata.tsv",
+        genomicdetective_metadata = "data/metadata_genomicdetective.tsv",
         nextclade_metadata="results/nextclade_metadata.tsv",
     output:
         metadata="results/metadata.tsv",
     params:
         metadata_id_field=config["curate"]["output_id_field"],
+        genomicdetective_id_field = "strain",
         nextclade_id_field=config["nextclade"]["id_field"],
     shell:
         r"""
         augur merge \
             --metadata \
                 metadata={input.metadata:q} \
+                genomicdetective={input.genomicdetective_metadata:q} \
                 nextclade={input.nextclade_metadata:q} \
             --metadata-id-columns \
                 metadata={params.metadata_id_field:q} \
+                genomicdetective={params.genomicdetective_id_field:q} \
                 nextclade={params.nextclade_id_field:q} \
             --output-metadata {output.metadata:q} \
             --no-source-columns
