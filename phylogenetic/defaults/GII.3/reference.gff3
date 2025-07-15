@@ -1,0 +1,18 @@
+##gff-version 3
+##sequence-region JX846924_REF 1 7527
+JX846924_REF	Genbank	gene	5	1000	.	+	.	ID=gene-p48;Name=p48
+JX846924_REF	Genbank	CDS	5	1000	.	+	.	ID=cds-p48;Parent=gene-p48;Name=p48
+JX846924_REF	Genbank	gene	1001	2098	.	+	.	ID=gene-NTPase;Name=NTPase
+JX846924_REF	Genbank	CDS	1001	2098	.	+	.	ID=cds-NTPase;Parent=gene-NTPase;Name=NTPase
+JX846924_REF	Genbank	gene	2099	2635	.	+	.	ID=gene-p22;Name=p22
+JX846924_REF	Genbank	CDS	2099	2635	.	+	.	ID=cds-p22;Parent=gene-p22;Name=p22
+JX846924_REF	Genbank	gene	2636	3034	.	+	.	ID=gene-VPg;Name=VPg
+JX846924_REF	Genbank	CDS	2636	3034	.	+	.	ID=cds-VPg;Parent=gene-VPg;Name=VPg
+JX846924_REF	Genbank	gene	3035	3577	.	+	.	ID=gene-3CLpro;Name=3CLpro
+JX846924_REF	Genbank	CDS	3035	3577	.	+	.	ID=cds-3CLpro;Parent=gene-3CLpro;Name=3CLpro
+JX846924_REF	Genbank	gene	3578	5107	.	+	.	ID=gene-rdrp;Name=rdrp
+JX846924_REF	Genbank	CDS	3578	5107	.	+	.	ID=cds-rdrp;Parent=gene-rdrp;Name=rdrp
+JX846924_REF	Genbank	gene	5091	6737	.	+	.	ID=gene-VP1;Name=VP1
+JX846924_REF	Genbank	CDS	5091	6737	.	+	.	ID=cds-VP1;Parent=gene-VP1;Name=VP1
+JX846924_REF	Genbank	gene	6737	7501	.	+	.	ID=gene-VP2;Name=VP2
+JX846924_REF	Genbank	CDS	6737	7501	.	+	.	ID=cds-VP2;Parent=gene-VP2;Name=VP2

@@ -1,0 +1,20 @@
+##gff-version 3
+##sequence-region NC_039475_REF 1 7556
+NC_039475_REF	Genbank	gene	5	5113	.	+	.	ID=gene-ORF1;Name=ORF1
+NC_039475_REF	Genbank	CDS	5	5113	.	+	.	ID=cds-ORF1;Parent=gene-ORF1;Name=ORF1
+NC_039475_REF	Genbank	gene	5	1003	.	+	.	ID=gene-p48;Name=p48
+NC_039475_REF	Genbank	CDS	5	1003	.	+	.	ID=cds-p48;Parent=gene-p48;Name=p48
+NC_039475_REF	Genbank	gene	1004	2101	.	+	.	ID=gene-NTPase;Name=NTPase
+NC_039475_REF	Genbank	CDS	1004	2101	.	+	.	ID=cds-NTPase;Parent=gene-NTPase;Name=NTPase
+NC_039475_REF	Genbank	gene	2102	2638	.	+	.	ID=gene-p22;Name=p22
+NC_039475_REF	Genbank	CDS	2102	2638	.	+	.	ID=cds-p22;Parent=gene-p22;Name=p22
+NC_039475_REF	Genbank	gene	2639	3037	.	+	.	ID=gene-VPg;Name=VPg
+NC_039475_REF	Genbank	CDS	2639	3037	.	+	.	ID=cds-VPg;Parent=gene-VPg;Name=VPg
+NC_039475_REF	Genbank	gene	3038	3580	.	+	.	ID=gene-3CLpro;Name=3CLpro
+NC_039475_REF	Genbank	CDS	3038	3580	.	+	.	ID=cds-3CLpro;Parent=gene-3CLpro;Name=3CLpro
+NC_039475_REF	Genbank	gene	3581	5110	.	+	.	ID=gene-RdRp;Name=RdRp
+NC_039475_REF	Genbank	CDS	3581	5110	.	+	.	ID=cds-RdRp;Parent=gene-RdRp;Name=RdRp
+NC_039475_REF	Genbank	gene	5094	6716	.	+	.	ID=gene-VP1;Name=VP1
+NC_039475_REF	Genbank	CDS	5094	6716	.	+	.	ID=cds-VP1;Parent=gene-VP1;Name=VP1
+NC_039475_REF	Genbank	gene	6716	7495	.	+	.	ID=gene-VP2;Name=VP2
+NC_039475_REF	Genbank	CDS	6716	7495	.	+	.	ID=cds-VP2;Parent=gene-VP2;Name=VP2
