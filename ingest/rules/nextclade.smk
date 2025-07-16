@@ -95,7 +95,7 @@ rule join_metadata_and_nextclade:
         genomicdetective_metadata = "data/metadata_genomicdetective.tsv",
         nextclade_metadata="results/nextclade_metadata.tsv",
     output:
-        metadata="results/metadata.tsv",
+        metadata="data/subset_metadata_joined.tsv",
     params:
         metadata_id_field=config["curate"]["output_id_field"],
         genomicdetective_id_field = "strain",
@@ -113,4 +113,23 @@ rule join_metadata_and_nextclade:
                 nextclade={params.nextclade_id_field:q} \
             --output-metadata {output.metadata:q} \
             --no-source-columns
+        """
+
+rule split_cdsCoverage_columns:
+    input:
+        metadata = "data/subset_metadata_joined.tsv",
+    output:
+        metadata="results/metadata.tsv",
+    params:
+        cdsCoverage=config['nextclade']['coverage']['cdsCoverage_field'],
+        genes=config['nextclade']['coverage']['genes'],
+        round_digits=config['nextclade']['coverage']['round_digits'],
+    shell:
+        r"""
+        python ./scripts/split-cdsCoverage-columns.py \
+          --metadata {input.metadata} \
+          --cdsCoverage {params.cdsCoverage} \
+          --genes {params.genes} \
+          --round {params.round_digits} \
+          --output {output.metadata}
         """

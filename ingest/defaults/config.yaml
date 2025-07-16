@@ -146,3 +146,7 @@ nextclade:
   # This is the ID field you would use to match the Nextclade output with the record metadata.
   # This should be the new name that you have defined in your field map.
   id_field: "seqName"
+  coverage:
+    cdsCoverage_field: "cdsCoverage"
+    genes: "p48,NTPase,p22,VPg,3CLpro,RdRp,VP1,VP2"
+    round_digits: 3
