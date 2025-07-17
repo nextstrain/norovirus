@@ -125,7 +125,7 @@ rule split_cdsCoverage_columns:
         metadata="results/metadata.tsv",
     params:
         cdsCoverage="cdsCoverage",
-        genes="3CLpro,NTPase,p22,p48,rdrp,VP1,VP2,VPg",
+        genes="3CLpro,NTPase,p22,p48,RdRp,VP1,VP2,VPg",
     shell:
         r"""
         python ./scripts/split-cdsCoverage-columns.py \

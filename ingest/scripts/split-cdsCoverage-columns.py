@@ -39,15 +39,22 @@ def parse_args():
 def parse_coverage_field(field_value, genes):
     """Convert a coverage string like '3CLpro:1,NTPase:0.99' into a dict for selected genes."""
     gene_dict = {}
+
+    # Set gene order and default to 0.0
+    for gene in genes:
+        gene_dict[f"{gene}_coverage"] = float(0.0)
+
     for item in field_value.split(","):
         if ":" not in item:
             continue
         gene, val = item.split(":")
+        # Set recognized genes to value
         if gene in genes:
             try:
                 gene_dict[f"{gene}_coverage"] = float(val)
             except ValueError:
                 gene_dict[f"{gene}_coverage"] = None
+
     return gene_dict
 
 def process_chunk(chunk, cds_coverage_col, genes):
