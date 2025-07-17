@@ -60,6 +60,10 @@ rule run_nextclade:
             --output-tsv {output.nextclade} \
             --output-fasta {output.alignment} \
             --min-seed-cover {params.min_seed_cover} \
+            --alignment-preset high-diversity \
+            --allowed-mismatches 20 \
+            --penalty-gap-extend 1 \
+            --min-length 390 \
             --silent
             #--output-translations params.translations
 
