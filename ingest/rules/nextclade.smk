@@ -59,6 +59,9 @@ rule run_nextclade:
             --input-annotation {input.input_annotation} \
             --output-tsv {output.nextclade} \
             --min-seed-cover {params.min_seed_cover} \
+            --alignment-preset high-diversity \
+            --allowed-mismatches 20 \
+            --min-length 390 \
             --silent
             #--output-fasta output.alignment \
             #--output-translations params.translations
