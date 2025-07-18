@@ -79,13 +79,28 @@ rule prepare_auspice_config:
               },
               {
                 "key": "ORF1_type",
-                "title": "Rdrp Genotype",
+                "title": "RdRp Genotype",
                 "type": "categorical"
               },
               {
                 "key": "host",
                 "title": "Host",
                 "type": "categorical"
+              },
+              {
+                "key": "coverage",
+                "title": "Genome coverage",
+                "type": "continuous"
+              },
+              {
+                "key": "VP1_coverage",
+                "title": "Vp1 coverage",
+                "type": "continuous"
+              },
+              {
+                "key": "RdRp_coverage",
+                "title": "RdRp coverage",
+                "type": "continuous"
               },
               {
                 "key": "num_date",
@@ -115,7 +130,15 @@ rule prepare_auspice_config:
             "metadata_columns": [
               "strain",
               "host",
-              "is_lab_host"
+              "is_lab_host",
+              "p48_coverage",
+              "NTPase_coverage",
+              "p22_coverage",
+              "VPg_coverage",
+              "3CLpro_coverage",
+              "RdRp_coverage",
+              "VP1_coverage",
+              "VP2_coverage",
             ],
             "filters": [
               "country",
