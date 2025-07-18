@@ -23,6 +23,7 @@ filter:
   exclude: defaults/exclude.txt
   # minimum length is 67% of Norovirus virus genome
   min_length: 5032
+  min_coverage: 0.8
   filter_params: --group-by year ORF2_type ORF1_type --sequences-per-group 30 --min-date 1950 --exclude-ambiguous-dates-by year --query-columns is_lab_host:str
 
 refine:
