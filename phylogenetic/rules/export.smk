@@ -58,6 +58,7 @@ rule prepare_auspice_config:
     params:
         title = "Real-time tracking of Norovirus {group} {gene} virus evolution",
         default_color_by = lambda wildcard: r"ORF2_type" if wildcard.group in ['all'] else r"ORF1_type",
+        gene_coverage_coloring = lambda wildcard: {"key": f"{wildcard.gene}_coverage","title": f"{wildcard.gene} coverage","type": "continuous"} if wildcard.gene != "genome" else None
     run:
         data = {
             "title": params.title,
@@ -92,6 +93,7 @@ rule prepare_auspice_config:
                 "title": "Genome coverage",
                 "type": "continuous"
               },
+              *([params.gene_coverage_coloring] if params.gene_coverage_coloring else []),
               {
                 "key": "VP1_coverage",
                 "title": "Vp1 coverage",
