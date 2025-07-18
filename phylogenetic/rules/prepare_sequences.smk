@@ -83,9 +83,9 @@ rule filter:
         "logs/{group}/{gene}/filter.txt",
     params:
         id_field = config['strain_id_field'],
-        min_length = config['filter']['min_length'],
         filter_params = config['filter']['filter_params'],
-        query = lambda wildcards: f"ORF2_type == '{wildcards.group}'" if wildcards.group != 'all' else "is_lab_host != 'true'"
+        min_coverage=lambda wildcards: f'\`{wildcards.gene}_coverage\` >= {config["filter"]["min_coverage"]}' if wildcards.gene != 'genome' else f'coverage >= {config["filter"]["min_coverage"]}',
+        genogroup_query = lambda wildcards: f"ORF2_type == '{wildcards.group}'" if wildcards.group != 'all' else "is_lab_host != 'true'",
     shell:
         r"""
         exec &> >(tee {log:q})
@@ -94,8 +94,8 @@ rule filter:
             --sequences {input.sequences:q} \
             --metadata {input.metadata:q} \
             --metadata-id-columns {params.id_field:q} \
-            --query "{params.query}" \
             {params.filter_params} \
+            --query "({params.min_coverage} & ({params.genogroup_query}))" \
             --exclude {input.exclude:q} \
             --output-sequences {output.sequences:q} \
             --output-metadata {output.metadata:q}
