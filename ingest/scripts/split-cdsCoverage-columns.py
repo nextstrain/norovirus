@@ -44,11 +44,10 @@ def parse_args():
 
 def parse_coverage_field(field_value, genes, round_digits=None):
     """Convert a coverage string like '3CLpro:1,NTPase:0.99' into a dict for selected genes."""
-    gene_dict = {}
-
-    # Set gene order and default to 0.0
-    for gene in genes:
-        gene_dict[f"{gene}_coverage"] = float(0.0)
+    gene_dict = {
+        f"{gene}_coverage": float(0.0)
+        for gene in genes
+    }
 
     for item in field_value.split(","):
         if ":" not in item:
