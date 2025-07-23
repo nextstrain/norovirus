@@ -58,8 +58,8 @@ def parse_coverage_field(field_value, genes, round_digits=None):
 
                 # Add original or rounded value to dictionary
                 gene_dict[f"{gene}_coverage"] = value
-            except ValueError:
-                gene_dict[f"{gene}_coverage"] = None
+            except ValueError as e:
+                raise ValueError(f'ERROR: Value "{val}" is not a number in "{gene}:{val}". Check if the column is correctly formatted.') from e
 
     return gene_dict
 
