@@ -39,8 +39,8 @@ DATASET_NAME = config["nextclade"]["dataset_name"]
 rule run_nextclade:
     input:
         # dataset=f"data/nextclade_data/{DATASET_NAME}.zip",
-        input_ref="../phylogenetic/defaults/all/reference.fasta",
-        input_annotation="../phylogenetic/defaults/all/reference.gff3",
+        input_ref=config['nextclade']['dataset_reference'],
+        input_annotation=config['nextclade']['dataset_gff'],
         sequences="results/sequences.fasta",
     output:
         nextclade="results/nextclade.tsv",
