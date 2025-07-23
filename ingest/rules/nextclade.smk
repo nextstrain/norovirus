@@ -18,23 +18,6 @@ See Nextclade docs for more details on usage, inputs, and outputs if you would
 like to customize the rules:
 https://docs.nextstrain.org/projects/nextclade/page/user/nextclade-cli.html
 """
-DATASET_NAME = config["nextclade"]["dataset_name"]
-
-
-# rule get_nextclade_dataset:
-#     """Download Nextclade dataset"""
-#     output:
-#         dataset=f"data/nextclade_data/{DATASET_NAME}.zip",
-#     params:
-#         dataset_name=DATASET_NAME
-#     shell:
-#         """
-#         nextclade3 dataset get \
-#             --name={params.dataset_name:q} \
-#             --output-zip={output.dataset} \
-#             --verbose
-#         """
-
 
 rule run_nextclade:
     input:
@@ -45,7 +28,6 @@ rule run_nextclade:
     output:
         nextclade="results/nextclade.tsv",
         alignment="results/alignment.fasta",
-        #translations="results/translations.zip",
     params:
         # The lambda is used to deactivate automatic wildcard expansion.
         # https://github.com/snakemake/snakemake/blob/384d0066c512b0429719085f2cf886fdb97fd80a/snakemake/rules.py#L997-L1000
@@ -65,11 +47,6 @@ rule run_nextclade:
             --penalty-gap-extend 1 \
             --min-length 390 \
             --silent
-            #--output-translations params.translations
-
-        # --input-dataset input.dataset \
-
-        #zip -rj output.translations results/translations
         """
 
 
