@@ -65,10 +65,6 @@ rule filter:
     """
     Filtering to
       - various criteria based on the auspice JSON target
-      - from {params.min_date} onwards
-      - excluding strains in {input.exclude}
-      - including strains in {input.include}
-      - minimum genome length of {params.min_length} (67% of Norovirus virus genome)
     """
     input:
         sequences = "data/sequences.fasta",
@@ -84,8 +80,8 @@ rule filter:
     params:
         id_field = config['strain_id_field'],
         filter_params = config['filter']['filter_params'],
-        min_coverage=lambda wildcards: f'\`{wildcards.gene}_coverage\` >= {config["filter"]["min_coverage"]}' if wildcards.gene != 'genome' else f'coverage >= {config["filter"]["min_coverage"]}',
-        genogroup_query = lambda wildcards: f"ORF2_type == '{wildcards.group}'" if wildcards.group != 'all' else "is_lab_host != 'true'",
+        min_coverage=lambda wildcards: f'coverage >= {config["filter"]["min_coverage"]} & (length > 5032)' if wildcards.gene == 'genome' else f'\`{wildcards.gene}_coverage\` >= {config["filter"]["min_coverage"]}',
+        genogroup_query = lambda wildcards: "1==1" if wildcards.group == 'all' else  f"ORF2_type == '{wildcards.group}'",
     shell:
         r"""
         exec &> >(tee {log:q})
