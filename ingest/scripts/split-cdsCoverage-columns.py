@@ -1,6 +1,6 @@
 #! /usr/bin/env python
 import argparse
-import pandas as pd
+import csv
 
 def parse_args():
     parser = argparse.ArgumentParser(
@@ -27,12 +27,6 @@ def parse_args():
       type=int,
       default=None,
       help="If defined, round to this number of decimal places"
-    )
-    parser.add_argument(
-      "--chunksize",
-      type=int,
-      default=1000,
-      help="Chunk size for reading TSV"
     )
     parser.add_argument(
       "--output",
@@ -69,20 +63,6 @@ def parse_coverage_field(field_value, genes, round_digits=None):
 
     return gene_dict
 
-def process_chunk(chunk, cds_coverage_col, genes, round_digits=None):
-    """For each row, parse gene coverages and append as new columns."""
-    coverage_dicts = []
-
-    for _, row in chunk.iterrows():
-        field_val = row.get(cds_coverage_col, "")
-        if pd.notna(field_val):
-            parsed = parse_coverage_field(str(field_val), genes, round_digits)
-        else:
-            parsed = {f"{gene}_coverage": None for gene in genes}
-        coverage_dicts.append(parsed)
-
-    coverage_df = pd.DataFrame(coverage_dicts, index=chunk.index)
-    return pd.concat([chunk, coverage_df], axis=1)
 
 def main():
     args = parse_args()
@@ -90,12 +70,24 @@ def main():
     genes = args.genes.split(",")
     output_file = args.output
 
-    with open(output_file, "w", encoding="utf-8") as f_out:
-        first_chunk = True
-        for chunk in pd.read_csv(args.metadata, sep="\t", chunksize=args.chunksize):
-            processed_chunk = process_chunk(chunk, args.cdsCoverage, genes, round_digits=args.round)
-            processed_chunk.to_csv(f_out, sep="\t", index=False, header=first_chunk, mode="a")
-            first_chunk = False
+    with open(args.metadata, "r", encoding="utf-8") as infile, open(args.output, "w", encoding="utf-8", newline='') as outfile:
+        reader = csv.DictReader(infile, delimiter="\t")
+        # If --cdsCoverage column doesn't exist, exit early
+        if args.cdsCoverage not in reader.fieldnames:
+            raise ValueError(f"The column '{args.cdsCoverage}' does not exist in the metadata '{args.metadata}'")
+
+        # Create new gene_coverage field names
+        new_fields = [f"{gene}_coverage" for gene in genes]
+        fieldnames = reader.fieldnames + new_fields
+        writer = csv.DictWriter(outfile, fieldnames=fieldnames, delimiter="\t")
+        writer.writeheader()
+
+        # Parse gene_coverage values
+        for row in reader:
+            field_val = row.get(args.cdsCoverage, "")
+            gene_coverage_dict = parse_coverage_field(field_val, genes, args.round)
+            row.update(gene_coverage_dict)
+            writer.writerow(row)
 
     print(f"Done. Output written to: {output_file}")
 
