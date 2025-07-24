@@ -70,7 +70,7 @@ def main():
     genes = args.genes.split(",")
     output_file = args.output
 
-    with open(args.metadata, "r", encoding="utf-8") as infile, open(args.output, "w", encoding="utf-8", newline='') as outfile:
+    with open(args.metadata, "r", encoding="utf-8", newline="") as infile, open(args.output, "w", encoding="utf-8", newline='') as outfile:
         reader = csv.DictReader(infile, delimiter="\t")
         # If --cdsCoverage column doesn't exist, exit early
         if args.cdsCoverage not in reader.fieldnames:
