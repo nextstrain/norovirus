@@ -18,6 +18,11 @@ def parse_args():
       help="Comma-separated list of genes (e.g., '3CLpro,NTPase') to convert to coverage"
     )
     parser.add_argument(
+      "--suffix",
+      default="_coverage",
+      help="Suffix to append to the gene name to create the new column name (e.g. 'gene'+'_coverage')."
+    )
+    parser.add_argument(
       "--cdsCoverage",
       default="cdsCoverage",
       help="Column with gene coverage string"
@@ -36,10 +41,10 @@ def parse_args():
     return parser.parse_args()
 
 
-def parse_coverage_field(field_value, genes, round_digits=None):
+def parse_coverage_field(field_value, genes, round_digits=None, suffix="_coverage"):
     """Convert a coverage string like '3CLpro:1,NTPase:0.99' into a dict for selected genes."""
     gene_dict = {
-        f"{gene}_coverage": float(0.0)
+        f"{gene}{suffix}": float(0.0)
         for gene in genes
     }
 
@@ -57,7 +62,7 @@ def parse_coverage_field(field_value, genes, round_digits=None):
                     value = round(value, round_digits)
 
                 # Add original or rounded value to dictionary
-                gene_dict[f"{gene}_coverage"] = value
+                gene_dict[f"{gene}{suffix}"] = value
             except ValueError as e:
                 raise ValueError(f'ERROR: Value "{val}" is not a number in "{gene}:{val}". Check if the column is correctly formatted.') from e
 
@@ -76,17 +81,22 @@ def main():
         if args.cdsCoverage not in reader.fieldnames:
             raise ValueError(f"The column '{args.cdsCoverage}' does not exist in the metadata '{args.metadata}'")
 
-        # Create new gene_coverage field names
-        new_fields = [f"{gene}_coverage" for gene in genes]
-        fieldnames = reader.fieldnames + new_fields
-        writer = csv.DictWriter(outfile, fieldnames=fieldnames, delimiter="\t")
-        writer.writeheader()
+        # Defer defining the writer until we process the first row, to avoid fieldname mismatch
+        writer = None
 
         # Parse gene_coverage values
         for row in reader:
             field_val = row.get(args.cdsCoverage, "")
-            gene_coverage_dict = parse_coverage_field(field_val, genes, args.round)
+            gene_coverage_dict = parse_coverage_field(field_val, genes, args.round, args.suffix)
             row.update(gene_coverage_dict)
+
+            # Only initialize writer and print header on first iteration
+            if writer is None:
+                fieldnames = list(reader.fieldnames) + list(gene_coverage_dict)
+                writer = csv.DictWriter(outfile, fieldnames=fieldnames, delimiter="\t")
+                writer.writeheader()
+
+            # Write row on every iteration
             writer.writerow(row)
 
     print(f"Done. Output written to: {output_file}")
