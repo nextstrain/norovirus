@@ -92,8 +92,7 @@ def main():
 
             # Only initialize writer and print header on first iteration
             if writer is None:
-                fieldnames = list(reader.fieldnames) + list(gene_coverage_dict)
-                writer = csv.DictWriter(outfile, fieldnames=fieldnames, delimiter="\t")
+                writer = csv.DictWriter(outfile, fieldnames=list(row), delimiter="\t")
                 writer.writeheader()
 
             # Write row on every iteration
