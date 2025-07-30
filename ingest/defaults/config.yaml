@@ -118,3 +118,35 @@ curate:
     "institution",
     "url"
   ]
+
+# Nextclade parameters to include if you are running Nextclade as a part of your ingest workflow
+# Note that this requires a Nextclade dataset to already exist for your pathogen.
+nextclade:
+  # The FASTA and GFF references for running nextclade to get cdsCoverage
+  dataset_reference: "../phylogenetic/defaults/all/reference.fasta"
+  dataset_gff: "../phylogenetic/defaults/all/reference.gff3"
+  # The first column should be the original column name of the Nextclade TSV
+  # The second column should be the new column name to use in the final metadata TSV
+  # Nextclade can have pathogen specific output columns so make sure to check which
+  # columns would be useful for your downstream phylogenetic analysis.
+  field_map:
+    seqName: "seqName"
+    #clade: "clade"
+    coverage: "coverage"
+    cdsCoverage: "cdsCoverage"
+    totalMissing: "missing_data"
+    totalSubstitutions: "divergence"
+    totalNonACGTNs: "nonACGTN"
+    qc.missingData.status: "QC_missing_data"
+    qc.mixedSites.status: "QC_mixed_sites"
+    qc.privateMutations.status: "QC_rare_mutations"
+    qc.frameShifts.status: "QC_frame_shifts"
+    qc.stopCodons.status: "QC_stop_codons"
+    frameShifts: "frame_shifts"
+  # This is the ID field you would use to match the Nextclade output with the record metadata.
+  # This should be the new name that you have defined in your field map.
+  id_field: "seqName"
+  coverage:
+    cdsCoverage_field: "cdsCoverage"
+    genes: "p48,NTPase,p22,VPg,3CLpro,RdRp,VP1,VP2"
+    round_digits: 3
