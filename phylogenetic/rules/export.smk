@@ -58,6 +58,7 @@ rule prepare_auspice_config:
     params:
         title = "Real-time tracking of Norovirus {group} {gene} virus evolution",
         default_color_by = lambda wildcard: r"ORF2_type" if wildcard.group in ['all'] else r"ORF1_type",
+        gene_coverage_coloring = lambda wildcard: {"key": f"{wildcard.gene}_coverage","title": f"{wildcard.gene} coverage","type": "continuous"} if wildcard.gene != "genome" else None
     run:
         data = {
             "title": params.title,
@@ -79,13 +80,29 @@ rule prepare_auspice_config:
               },
               {
                 "key": "ORF1_type",
-                "title": "Rdrp Genotype",
+                "title": "RdRp Genotype",
                 "type": "categorical"
               },
               {
                 "key": "host",
                 "title": "Host",
                 "type": "categorical"
+              },
+              {
+                "key": "coverage",
+                "title": "Genome coverage",
+                "type": "continuous"
+              },
+              *([params.gene_coverage_coloring] if params.gene_coverage_coloring else []),
+              {
+                "key": "VP1_coverage",
+                "title": "Vp1 coverage",
+                "type": "continuous"
+              },
+              {
+                "key": "RdRp_coverage",
+                "title": "RdRp coverage",
+                "type": "continuous"
               },
               {
                 "key": "num_date",
@@ -115,7 +132,15 @@ rule prepare_auspice_config:
             "metadata_columns": [
               "strain",
               "host",
-              "is_lab_host"
+              "is_lab_host",
+              "p48_coverage",
+              "NTPase_coverage",
+              "p22_coverage",
+              "VPg_coverage",
+              "3CLpro_coverage",
+              "RdRp_coverage",
+              "VP1_coverage",
+              "VP2_coverage",
             ],
             "filters": [
               "country",

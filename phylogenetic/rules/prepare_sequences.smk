@@ -61,14 +61,28 @@ rule decompress:
         zstd -d -c {input.metadata} > {output.metadata}
         """
 
+def _query_params(wildcards):
+    """
+    Generate the query for filtering Norovirus samples based on the combination of wildcards values
+
+    1. wildcards.gene: genetic region (genome, VP1, RdRp, ...)
+    2. wildcards.group: genotypes (all, GII.2, ...)
+
+    """
+    if wildcards.gene == 'genome':
+        query = f'coverage >= {config["filter"]["min_coverage"]} & (length > 5032)'
+    else:
+        query = f'`{wildcards.gene}_coverage` >= {config["filter"]["min_coverage"]}'
+
+    if wildcards.group != 'all':
+        query = f"({query}) & (ORF2_type == '{wildcards.group}')"
+
+    return query
+
 rule filter:
     """
     Filtering to
       - various criteria based on the auspice JSON target
-      - from {params.min_date} onwards
-      - excluding strains in {input.exclude}
-      - including strains in {input.include}
-      - minimum genome length of {params.min_length} (67% of Norovirus virus genome)
     """
     input:
         sequences = "data/sequences.fasta",
@@ -83,9 +97,8 @@ rule filter:
         "logs/{group}/{gene}/filter.txt",
     params:
         id_field = config['strain_id_field'],
-        min_length = config['filter']['min_length'],
         filter_params = config['filter']['filter_params'],
-        query = lambda wildcards: f"ORF2_type == '{wildcards.group}'" if wildcards.group != 'all' else "is_lab_host != 'true'"
+        query_params = lambda wildcards: _query_params(wildcards)
     shell:
         r"""
         exec &> >(tee {log:q})
@@ -94,8 +107,8 @@ rule filter:
             --sequences {input.sequences:q} \
             --metadata {input.metadata:q} \
             --metadata-id-columns {params.id_field:q} \
-            --query "{params.query}" \
             {params.filter_params} \
+            --query {params.query_params:q} \
             --exclude {input.exclude:q} \
             --output-sequences {output.sequences:q} \
             --output-metadata {output.metadata:q}
