@@ -61,6 +61,24 @@ rule decompress:
         zstd -d -c {input.metadata} > {output.metadata}
         """
 
+def _query_params(wildcards):
+    """
+    Generate the query for filtering Norovirus samples based on the combination of wildcards values
+
+    1. wildcards.gene: genetic region (genome, VP1, RdRp, ...)
+    2. wildcards.group: genotypes (all, GII.2, ...)
+
+    """
+    if wildcards.gene == 'genome':
+        query = f'coverage >= {config["filter"]["min_coverage"]} & (length > 5032)'
+    else:
+        query = f'`{wildcards.gene}_coverage` >= {config["filter"]["min_coverage"]}'
+
+    if wildcards.group != 'all':
+        query = f"({query}) & (ORF2_type == '{wildcards.group}')"
+
+    return query
+
 rule filter:
     """
     Filtering to
@@ -80,8 +98,7 @@ rule filter:
     params:
         id_field = config['strain_id_field'],
         filter_params = config['filter']['filter_params'],
-        min_coverage=lambda wildcards: f'coverage >= {config["filter"]["min_coverage"]} & (length > 5032)' if wildcards.gene == 'genome' else f'\`{wildcards.gene}_coverage\` >= {config["filter"]["min_coverage"]}',
-        genogroup_query = lambda wildcards: "1==1" if wildcards.group == 'all' else  f"ORF2_type == '{wildcards.group}'",
+        query_params = lambda wildcards: _query_params(wildcards)
     shell:
         r"""
         exec &> >(tee {log:q})
@@ -91,7 +108,7 @@ rule filter:
             --metadata {input.metadata:q} \
             --metadata-id-columns {params.id_field:q} \
             {params.filter_params} \
-            --query "({params.min_coverage} & ({params.genogroup_query}))" \
+            --query {params.query_params:q} \
             --exclude {input.exclude:q} \
             --output-sequences {output.sequences:q} \
             --output-metadata {output.metadata:q}
