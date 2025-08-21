@@ -8,7 +8,7 @@
 # {group} represents different genotypes to be analyzed
 groups: ['GII.6', 'GII.4', 'GII.2', 'GII.3', 'GII.17', 'all']
 # {gene} represents the norovirus genes to focus on in each build
-genes: ['genome']
+genes: ['genome', '3CLpro', 'NTPase', 'p22', 'p48', 'RdRp', 'VP1', 'VP2', 'VPg']
 
 # Sequences must be FASTA and metadata must be TSV
 # Both files must be zstd compressed
