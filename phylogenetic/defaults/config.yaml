@@ -36,15 +36,15 @@ refine:
   # Estimated from auspice build https://github.com/nextstrain/norovirus/issues/22#issuecomment-3221851561
   clock_rate:
     all:
-      genome: 0.00249
+      genome: 0.00328
       p48: 0.00409
       NTPase: 0.00174
       p22: 0.00174
-      VPg: 0.00463
-      3CLpro: 0.00225
+      VPg: 0.00660
+      3CLpro: 0.00331
       RdRp: 0.00135
       VP1: 0.00136
-      VP2: 0.00169
+      VP2: 0.00228
     GII.2:
       genome: 0.000211
     GII.3:
