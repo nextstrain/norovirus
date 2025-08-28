@@ -41,7 +41,7 @@ rule all:
 include: "rules/preprocess.smk"
 #include: "rules/prepare_sequences.smk"
 include: "../phylogenetic/rules/construct_phylogeny.smk"
-include: "../phylogenetic/rules/annotate_phylogeny.smk"
+include: "rules/annotate_phylogeny.smk"
 include: "rules/export.smk"
 
 # Allow users to import custom rules provided via the config.

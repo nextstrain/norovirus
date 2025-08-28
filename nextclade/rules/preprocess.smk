@@ -57,6 +57,29 @@ rule decompress:
         zstd -d -c {input.metadata} > {output.metadata}
         """
 
+rule merge_clade_membership:
+    input:
+        metadata="data/metadata.tsv",
+        clade_membership=config['clade_membership']['metadata'],
+    output:
+        merged_metadata=temp("data/{gene}/metadata_merged.tsv"),
+    log:
+        "logs/{gene}/merge_clade_membership.txt",
+    benchmark:
+        "benchmarks/{gene}/merge_clade_membership.txt",
+    params:
+        metadata_id=config.get("strain_id_field", "strain"),
+        clade_membership_id=config.get("strain_id_field", "strain"),
+    shell:
+        r"""
+        exec &> >(tee {log:q})
+
+        augur merge \
+        --metadata a={input.metadata:q} b={input.clade_membership:q} \
+        --metadata-id-columns a={params.metadata_id:q} b={params.clade_membership_id:q} \
+        --output-metadata {output.merged_metadata:q}
+        """
+
 def _query_params(wildcards):
     """
     Generate the query for filtering Norovirus samples based on the combination of wildcards values
@@ -73,6 +96,12 @@ def _query_params(wildcards):
     if wildcards.group != 'all':
         query = f"({query}) & (ORF2_type == '{wildcards.group}')"
 
+    if wildcards.gene == 'RdRp':
+        query = f"({query}) & (ORF1_type != '')"
+
+    if wildcards.gene == 'VP1':
+        query = f"({query}) & (ORF2_type != '')"
+
     return query
 
 rule filter:
@@ -82,8 +111,9 @@ rule filter:
     """
     input:
         sequences = "data/sequences.fasta",
-        metadata = "data/metadata.tsv",
-        exclude = config['filter']['exclude']
+        metadata = "data/{gene}/metadata_merged.tsv",
+        exclude = config['filter']['exclude'],
+        include = config['filter']['include'],
     output:
         sequences = "results/{group}/{gene}/filtered.fasta",
         metadata = "results/{group}/{gene}/metadata.tsv",
@@ -103,11 +133,14 @@ rule filter:
             --sequences {input.sequences:q} \
             --metadata {input.metadata:q} \
             --metadata-id-columns {params.id_field:q} \
-            {params.filter_params} \
-            --query {params.query_params:q} \
-            --exclude {input.exclude:q} \
+            --exclude-all \
+            --include {input.include:q} \
             --output-sequences {output.sequences:q} \
             --output-metadata {output.metadata:q}
+
+            # --exclude {input.exclude:q}
+            #{params.filter_params}
+            #--query {params.query_params:q}
         """
 
 rule parse_reference:
@@ -155,8 +188,7 @@ rule align:
             --reference-sequence {input.reference:q} \
             --output {output.alignment:q} \
             --fill-gaps \
-            --nthreads 4 \
-            --remove-reference
+            --nthreads 4
         """
 
 rule parse_gene:
