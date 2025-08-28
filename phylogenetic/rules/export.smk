@@ -84,6 +84,16 @@ rule prepare_auspice_config:
                 "type": "categorical"
               },
               {
+                "key": "ORF2_genotype_nextclade_VP1",
+                "title": "Vp1 Genotype (Nextclade)",
+                "type": "categorical"
+              },
+              {
+                "key": "ORF1_genotype_nextclade_RdRp",
+                "title": "RdRp Genotype (Nextclade)",
+                "type": "categorical"
+              },
+              {
                 "key": "host",
                 "title": "Host",
                 "type": "categorical"
