@@ -62,7 +62,7 @@ rule merge_clade_membership:
         metadata="data/metadata.tsv",
         clade_membership=config['clade_membership']['metadata'],
     output:
-        merged_metadata=temp("data/{gene}/metadata_merged.tsv"),
+        merged_metadata=temp("data/{gene}/metadata_merged_raw.tsv"),
     log:
         "logs/{gene}/merge_clade_membership.txt",
     benchmark:
@@ -78,6 +78,29 @@ rule merge_clade_membership:
         --metadata a={input.metadata:q} b={input.clade_membership:q} \
         --metadata-id-columns a={params.metadata_id:q} b={params.clade_membership_id:q} \
         --output-metadata {output.merged_metadata:q}
+        """
+
+rule fill_in_clade_membership:
+    input:
+        merged_metadata="data/{gene}/metadata_merged_raw.tsv",
+    output:
+        merged_metadata="data/{gene}/metadata_merged.tsv",
+    log:
+        "logs/{gene}/fill_in_clade_membership.txt",
+    benchmark:
+        "benchmarks/{gene}/fill_in_clade_membership.txt",
+    params:
+        clade_membership_column="clade_membership",
+        genotype_column=lambda w: f"ORF1_type" if w.gene == "RdRp" else f"ORF2_type"
+    shell:
+        r"""
+        exec &> >(tee {log:q})
+
+        python scripts/fill-clade-membership.py \
+          --input-metadata {input.merged_metadata:q} \
+          --output-metadata {output.merged_metadata:q} \
+          --clade-membership-column {params.clade_membership_column:q} \
+          --genotype-column {params.genotype_column:q}
         """
 
 def _query_params(wildcards):
@@ -124,7 +147,7 @@ rule filter:
     params:
         id_field = config['strain_id_field'],
         filter_params = config['filter']['filter_params'],
-        query_params = lambda wildcards: _query_params(wildcards)
+        query_params = lambda wildcards: _query_params(wildcards),
     shell:
         r"""
         exec &> >(tee {log:q})
@@ -133,13 +156,12 @@ rule filter:
             --sequences {input.sequences:q} \
             --metadata {input.metadata:q} \
             --metadata-id-columns {params.id_field:q} \
-            --exclude-all \
             --include {input.include:q} \
+            {params.filter_params} \
             --output-sequences {output.sequences:q} \
             --output-metadata {output.metadata:q}
 
             # --exclude {input.exclude:q}
-            #{params.filter_params}
             #--query {params.query_params:q}
         """
 
