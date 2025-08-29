@@ -23,7 +23,6 @@ rule all:
     input:
         # Fill in paths to the final exported Nextclade dataset.
         auspice_json=expand("auspice/norovirus_{group}_{gene}.json", group=GROUPS, gene=GENES),
-        tip_frequencies_json= expand("auspice/norovirus_{group}_{gene}_tip-frequencies.json", group=GROUPS, gene=GENES),
 
 
 # These rules are imported in the order that they are expected to run.

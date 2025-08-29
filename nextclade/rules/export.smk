@@ -67,8 +67,8 @@ rule prepare_auspice_config:
     benchmark:
         "benchmarks/{group}/{gene}/prepare_auspice_config.txt"
     params:
-        title = "Real-time tracking of Norovirus {group} {gene} virus evolution",
-        default_color_by = lambda wildcard: r"ORF2_type" if wildcard.group in ['all'] else r"ORF1_type",
+        title = "Nextclade scaffold tree for Norovirus {group} {gene} virus evolution",
+        default_color_by = lambda wildcard: r"ORF2_type" if wildcard.gene in ['VP1'] else r"ORF1_type",
         gene_coverage_coloring = lambda wildcard: {"key": f"{wildcard.gene}_coverage","title": f"{wildcard.gene} coverage","type": "continuous"} if wildcard.gene != "genome" else None
     run:
         data = {
@@ -133,8 +133,7 @@ rule prepare_auspice_config:
             "panels": [
                "tree",
                "map",
-               "entropy",
-               "frequencies"
+               "entropy"
             ],
             "display_defaults": {
               "map_triplicate": True,
@@ -143,50 +142,15 @@ rule prepare_auspice_config:
             "metadata_columns": [
               "strain",
               "host",
-              "is_lab_host",
-              "p48_coverage",
-              "NTPase_coverage",
-              "p22_coverage",
-              "VPg_coverage",
-              "3CLpro_coverage",
               "RdRp_coverage",
               "VP1_coverage",
-              "VP2_coverage",
             ],
             "filters": [
               "country",
               "ORF2_type",
               "ORF1_type",
               "author"
-            ],
-            "extensions": {
-              "nextclade": {
-                "clade_node_attrs": [
-                  {
-                    "name": "ORF2_type",
-                    "displayName": "Vp1 Genotype",
-                    "description": "Norovirus Vp1 Genotype (based on current tree)"
-                  },
-                  {
-                    "name": "ORF1_type",
-                    "displayName": "Rdrp Genotype",
-                    "description": "Norovirus Rdrp Genotype (based on current tree)"
-                  }
-                ],
-                "pathogen": {
-                  "schemaVersion":"3.0.0",
-                  "attributes": {
-                    "name": "Norovirus live tree",
-                    "reference name": "Reconstructed ancestor",
-                    "reference accession": "none"
-                  },
-                  "alignmentParams": {
-                    "alignmentPreset": "high-diversity",
-                    "minSeedCover": 0.01
-                  }
-                }
-              }
-            }
+            ]
         }
         with open(output.auspice_config, 'w') as fh:
             json.dump(data, fh, indent=2)
@@ -225,39 +189,4 @@ rule export:
             --description {input.description} \
             --output {output.auspice_json} \
             --include-root-sequence-inline
-        """
-
-rule tip_frequencies:
-    """
-    Estimating KDE frequencies for tips
-    """
-    input:
-        tree = "results/{group}/{gene}/tree.nwk",
-        metadata = "results/{group}/{gene}/metadata.tsv",
-    output:
-        tip_freq = "auspice/norovirus_{group}_{gene}_tip-frequencies.json"
-    benchmark:
-        "benchmarks/{group}/{gene}/tip_frequencies.txt",
-    log:
-        "logs/{group}/{gene}/tip_frequencies.txt",
-    params:
-        strain_id = config["strain_id_field"],
-        min_date = config["tip_frequencies"]["min_date"],
-        max_date = config["tip_frequencies"]["max_date"],
-        narrow_bandwidth = config["tip_frequencies"]["narrow_bandwidth"],
-        proportion_wide = config["tip_frequencies"]["proportion_wide"]
-    shell:
-        r"""
-        exec &> >(tee {log:q})
-
-        augur frequencies \
-            --method kde \
-            --tree {input.tree} \
-            --metadata {input.metadata} \
-            --metadata-id-columns {params.strain_id} \
-            --min-date {params.min_date} \
-            --max-date {params.max_date} \
-            --narrow-bandwidth {params.narrow_bandwidth} \
-            --proportion-wide {params.proportion_wide} \
-            --output {output.tip_freq}
         """
