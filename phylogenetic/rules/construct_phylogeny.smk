@@ -40,12 +40,27 @@ rule tree:
             --nthreads 4
         """
 
+def _clock_rate_params(wildcards):
+    """
+    Generate the clock rate parameters for Norovirus samples for augur refine based on if wildcard group and gene values are in the config file
+
+    refine:
+      clock_rate:
+        wildcards.group:
+          wildcards.gene: numeric value here
+
+    else leave blank
+    """
+    clock_rate = config['refine']['clock_rate'].get(wildcards.group, {}).get(wildcards.gene, "")
+    if clock_rate !="":
+        return f' --clock-rate {clock_rate} '
+    else:
+        return ""
+
+
 rule refine:
     """
     Refining tree
-      - estimate timetree
-      - estimate {params.date_inference} node dates
-      - filter tips more than {params.clock_filter_iqd} IQDs from clock expectation
     """
     input:
         tree = "results/{group}/{gene}/tree_raw.nwk",
@@ -59,9 +74,8 @@ rule refine:
     log:
         "logs/{group}/{gene}/refine.txt",
     params:
-        date_inference = "marginal",
-        clock_filter_iqd = 4,
         root = lambda wildcards: config['refine']['root'].get(wildcards.group, {}).get(wildcards.gene, config['refine']['root']['default']),
+        clock_rate_params = lambda wildcards: _clock_rate_params(wildcards),
         id_field = config['strain_id_field'],
     shell:
         r"""
@@ -75,8 +89,6 @@ rule refine:
             --metadata-id-columns {params.id_field} \
             --output-tree {output.tree:q} \
             --output-node-data {output.node_data:q} \
-            --stochastic-resolve
-            #--clock-filter-iqd {params.clock_filter_iqd} \
-            #--timetree \
-            #--date-confidence \
+            --stochastic-resolve \
+            {params.clock_rate_params}
         """
