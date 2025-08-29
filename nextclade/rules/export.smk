@@ -68,7 +68,6 @@ rule prepare_auspice_config:
         "benchmarks/{group}/{gene}/prepare_auspice_config.txt"
     params:
         title = "Nextclade scaffold tree for Norovirus {group} {gene} virus evolution",
-        default_color_by = lambda wildcard: r"ORF2_type" if wildcard.gene in ['VP1'] else r"ORF1_type",
         gene_coverage_coloring = lambda wildcard: {"key": f"{wildcard.gene}_coverage","title": f"{wildcard.gene} coverage","type": "continuous"} if wildcard.gene != "genome" else None
     run:
         data = {
@@ -84,6 +83,11 @@ rule prepare_auspice_config:
             ],
             "build_url": "https://github.com/nextstrain/norovirus",
             "colorings": [
+              {
+                "key": "clade_membership",
+                "title": "Clade Membership",
+                "type": "categorical"
+              },
               {
                 "key": "ORF2_type",
                 "title": "Vp1 Genotype",
@@ -137,7 +141,7 @@ rule prepare_auspice_config:
             ],
             "display_defaults": {
               "map_triplicate": True,
-              "color_by": params.default_color_by
+              "color_by": "clade_membership"
             },
             "metadata_columns": [
               "strain",

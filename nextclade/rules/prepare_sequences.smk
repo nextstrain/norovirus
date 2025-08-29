@@ -47,8 +47,9 @@ rule filter:
     """
     input:
         sequences = "data/sequences.fasta",
-        metadata = "data/metadata.tsv",
-        exclude = config['filter']['exclude']
+        metadata = "data/{gene}/metadata_merged.tsv",
+        include = config['filter']['include'],
+        exclude = config['filter']['exclude'],
     output:
         sequences = "results/{group}/{gene}/filtered.fasta",
         metadata = "results/{group}/{gene}/metadata.tsv",
@@ -70,9 +71,12 @@ rule filter:
             --metadata-id-columns {params.id_field:q} \
             {params.filter_params} \
             --query {params.query_params:q} \
+            --exclude-all \
+            --include {input.include:q} \
             --exclude {input.exclude:q} \
             --output-sequences {output.sequences:q} \
             --output-metadata {output.metadata:q}
+
         """
 
 rule parse_reference:
