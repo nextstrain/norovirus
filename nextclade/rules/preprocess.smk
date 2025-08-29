@@ -119,12 +119,6 @@ def _query_params(wildcards):
     if wildcards.group != 'all':
         query = f"({query}) & (ORF2_type == '{wildcards.group}')"
 
-    if wildcards.gene == 'RdRp':
-        query = f"({query}) & (ORF1_type != '')"
-
-    if wildcards.gene == 'VP1':
-        query = f"({query}) & (ORF2_type != '')"
-
     return query
 
 rule filter:
@@ -157,12 +151,12 @@ rule filter:
             --metadata {input.metadata:q} \
             --metadata-id-columns {params.id_field:q} \
             --include {input.include:q} \
+            --exclude {input.exclude:q} \
             {params.filter_params} \
+            --query {params.query_params:q} \
             --output-sequences {output.sequences:q} \
             --output-metadata {output.metadata:q}
 
-            # --exclude {input.exclude:q}
-            #--query {params.query_params:q}
         """
 
 rule parse_reference:

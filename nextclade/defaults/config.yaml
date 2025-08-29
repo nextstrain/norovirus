@@ -23,7 +23,7 @@ clade_membership:
   metadata: defaults/{gene}/clade_membership.tsv
 
 filter:
-  exclude: ../phylogenetic/defaults/exclude.txt
+  exclude: defaults/{gene}/exclude.txt
   include: defaults/{gene}/include.txt
   min_coverage: 0.8
   filter_params: --group-by clade_membership --sequences-per-group 5 --min-date 1950 --exclude-ambiguous-dates-by year --query-columns is_lab_host:str --exclude-where is_lab_host='true'
@@ -39,8 +39,6 @@ refine:
 
 ancestral:
   inference: "joint"
-  root_sequence: "defaults/{gene}/reference.fasta"
-  annotation: "defaults/{gene}/reference.gb"
   genes:
     RdRp: ['RdRp']
     VP1: ['VP1']

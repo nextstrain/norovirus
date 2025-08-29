@@ -28,7 +28,7 @@ rule ancestral:
     input:
         tree = "results/{group}/{gene}/tree.nwk",
         alignment = "results/{group}/{gene}/aligned.fasta",
-        root_sequence = config['ancestral']['root_sequence'],
+        root_sequence = config['assemble_dataset']['reference'],
     output:
         node_data = "results/{group}/{gene}/nt_muts.json"
     benchmark:
@@ -36,7 +36,7 @@ rule ancestral:
     log:
         "logs/{group}/{gene}/ancestral.txt",
     params:
-        inference = "joint"
+        inference = config['ancestral']['inference']
     shell:
         r"""
         exec &> >(tee {log:q})
