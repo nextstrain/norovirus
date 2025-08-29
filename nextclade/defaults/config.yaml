@@ -39,9 +39,6 @@ refine:
 
 ancestral:
   inference: "joint"
-  genes:
-    RdRp: ['RdRp']
-    VP1: ['VP1']
 
 traits:
   default: clade_membership ORF1_type ORF2_type
