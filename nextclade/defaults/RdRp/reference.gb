@@ -1,0 +1,53 @@
+LOCUS       RdRp                    1530 bp    RNA              UNK 01-JAN-1980
+DEFINITION  .
+ACCESSION   MK073894_REF
+VERSION     MK073894_REF
+KEYWORDS    .
+SOURCE      .
+  ORGANISM  .
+            .
+FEATURES             Location/Qualifiers
+     source          1..1530
+                     /mol_type="genomic RNA"
+                     /gene="RdRp"
+     CDS             1..1530
+                     /mol_type="genomic RNA"
+                     /gene="RdRp"
+     CDS             1..1530
+                     /translation="GGDDKGTYCGAPILGPGGAPKLSTKTKFWRSSNTPLPPGTYEPAY
+                     LGGRDPRVKGGPSLQQVMRDQLKPFTEPRGKPPRPSVLEAAKQTIINVLEQTLDPPQKW
+                     TYAQACASLDKTTSSGHPHHVRKNEFWNGETFTGKLADQASKANLMFEEGKHMTPVYTA
+                     ALKDELVKTEKIYGKIKKRLLWGSDLSTMIRCARSFGGLMDEMKAHCISLPVRVGMNMN
+                     EDGPIIFEKHSRYKYHYDADYSRWDSTQQRAVLASALEIMVRFSAEPQLAQIVAEDLLA
+                     PSVVDVGDFKITINEGLPSGVPCTSQWNSIAHWLLTLCALSEVTKLSPDIIQANSMFSF
+                     YGDDEIVSTDIKLDPEQLTAKLKEYGLKPTRPDKTEGPLIISEDLNGLTFLRRTVTRDP
+                     AGWFGKLDQSSILRQMYWTRGPNHEDPNETMIPHSQRPIQLMALLGEASLHGPSFYSRI
+                     SKLVITELKEGGMDFYVPRQEPMFRWMRFSDLSTWEGDRNLAPNFVNEDGVE"
+ORIGIN
+        1 ggtggagatg acaaaggaac atactgcggg gcacccattc taggccctgg gggtgcacca
+       61 aagttgagca ccaaaaccaa attttggagg tcatcgaaca cgcccctccc accagggaca
+      121 tatgagcctg cctacctcgg tggccgcgat ccgcgtgtta agggtgggcc ctccttgcag
+      181 caggtaatga gagaccagtt gaagccattc actgaaccca ggggcaaacc tccaagacca
+      241 agtgtattgg aagcagccaa acaaaccatt atcaatgtcc tcgaacaaac cctggatcct
+      301 ccacaaaaat ggacatacgc acaggcgtgt gcctcacttg acaaaaccac ttccagcggg
+      361 catccccatc acgtccgaaa gaatgaattc tggaatggtg agaccttcac tggcaaattg
+      421 gcagaccaag catcaaaagc aaacctaatg tttgaggaag ggaaacacat gacaccagtg
+      481 tatacagcag cactcaagga cgaactagtc aagactgaga aaatctatgg aaagatcaag
+      541 aagagactgc tctggggctc tgacttatcc accatgatcc ggtgcgctag gtcatttggt
+      601 gggctcatgg acgagatgaa ggcacactgc atatcactcc cagtacgagt tggcatgaat
+      661 atgaatgaag atggcccaat aatatttgag aaacattcca gatacaaata ccactatgat
+      721 gcagactact ctcgttggga ttcaacacaa cagagggcag tactagcatc agccttggaa
+      781 atcatggtca gattctctgc agaaccacaa ttggcacaga tagtcgctga ggatctgctg
+      841 gcccctagcg tagtagatgt aggagacttt aaaatcacaa taaatgaagg gctcccatct
+      901 ggtgtgccat gcacttctca atggaactcc atcgcacact ggctgctaac tctctgtgcc
+      961 ttgtctgaag tcaccaaact gtcccctgac attatacaag caaattccat gttctcattt
+     1021 tacggtgatg acgagattgt cagcaccgac ataaaattgg accctgaaca gttaaccgcc
+     1081 aagttgaagg agtacggcct gaaaccaacc cgcccagaca agaccgaggg acccctgatc
+     1141 atcagtgaag atttgaacgg actcactttc ctccgaagga cggtgactcg tgacccagct
+     1201 ggctggtttg gaaaactgga ccaaagttca attttgaggc agatgtactg gactagagga
+     1261 ccaaatcatg aagatcccaa tgagacaatg ataccccact ctcaaagacc catacagctc
+     1321 atggcactgc ttggtgaagc ctctcttcac ggaccctctt tctacagtag aattagtaaa
+     1381 ttggtcataa ctgaactcaa agaaggtggg atggactttt acgtgccaag gcaggaaccc
+     1441 atgttcaggt ggatgaggtt ttctgacttg agcacgtggg agggcgatcg caatctggct
+     1501 cccaattttg tgaatgaaga tggcgtcgag
+//
