@@ -56,3 +56,26 @@ rule decompress:
         zstd -d -c {input.sequences} > {output.sequences}
         zstd -d -c {input.metadata} > {output.metadata}
         """
+
+rule merge_clade_membership:
+    input:
+        metadata="data/metadata.tsv",
+        clade_membership=config['clade_membership']['metadata'],
+    output:
+        merged_metadata=temp("data/{gene}/metadata_merged.tsv"),
+    log:
+        "logs/{gene}/merge_clade_membership.txt",
+    benchmark:
+        "benchmarks/{gene}/merge_clade_membership.txt",
+    params:
+        metadata_id=config.get("strain_id_field", "strain"),
+        clade_membership_id=config.get("strain_id_field", "strain"),
+    shell:
+        r"""
+        exec &> >(tee {log:q})
+
+        augur merge \
+        --metadata a={input.metadata:q} b={input.clade_membership:q} \
+        --metadata-id-columns a={params.metadata_id:q} b={params.clade_membership_id:q} \
+        --output-metadata {output.merged_metadata:q}
+        """

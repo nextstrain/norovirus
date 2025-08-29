@@ -20,8 +20,12 @@ strain_id_field: "accession"
 # Will be used to generate the group and gene level references
 reference: ../phylogenetic/defaults/{group}/reference.gb
 
+clade_membership:
+  metadata: defaults/{gene}/clade_membership.tsv
+
 filter:
   exclude: ../phylogenetic/defaults/exclude.txt
+  include: defaults/{gene}/include.txt
   min_coverage: 0.8
   filter_params: --group-by year ORF2_type ORF1_type --sequences-per-group 10 --min-date 1950 --exclude-ambiguous-dates-by year --query-columns is_lab_host:str --exclude-where is_lab_host='true'
 
@@ -35,12 +39,12 @@ refine:
       VP1: 0.00136
 
 traits:
-  default: ORF1_type ORF2_type
+  default: clade_membership ORF1_type ORF2_type
   sampling_bias_correction: 3
 
 colors:
   color_schemes: ../phylogenetic/defaults/color_schemes.tsv
-  color_orderings: ../phylogenetic/defaults/color_orderings.tsv
+  color_orderings: defaults/color_orderings.tsv
 
 export:
   auspice_config: results/defaults/{group}/{gene}/auspice_config.json
