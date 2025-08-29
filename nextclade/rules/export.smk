@@ -230,3 +230,60 @@ rule export:
             --output {output.auspice_json} \
             --include-root-sequence-inline
         """
+
+rule assemble_dataset:
+    input:
+        reference=config["assemble_dataset"]["reference"],
+        tree="auspice/norovirus_all_{gene}.json",
+        pathogen_json=config["assemble_dataset"]["pathogen_json"],
+        sequences=config["assemble_dataset"]["sequences"],
+        annotation=config["assemble_dataset"]["annotation"],
+        readme=config["assemble_dataset"]["readme"],
+        changelog=config["assemble_dataset"]["changelog"],
+    output:
+        reference="datasets/{gene}/reference.fasta",
+        tree="datasets/{gene}/tree.json",
+        pathogen_json="datasets/{gene}/pathogen.json",
+        sequences="datasets/{gene}/sequences.fasta",
+        annotation="datasets/{gene}/genome_annotation.gff3",
+        readme="datasets/{gene}/README.md",
+        changelog="datasets/{gene}/CHANGELOG.md",
+    benchmark:
+        "benchmarks/{gene}/assemble_dataset.txt",
+    shell:
+        """
+        cp {input.reference} {output.reference}
+        cp {input.tree} {output.tree}
+        cp {input.pathogen_json} {output.pathogen_json}
+        cp {input.annotation} {output.annotation}
+        cp {input.readme} {output.readme}
+        cp {input.changelog} {output.changelog}
+        cp {input.sequences} {output.sequences}
+        """
+
+rule test_dataset:
+    input:
+        tree="datasets/{gene}/tree.json",
+        pathogen_json="datasets/{gene}/pathogen.json",
+        sequences=config["assemble_dataset"]["sequences"],
+        annotation="datasets/{gene}/genome_annotation.gff3",
+        readme="datasets/{gene}/README.md",
+        changelog="datasets/{gene}/CHANGELOG.md",
+    output:
+        outdir=directory("test_output/{gene}"),
+    log:
+        "logs/{gene}/test_dataset.txt",
+    benchmark:
+        "benchmarks/{gene}/test_dataset.txt",
+    params:
+        dataset_dir="datasets/{gene}",
+    shell:
+        """
+        exec &> >(tee {log:q})
+
+        nextclade run \
+          --input-dataset {params.dataset_dir} \
+          --output-all {output.outdir} \
+          --silent \
+          {input.sequences}
+        """

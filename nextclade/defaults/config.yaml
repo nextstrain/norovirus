@@ -49,3 +49,11 @@ colors:
 export:
   auspice_config: results/defaults/{group}/{gene}/auspice_config.json
   description: ../phylogenetic/defaults/description.md
+
+assemble_dataset:
+  reference: "defaults/{gene}/reference.fasta"
+  pathogen_json: "defaults/{gene}/pathogen.json"
+  sequences: "defaults/{gene}/sequences.fasta"
+  annotation: "defaults/{gene}/genome_annotation.gff3"
+  readme: "defaults/{gene}/README.md"
+  changelog: "defaults/{gene}/CHANGELOG.md"
