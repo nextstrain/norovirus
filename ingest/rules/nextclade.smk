@@ -96,11 +96,8 @@ rule run_nextclade_genotype:
             --output-tsv {output.nextclade:q} \
             --output-fasta {output.alignment:q} \
             --alignment-preset high-diversity \
-            --allowed-mismatches 20 \
-            --penalty-gap-extend 1 \
-            --min-length 390 \
+            --min-length 1224 \
             --silent
-
         """
 
 rule nextclade_metadata_genotype:
