@@ -91,7 +91,7 @@ rule parse_reference:
         r"""
         exec &> >(tee {log:q})
 
-        python scripts/reference_parsing.py \
+        python ../phylogenetic/scripts/reference_parsing.py \
           --reference {input.reference} \
           --gene {wildcards.gene} \
           --output {output.output}
@@ -140,7 +140,7 @@ rule parse_gene:
         r"""
         exec &> >(tee {log:q})
 
-        python scripts/gene_parsing.py \
+        python ../phylogenetic/scripts/gene_parsing.py \
           --alignment {input.alignment:q} \
           --reference {input.reference:q} \
           --gene {wildcards.gene} \
