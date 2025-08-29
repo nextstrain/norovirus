@@ -27,7 +27,8 @@ rule ancestral:
     """Reconstructing ancestral sequences and mutations"""
     input:
         tree = "results/{group}/{gene}/tree.nwk",
-        alignment = "results/{group}/{gene}/aligned.fasta"
+        alignment = "results/{group}/{gene}/aligned.fasta",
+        root_sequence = config['assemble_dataset']['reference'],
     output:
         node_data = "results/{group}/{gene}/nt_muts.json"
     benchmark:
@@ -44,6 +45,7 @@ rule ancestral:
             --tree {input.tree} \
             --alignment {input.alignment} \
             --output-node-data {output.node_data} \
+            --root-sequence {input.root_sequence} \
             --inference {params.inference}
         """
 
