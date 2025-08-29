@@ -8,6 +8,13 @@ workdir: workflow.current_basedir
 # Use default configuration values. Override with Snakemake's --configfile/--config options.
 configfile: "defaults/config.yaml"
 
+GROUPS = config['groups']
+GENES = config['genes']
+
+wildcard_constraints:
+    group="|".join(GROUPS),
+    gene="|".join(GENES),
+
 # This is the default rule that Snakemake will run when there are no specified targets.
 # The default output of the Nextclade workflow is usually the produced Nextclade dataset.
 # See Nextclade docs on expected naming conventions of dataset files
@@ -15,6 +22,8 @@ configfile: "defaults/config.yaml"
 rule all:
     input:
         # Fill in paths to the final exported Nextclade dataset.
+        auspice_json=expand("auspice/norovirus_{group}_{gene}.json", group=GROUPS, gene=GENES),
+        tip_frequencies_json= expand("auspice/norovirus_{group}_{gene}_tip-frequencies.json", group=GROUPS, gene=GENES),
 
 
 # These rules are imported in the order that they are expected to run.
