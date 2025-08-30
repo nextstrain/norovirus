@@ -19,19 +19,18 @@ like to customize the rules:
 https://docs.nextstrain.org/projects/nextclade/page/user/nextclade-cli.html
 """
 
-rule run_nextclade:
+rule run_gene_coverage:
     input:
-        # dataset=f"data/nextclade_data/{DATASET_NAME}.zip",
-        input_ref=config['nextclade']['dataset_reference'],
-        input_annotation=config['nextclade']['dataset_gff'],
+        input_ref=config['gene_coverage']['dataset_reference'],
+        input_annotation=config['gene_coverage']['dataset_gff'],
         sequences="results/sequences.fasta",
     output:
-        nextclade="results/nextclade.tsv",
-        alignment="results/alignment.fasta",
+        nextclade="results/gene_coverage/nextclade.tsv",
+        alignment="results/gene_coverage/alignment.fasta",
     params:
         # The lambda is used to deactivate automatic wildcard expansion.
         # https://github.com/snakemake/snakemake/blob/384d0066c512b0429719085f2cf886fdb97fd80a/snakemake/rules.py#L997-L1000
-        translations=lambda w: "results/translations/{cds}.fasta",
+        translations=lambda w: "results/gene_coverage/translations/{cds}.fasta",
         min_seed_cover=0.05 # Smallest gene based on GFF/Genome length (398/7500)
     shell:
         """
@@ -50,15 +49,15 @@ rule run_nextclade:
         """
 
 
-rule nextclade_metadata:
+rule gene_coverage_metadata:
     input:
-        nextclade="results/nextclade.tsv",
+        nextclade="results/gene_coverage/nextclade.tsv",
     output:
-        nextclade_metadata=temp("results/nextclade_metadata.tsv"),
+        nextclade_metadata=temp("results/gene_coverage/nextclade_metadata.tsv"),
     params:
-        nextclade_id_field=config["nextclade"]["id_field"],
-        nextclade_field_map=[f"{old}={new}" for old, new in config["nextclade"]["field_map"].items()],
-        nextclade_fields=",".join(config["nextclade"]["field_map"].values()),
+        nextclade_id_field=config["gene_coverage"]["id_field"],
+        nextclade_field_map=[f"{old}={new}" for old, new in config["gene_coverage"]["field_map"].items()],
+        nextclade_fields=",".join(config["gene_coverage"]["field_map"].values()),
     shell:
         r"""
         augur curate rename \
@@ -70,41 +69,15 @@ rule nextclade_metadata:
         > {output.nextclade_metadata:q}
         """
 
-rule join_metadata_and_nextclade:
-    input:
-        metadata="data/subset_metadata.tsv",
-        genomicdetective_metadata = "data/metadata_genomicdetective.tsv",
-        nextclade_metadata="results/nextclade_metadata.tsv",
-    output:
-        metadata="data/subset_metadata_joined.tsv",
-    params:
-        metadata_id_field=config["curate"]["output_id_field"],
-        genomicdetective_id_field = "strain",
-        nextclade_id_field=config["nextclade"]["id_field"],
-    shell:
-        r"""
-        augur merge \
-            --metadata \
-                metadata={input.metadata:q} \
-                genomicdetective={input.genomicdetective_metadata:q} \
-                nextclade={input.nextclade_metadata:q} \
-            --metadata-id-columns \
-                metadata={params.metadata_id_field:q} \
-                genomicdetective={params.genomicdetective_id_field:q} \
-                nextclade={params.nextclade_id_field:q} \
-            --output-metadata {output.metadata:q} \
-            --no-source-columns
-        """
-
 rule split_cdsCoverage_columns:
     input:
-        metadata = "data/subset_metadata_joined.tsv",
+        metadata = "results/gene_coverage/nextclade_metadata.tsv"
     output:
-        metadata="results/metadata.tsv",
+        metadata = "results/gene_coverage.tsv"
     params:
-        cdsCoverage=config['nextclade']['coverage']['cdsCoverage_field'],
-        genes=config['nextclade']['coverage']['genes'],
-        round_digits=config['nextclade']['coverage']['round_digits'],
+        cdsCoverage=config['gene_coverage']['coverage']['cdsCoverage_field'],
+        genes=config['gene_coverage']['coverage']['genes'],
+        round_digits=config['gene_coverage']['coverage']['round_digits'],
     shell:
         r"""
         python ./scripts/split-cdsCoverage-columns.py \
@@ -113,4 +86,30 @@ rule split_cdsCoverage_columns:
           --genes {params.genes} \
           --round {params.round_digits} \
           --output {output.metadata}
+        """
+
+rule join_metadata_and_nextclade:
+    input:
+        metadata="data/subset_metadata.tsv",
+        genomicdetective_metadata = "data/metadata_genomicdetective.tsv",
+        gene_coverage="results/gene_coverage.tsv",
+    output:
+        metadata="results/metadata.tsv",
+    params:
+        metadata_id_field=config["curate"]["output_id_field"],
+        genomicdetective_id_field = "strain",
+        nextclade_id_field=config["gene_coverage"]["id_field"],
+    shell:
+        r"""
+        augur merge \
+            --metadata \
+                metadata={input.metadata:q} \
+                genomicdetective={input.genomicdetective_metadata:q} \
+                gene_coverage={input.gene_coverage:q} \
+            --metadata-id-columns \
+                metadata={params.metadata_id_field:q} \
+                genomicdetective={params.genomicdetective_id_field:q} \
+                gene_coverage={params.nextclade_id_field:q} \
+            --output-metadata {output.metadata:q} \
+            --no-source-columns
         """
