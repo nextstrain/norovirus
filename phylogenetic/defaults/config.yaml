@@ -22,7 +22,7 @@ reference: defaults/{group}/reference.gb
 filter:
   exclude: defaults/exclude.txt
   min_coverage: 0.8
-  filter_params: --group-by year ORF2_type ORF1_type --sequences-per-group 30 --min-date 1950 --exclude-ambiguous-dates-by year --query-columns is_lab_host:str --exclude-where is_lab_host='true'
+  filter_params: --group-by year VP1_nextclade RdRp_nextclade --sequences-per-group 30 --min-date 1950 --exclude-ambiguous-dates-by year --query-columns is_lab_host:str --exclude-where is_lab_host='true'
 
 refine:
   root:
@@ -57,7 +57,7 @@ refine:
       genome: 0.00142
 
 traits:
-  default: region country ORF1_type ORF2_type host
+  default: region country ORF1_type ORF2_type VP1_nextclade VP1_group VP1_type VP1_variant RdRp_nextclade RdRp_group RdRp_type RdRp_variant host
   sampling_bias_correction: 3
 
 colors:

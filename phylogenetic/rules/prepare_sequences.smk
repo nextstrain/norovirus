@@ -75,7 +75,7 @@ def _query_params(wildcards):
         query = f'`{wildcards.gene}_coverage` >= {config["filter"]["min_coverage"]}'
 
     if wildcards.group != 'all':
-        query = f"({query}) & (ORF2_type == '{wildcards.group}')"
+        query = f"({query}) & (VP1_nextclade == '{wildcards.group}')"
 
     return query
 
