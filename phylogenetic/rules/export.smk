@@ -57,7 +57,7 @@ rule prepare_auspice_config:
         "benchmarks/{group}/{gene}/prepare_auspice_config.txt"
     params:
         title = "Real-time tracking of Norovirus {group} {gene} virus evolution",
-        default_color_by = lambda wildcard: r"ORF2_type" if wildcard.group in ['all'] else r"ORF1_type",
+        default_color_by = lambda wildcard: r"ORF2_genotype_nextclade_VP1" if wildcard.group in ['all'] else r"ORF1_genotype_nextclade_RdRp",
         gene_coverage_coloring = lambda wildcard: {"key": f"{wildcard.gene}_coverage","title": f"{wildcard.gene} coverage","type": "continuous"} if wildcard.gene != "genome" else None
     run:
         data = {
@@ -75,12 +75,22 @@ rule prepare_auspice_config:
             "colorings": [
               {
                 "key": "ORF2_type",
-                "title": "Vp1 Genotype",
+                "title": "Vp1 Genotype (Genome Detective)",
                 "type": "categorical"
               },
               {
                 "key": "ORF1_type",
-                "title": "RdRp Genotype",
+                "title": "RdRp Genotype (Genome Detective)",
+                "type": "categorical"
+              },
+              {
+                "key": "ORF2_genotype_nextclade_VP1",
+                "title": "Vp1 Genotype (Nextclade)",
+                "type": "categorical"
+              },
+              {
+                "key": "ORF1_genotype_nextclade_RdRp",
+                "title": "RdRp Genotype (Nextclade)",
                 "type": "categorical"
               },
               {
@@ -153,13 +163,23 @@ rule prepare_auspice_config:
                 "clade_node_attrs": [
                   {
                     "name": "ORF2_type",
-                    "displayName": "Vp1 Genotype",
+                    "displayName": "Vp1 Genotype (Genome Detective)",
                     "description": "Norovirus Vp1 Genotype (based on current tree)"
                   },
                   {
                     "name": "ORF1_type",
-                    "displayName": "Rdrp Genotype",
-                    "description": "Norovirus Rdrp Genotype (based on current tree)"
+                    "displayName": "RdRp Genotype (Genome Detective)",
+                    "description": "Norovirus RdRp Genotype (based on current tree)"
+                  },
+                  {
+                    "name": "ORF2_genotype_nextclade_VP1",
+                    "displayName": "Vp1 Genotype (Nextclade)",
+                    "description": "Norovirus Vp1 Genotype (based on current tree)"
+                  },
+                  {
+                    "name": "ORF1_genotype_nextclade_RdRp",
+                    "displayName": "RdRp Genotype (Nextclade)",
+                    "description": "Norovirus RdRp Genotype (based on current tree)"
                   }
                 ],
                 "pathogen": {
