@@ -1,29 +1,40 @@
 """
 This part of the workflow collects the phylogenetic tree and annotations to
-export a Nextstrain dataset.
+export a reference tree and create the Nextclade dataset.
 
 REQUIRED INPUTS:
 
-    metadata        = data/metadata.tsv
-    tree            = results/tree.nwk
-    branch_lengths  = results/branch_lengths.json
-    node_data       = results/*.json
+    augur export:
+        metadata            = data/metadata.tsv
+        tree                = results/tree.nwk
+        branch_lengths      = results/branch_lengths.json
+        nt_muts             = results/nt_muts.json
+        aa_muts             = results/aa_muts.json
+        clades              = results/clades.json
+
+    Nextclade dataset files:
+        reference           = ../shared/reference.fasta
+        pathogen            = config/pathogen.json
+        genome_annotation   = config/genome_annotation.gff3
+        readme              = config/README.md
+        changelog           = config/CHANGELOG.md
+        example_sequences   = config/sequence.fasta
 
 OUTPUTS:
 
-    auspice_json = auspice/${build_name}.json
+    nextclade_dataset = datasets/${build_name}/*
 
-    There are optional sidecar JSON files that can be exported as part of the dataset.
-    See Nextstrain's data format docs for more details on sidecar files:
-    https://docs.nextstrain.org/page/reference/data-formats.html
+    See Nextclade docs on expected naming conventions of dataset files
+    https://docs.nextstrain.org/projects/nextclade/page/user/datasets.html
 
 This part of the workflow usually includes the following steps:
 
     - augur export v2
-    - augur frequencies
+    - cp Nextclade datasets files to new datasets directory
 
 See Augur's usage docs for these commands for more details.
 """
+
 
 import json
 
@@ -41,7 +52,7 @@ rule colors:
         "benchmarks/{group}/{gene}/colors.txt"
     shell:
         r"""
-        python3 scripts/assign-colors.py \
+        python3 ../phylogenetic/scripts/assign-colors.py \
             --color-schemes {input.color_schemes:q} \
             --ordering {input.color_orderings:q} \
             --metadata {input.metadata:q} \
@@ -56,8 +67,7 @@ rule prepare_auspice_config:
     benchmark:
         "benchmarks/{group}/{gene}/prepare_auspice_config.txt"
     params:
-        title = "Real-time tracking of Norovirus {group} {gene} virus evolution",
-        default_color_by = lambda wildcard: r"ORF2_genotype_nextclade_VP1" if wildcard.group in ['all'] else r"ORF1_genotype_nextclade_RdRp",
+        title = "Nextclade scaffold tree for Norovirus {group} {gene} virus evolution",
         gene_coverage_coloring = lambda wildcard: {"key": f"{wildcard.gene}_coverage","title": f"{wildcard.gene} coverage","type": "continuous"} if wildcard.gene != "genome" else None
     run:
         data = {
@@ -74,23 +84,18 @@ rule prepare_auspice_config:
             "build_url": "https://github.com/nextstrain/norovirus",
             "colorings": [
               {
+                "key": "clade_membership",
+                "title": "Clade Membership",
+                "type": "categorical"
+              },
+              {
                 "key": "ORF2_type",
-                "title": "Vp1 Genotype (Genome Detective)",
+                "title": "Vp1 Genotype",
                 "type": "categorical"
               },
               {
                 "key": "ORF1_type",
-                "title": "RdRp Genotype (Genome Detective)",
-                "type": "categorical"
-              },
-              {
-                "key": "ORF2_genotype_nextclade_VP1",
-                "title": "Vp1 Genotype (Nextclade)",
-                "type": "categorical"
-              },
-              {
-                "key": "ORF1_genotype_nextclade_RdRp",
-                "title": "RdRp Genotype (Nextclade)",
+                "title": "RdRp Genotype",
                 "type": "categorical"
               },
               {
@@ -132,70 +137,24 @@ rule prepare_auspice_config:
             "panels": [
                "tree",
                "map",
-               "entropy",
-               "frequencies"
+               "entropy"
             ],
             "display_defaults": {
               "map_triplicate": True,
-              "color_by": params.default_color_by
+              "color_by": "clade_membership"
             },
             "metadata_columns": [
               "strain",
               "host",
-              "is_lab_host",
-              "p48_coverage",
-              "NTPase_coverage",
-              "p22_coverage",
-              "VPg_coverage",
-              "3CLpro_coverage",
               "RdRp_coverage",
               "VP1_coverage",
-              "VP2_coverage",
             ],
             "filters": [
               "country",
               "ORF2_type",
               "ORF1_type",
               "author"
-            ],
-            "extensions": {
-              "nextclade": {
-                "clade_node_attrs": [
-                  {
-                    "name": "ORF2_type",
-                    "displayName": "Vp1 Genotype (Genome Detective)",
-                    "description": "Norovirus Vp1 Genotype (based on current tree)"
-                  },
-                  {
-                    "name": "ORF1_type",
-                    "displayName": "RdRp Genotype (Genome Detective)",
-                    "description": "Norovirus RdRp Genotype (based on current tree)"
-                  },
-                  {
-                    "name": "ORF2_genotype_nextclade_VP1",
-                    "displayName": "Vp1 Genotype (Nextclade)",
-                    "description": "Norovirus Vp1 Genotype (based on current tree)"
-                  },
-                  {
-                    "name": "ORF1_genotype_nextclade_RdRp",
-                    "displayName": "RdRp Genotype (Nextclade)",
-                    "description": "Norovirus RdRp Genotype (based on current tree)"
-                  }
-                ],
-                "pathogen": {
-                  "schemaVersion":"3.0.0",
-                  "attributes": {
-                    "name": "Norovirus live tree",
-                    "reference name": "Reconstructed ancestor",
-                    "reference accession": "none"
-                  },
-                  "alignmentParams": {
-                    "alignmentPreset": "high-diversity",
-                    "minSeedCover": 0.01
-                  }
-                }
-              }
-            }
+            ]
         }
         with open(output.auspice_config, 'w') as fh:
             json.dump(data, fh, indent=2)
@@ -236,37 +195,59 @@ rule export:
             --include-root-sequence-inline
         """
 
-rule tip_frequencies:
-    """
-    Estimating KDE frequencies for tips
-    """
+rule assemble_dataset:
     input:
-        tree = "results/{group}/{gene}/tree.nwk",
-        metadata = "results/{group}/{gene}/metadata.tsv",
+        reference=config["assemble_dataset"]["reference"],
+        tree="auspice/norovirus_all_{gene}.json",
+        pathogen_json=config["assemble_dataset"]["pathogen_json"],
+        sequences=config["assemble_dataset"]["sequences"],
+        annotation=config["assemble_dataset"]["annotation"],
+        readme=config["assemble_dataset"]["readme"],
+        changelog=config["assemble_dataset"]["changelog"],
     output:
-        tip_freq = "auspice/norovirus_{group}_{gene}_tip-frequencies.json"
+        reference="datasets/{gene}/reference.fasta",
+        tree="datasets/{gene}/tree.json",
+        pathogen_json="datasets/{gene}/pathogen.json",
+        sequences="datasets/{gene}/sequences.fasta",
+        annotation="datasets/{gene}/genome_annotation.gff3",
+        readme="datasets/{gene}/README.md",
+        changelog="datasets/{gene}/CHANGELOG.md",
     benchmark:
-        "benchmarks/{group}/{gene}/tip_frequencies.txt",
-    log:
-        "logs/{group}/{gene}/tip_frequencies.txt",
-    params:
-        strain_id = config["strain_id_field"],
-        min_date = config["tip_frequencies"]["min_date"],
-        max_date = config["tip_frequencies"]["max_date"],
-        narrow_bandwidth = config["tip_frequencies"]["narrow_bandwidth"],
-        proportion_wide = config["tip_frequencies"]["proportion_wide"]
+        "benchmarks/{gene}/assemble_dataset.txt",
     shell:
-        r"""
+        """
+        cp {input.reference} {output.reference}
+        cp {input.tree} {output.tree}
+        cp {input.pathogen_json} {output.pathogen_json}
+        cp {input.annotation} {output.annotation}
+        cp {input.readme} {output.readme}
+        cp {input.changelog} {output.changelog}
+        cp {input.sequences} {output.sequences}
+        """
+
+rule test_dataset:
+    input:
+        tree="datasets/{gene}/tree.json",
+        pathogen_json="datasets/{gene}/pathogen.json",
+        sequences=config["assemble_dataset"]["sequences"],
+        annotation="datasets/{gene}/genome_annotation.gff3",
+        readme="datasets/{gene}/README.md",
+        changelog="datasets/{gene}/CHANGELOG.md",
+    output:
+        outdir=directory("test_output/{gene}"),
+    log:
+        "logs/{gene}/test_dataset.txt",
+    benchmark:
+        "benchmarks/{gene}/test_dataset.txt",
+    params:
+        dataset_dir="datasets/{gene}",
+    shell:
+        """
         exec &> >(tee {log:q})
 
-        augur frequencies \
-            --method kde \
-            --tree {input.tree} \
-            --metadata {input.metadata} \
-            --metadata-id-columns {params.strain_id} \
-            --min-date {params.min_date} \
-            --max-date {params.max_date} \
-            --narrow-bandwidth {params.narrow_bandwidth} \
-            --proportion-wide {params.proportion_wide} \
-            --output {output.tip_freq}
+        nextclade run \
+          --input-dataset {params.dataset_dir} \
+          --output-all {output.outdir} \
+          --silent \
+          {input.sequences}
         """
