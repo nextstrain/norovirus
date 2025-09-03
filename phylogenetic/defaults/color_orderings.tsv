@@ -426,8 +426,15 @@ clade_membership	GII.27
 clade_membership	GII.ancestral
 clade_membership	GII.NA1
 clade_membership	GII.NA2
+clade_membership	GIII.1
+clade_membership	GIII.2
 clade_membership	GIV.1
+clade_membership	GIV.2
 clade_membership	GIV.NA1
+clade_membership	GV.1
+clade_membership	GV.2
+clade_membership	GVI.1
+clade_membership	GVI.2
 clade_membership	GVIII.1
 clade_membership	GIX.1
 
@@ -471,8 +478,15 @@ ORF2_genotype_nextclade_VP1	GII.27
 ORF2_genotype_nextclade_VP1	GII.ancestral
 ORF2_genotype_nextclade_VP1	GII.NA1
 ORF2_genotype_nextclade_VP1	GII.NA2
+ORF2_genotype_nextclade_VP1	GIII.1
+ORF2_genotype_nextclade_VP1	GIII.2
 ORF2_genotype_nextclade_VP1	GIV.1
+ORF2_genotype_nextclade_VP1	GIV.2
 ORF2_genotype_nextclade_VP1	GIV.NA1
+ORF2_genotype_nextclade_VP1	GV.1
+ORF2_genotype_nextclade_VP1	GV.2
+ORF2_genotype_nextclade_VP1	GVI.1
+ORF2_genotype_nextclade_VP1	GVI.2
 ORF2_genotype_nextclade_VP1	GVIII.1
 ORF2_genotype_nextclade_VP1	GIX.1
 
