@@ -89,6 +89,21 @@ rule prepare_auspice_config:
                 "type": "categorical"
               },
               {
+                "key": "genogroup",
+                "title": "Genogroup",
+                "type": "categorical"
+              },
+              {
+                "key": "genotype",
+                "title": "Genotype",
+                "type": "categorical"
+              },
+              {
+                "key": "variant",
+                "title": "Variant",
+                "type": "categorical"
+              },
+              {
                 "key": "ORF2_type",
                 "title": "Vp1 Genotype",
                 "type": "categorical"
@@ -154,7 +169,28 @@ rule prepare_auspice_config:
               "ORF2_type",
               "ORF1_type",
               "author"
-            ]
+            ],
+            "extensions": {
+              "nextclade": {
+                "clade_node_attrs": [
+                  {
+                    "name": "genogroup",
+                    "displayName": "Genogroup",
+                    "description": "Norovirus Genogroup (based on current tree)"
+                  },
+                  {
+                    "name": "genotype",
+                    "displayName": "Genotype",
+                    "description": "Norovirus Genotype (based on current tree)"
+                  },
+                  {
+                    "name": "variant",
+                    "displayName": "Variant",
+                    "description": "Norovirus Variant (based on current tree)"
+                  }
+                ]
+              }
+            }
         }
         with open(output.auspice_config, 'w') as fh:
             json.dump(data, fh, indent=2)

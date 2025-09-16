@@ -39,7 +39,7 @@ refine:
       VP1: 0.00136
 
 traits:
-  default: clade_membership ORF1_type ORF2_type
+  default: clade_membership genogroup genotype variant ORF1_type ORF2_type
   sampling_bias_correction: 3
 
 colors:
