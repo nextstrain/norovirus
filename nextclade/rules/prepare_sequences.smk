@@ -1,5 +1,6 @@
 """
-This part of the workflow prepares sequences for constructing the phylogenetic tree.
+This part of the workflow prepares sequences for constructing the reference tree
+of the Nextclade dataset.
 
 REQUIRED INPUTS:
 
@@ -15,51 +16,11 @@ This part of the workflow usually includes the following steps:
 
     - augur index
     - augur filter
-    - augur align
+    - nextclade run
     - augur mask
 
-See Augur's usage docs for these commands for more details.
+See Nextclade's and Augur's usage docs for these commands for more details.
 """
-
-rule download:
-    """Downloading sequences and metadata from data.nextstrain.org"""
-    output:
-        sequences = "data/sequences.fasta.zst",
-        metadata = "data/metadata.tsv.zst",
-    params:
-        sequences_url = config["sequences_url"],
-        metadata_url = config["metadata_url"],
-    benchmark:
-        "benchmarks/download.txt",
-    log:
-        "logs/download.txt",
-    shell:
-        r"""
-        exec &> >(tee {log:q})
-
-        curl -fsSL --compressed {params.sequences_url:q} --output {output.sequences}
-        curl -fsSL --compressed {params.metadata_url:q} --output {output.metadata}
-        """
-
-rule decompress:
-    """Decompressing sequences and metadata"""
-    input:
-        sequences = "data/sequences.fasta.zst",
-        metadata = "data/metadata.tsv.zst"
-    output:
-        sequences = "data/sequences.fasta",
-        metadata = "data/metadata.tsv",
-    benchmark:
-        "benchmarks/decompress.txt",
-    log:
-        "logs/decompress.txt",
-    shell:
-        r"""
-        exec &> >(tee {log:q})
-
-        zstd -d -c {input.sequences} > {output.sequences}
-        zstd -d -c {input.metadata} > {output.metadata}
-        """
 
 def _query_params(wildcards):
     """
@@ -75,7 +36,7 @@ def _query_params(wildcards):
         query = f'`{wildcards.gene}_coverage` >= {config["filter"]["min_coverage"]}'
 
     if wildcards.group != 'all':
-        query = f"({query}) & (VP1_nextclade == '{wildcards.group}')"
+        query = f"({query}) & (ORF2_type == '{wildcards.group}')"
 
     return query
 
@@ -86,8 +47,9 @@ rule filter:
     """
     input:
         sequences = "data/sequences.fasta",
-        metadata = "data/metadata.tsv",
-        exclude = config['filter']['exclude']
+        metadata = "data/{gene}/metadata_merged.tsv",
+        include = config['filter']['include'],
+        exclude = config['filter']['exclude'],
     output:
         sequences = "results/{group}/{gene}/filtered.fasta",
         metadata = "results/{group}/{gene}/metadata.tsv",
@@ -109,9 +71,12 @@ rule filter:
             --metadata-id-columns {params.id_field:q} \
             {params.filter_params} \
             --query {params.query_params:q} \
+            --exclude-all \
+            --include {input.include:q} \
             --exclude {input.exclude:q} \
             --output-sequences {output.sequences:q} \
             --output-metadata {output.metadata:q}
+
         """
 
 rule parse_reference:
@@ -130,7 +95,7 @@ rule parse_reference:
         r"""
         exec &> >(tee {log:q})
 
-        python scripts/reference_parsing.py \
+        python ../phylogenetic/scripts/reference_parsing.py \
           --reference {input.reference} \
           --gene {wildcards.gene} \
           --output {output.output}
@@ -159,8 +124,7 @@ rule align:
             --reference-sequence {input.reference:q} \
             --output {output.alignment:q} \
             --fill-gaps \
-            --nthreads 4 \
-            --remove-reference
+            --nthreads 4
         """
 
 rule parse_gene:
@@ -179,7 +143,7 @@ rule parse_gene:
         r"""
         exec &> >(tee {log:q})
 
-        python scripts/gene_parsing.py \
+        python ../phylogenetic/scripts/gene_parsing.py \
           --alignment {input.alignment:q} \
           --reference {input.reference:q} \
           --gene {wildcards.gene} \

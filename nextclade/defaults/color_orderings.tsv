@@ -1,0 +1,556 @@
+# Asia
+country	Israel
+country	Palestine
+country	Lebanon
+country	Jordan
+country	Syria
+country	Georgia
+country	Iraq
+country	Armenia
+country	Saudi Arabia
+country	Kuwait
+country	Yemen
+country	Bahrain
+country	Qatar
+country	Iran
+country	United Arab Emirates
+country	Oman
+country	Uzbekistan
+country	Afghanistan
+country	Kazakhstan
+country	Pakistan
+country	Tajikistan
+country	Maldives
+country	Kyrgyzstan
+country	India
+country	Sri Lanka
+country	Nepal
+country	Asia
+country	Bhutan
+country	Bangladesh
+country	Myanmar
+country	Thailand
+country	Malaysia
+country	Mongolia
+country	Laos
+country	Singapore
+country	China
+country	Cambodia
+country	Vietnam
+country	Hong Kong
+country	Indonesia
+country	Brunei
+country	Taiwan
+country	Philippines
+country	Timor-Leste
+country	South Korea
+country	Japan
+
+# Oceania
+country	French Polynesia
+country	Palau
+country	Australia
+country	Papua New Guinea
+country	Oceania
+country	Micronesia
+country	Solomon Islands
+country	Vanuatu
+country	Marshall Islands
+country	New Zealand
+country	Kiribati
+country	Fiji
+
+# Africa
+country	Cabo Verde
+country	Gambia
+country	Guinea-Bissau
+country	Senegal
+country	Sierra Leone
+country	Guinea
+country	Liberia
+country	Mauritania
+country	Côte d'Ivoire
+country	Morocco
+country	Mali
+country	Burkina Faso
+country	Ghana
+country	Togo
+country	Benin
+country	Algeria
+country	Sao Tome and Principe
+country	Nigeria
+country	Tunisia
+country	Niger
+country	Equatorial Guinea
+country	Gabon
+country	Cameroon
+country	Republic of the Congo
+country	Libya
+country	Namibia
+country	Angola
+country	Chad
+country	Central African Republic
+country	Democratic Republic of the Congo
+country	Africa
+country	Botswana
+country	South Africa
+country	Zambia
+country	Lesotho
+country	Sudan
+country	South Sudan
+country	Zimbabwe
+country	Burundi
+country	Rwanda
+country	Egypt
+country	Eswatini
+country	Uganda
+country	Malawi
+country	Mozambique
+country	Tanzania
+country	Kenya
+country	Ethiopia
+country	Djibouti
+country	Union of the Comoros
+country	Madagascar
+country	Somalia
+country	Seychelles
+country	Mauritius
+
+# Europe
+country	Iceland
+country	Portugal
+country	Ireland
+country	Spain
+country	United Kingdom
+country	Andorra
+country	France
+country	Belgium
+country	Netherlands
+country	Luxembourg
+country	Monaco
+country	Switzerland
+country	Norway
+country	Denmark
+country	Liechtenstein
+country	Germany
+country	Europe
+country	Italy
+country	Malta
+country	Slovenia
+country	Sweden
+country	Austria
+country	Croatia
+country	Czech Republic
+country	Bosnia and Herzegovina
+country	Poland
+country	Slovakia
+country	Montenegro
+country	Albania
+country	Hungary
+country	Serbia
+country	Kosovo
+country	North Macedonia
+country	Greece
+country	Lithuania
+country	Romania
+country	Bulgaria
+country	Latvia
+country	Estonia
+country	Finland
+country	Belarus
+country	Moldova
+country	Ukraine
+country	Cyprus
+country	Turkey
+country	Azerbaijan
+country	Russia
+
+# South America
+country	Argentina
+country	Uruguay
+country	Chile
+country	Paraguay
+country	Bolivia
+country	South America
+country	Brazil
+country	Peru
+country	Ecuador
+country	Colombia
+country	Suriname
+country	Guyana
+country	Venezuela
+country	Trinidad and Tobago
+country	French Guiana
+country	Bonaire
+country	Curacao
+country	Aruba
+
+# North America
+country	Panama
+country	Costa Rica
+country	Grenada
+country	Nicaragua
+country	Saint Vincent and the Grenadines
+country	Barbados
+country	El Salvador
+country	Saint Lucia
+country	Honduras
+country	Dominica
+country	Guatemala
+country	Guadeloupe
+country	Belize
+country	Antigua and Barbuda
+country	Saint Kitts and Nevis
+country	Saint Barthélemy
+country	Sint Maarten
+country	Saint Martin
+country	Jamaica
+country	Dominican Republic
+country	Haiti
+country	Mexico
+country	Cuba
+country	Bahamas
+country	North America
+country	Bermuda
+country	USA
+country	Canada
+
+################
+
+region	Asia
+region	Oceania
+region	Africa
+region	Europe
+region	South America
+region	North America
+
+# ################
+
+# ### VP1
+clade_membership	GI
+clade_membership	GI.1
+clade_membership	GI.2
+clade_membership	GI.3
+clade_membership	GI.4
+clade_membership	GI.5
+clade_membership	GI.6
+clade_membership	GI.7
+clade_membership	GI.8
+clade_membership	GI.9
+clade_membership	GII
+clade_membership	GII.1
+clade_membership	GII.2
+clade_membership	GII.3
+clade_membership	GII.4
+clade_membership	GII.5
+clade_membership	GII.6
+clade_membership	GII.7
+clade_membership	GII.8
+clade_membership	GII.9
+clade_membership	GII.10
+clade_membership	GII.11
+clade_membership	GII.12
+clade_membership	GII.13
+clade_membership	GII.14
+clade_membership	GII.16
+clade_membership	GII.17
+clade_membership	GII.18
+clade_membership	GII.19
+clade_membership	GII.20
+clade_membership	GII.21
+clade_membership	GII.22
+clade_membership	GII.23
+clade_membership	GII.24
+clade_membership	GII.25
+clade_membership	GII.26
+clade_membership	GII.27
+clade_membership	GII.NA1
+clade_membership	GII.NA2
+clade_membership	GIII
+clade_membership	GIII.1
+clade_membership	GIII.2
+clade_membership	GIII.3
+clade_membership	GIV
+clade_membership	GIV.1
+clade_membership	GIV.2
+clade_membership	GIV.NA1
+clade_membership	GV
+clade_membership	GV.1
+clade_membership	GV.2
+clade_membership	GVI.1
+clade_membership	GVI.2
+clade_membership	GVII.1
+clade_membership	GVII
+clade_membership	GVIII
+clade_membership	GVIII.1
+clade_membership	GIX.1
+clade_membership	GX.1
+clade_membership	GNA1.1
+clade_membership	GNA2.1
+
+# ### RdRp
+clade_membership	GI.P1
+clade_membership	GI.P2
+clade_membership	GI.P3
+clade_membership	GI.P4
+clade_membership	GI.P5
+clade_membership	GI.P6
+clade_membership	GI.P7
+clade_membership	GI.P8
+clade_membership	GI.P9
+clade_membership	GI.P10
+clade_membership	GI.P11
+clade_membership	GI.P12
+clade_membership	GI.P13
+clade_membership	GI.P14
+clade_membership	GI.PNA1
+clade_membership	GI.PNA2
+clade_membership	GI.PNA3
+clade_membership	GI.PNA4
+clade_membership	GII.P1
+clade_membership	GII.P2
+clade_membership	GII.P3
+clade_membership	GII.P4
+clade_membership	GII.P5
+clade_membership	GII.P6
+clade_membership	GII.P7
+clade_membership	GII.P8
+clade_membership	GII.P11
+clade_membership	GII.P12
+clade_membership	GII.P13
+clade_membership	GII.P15
+clade_membership	GII.P16
+clade_membership	GII.P17
+clade_membership	GII.P18
+clade_membership	GII.P20
+clade_membership	GII.P21
+clade_membership	GII.P22
+clade_membership	GII.P23
+clade_membership	GII.P24
+clade_membership	GII.P25
+clade_membership	GII.P26
+clade_membership	GII.P27
+clade_membership	GII.P28
+clade_membership	GII.P29
+clade_membership	GII.P30
+clade_membership	GII.P31
+clade_membership	GII.P32
+clade_membership	GII.P33
+clade_membership	GII.P34
+clade_membership	GII.P35
+clade_membership	GII.P36
+clade_membership	GII.P37
+clade_membership	GII.P38
+clade_membership	GII.P39
+clade_membership	GII.P40
+clade_membership	GII.P41
+clade_membership	GII.PNA1
+clade_membership	GII.PNA2
+clade_membership	GII.PNA3
+clade_membership	GII.PNA4
+clade_membership	GII.PNA5
+clade_membership	GII.PNA6
+clade_membership	GII.PNA7
+clade_membership	GII.PNA8
+clade_membership	GII.PNA9
+clade_membership	GIII.P1
+clade_membership	GIII.P2
+clade_membership	GIV.P1
+clade_membership	GIV.PNA1
+clade_membership	GV.P1
+clade_membership	GV.P2
+clade_membership	GVI.P1
+clade_membership	GVI.P2
+clade_membership	GVII.P1
+clade_membership	GNA1.P1
+clade_membership	GNA2.P1
+clade_membership	GX.P1
+
+# ### genogroup
+genogroup	GI
+genogroup	GII
+genogroup	GIII
+genogroup	GIV
+genogroup	GV
+genogroup	GVI
+genogroup	GVII
+genogroup	GVIII
+genogroup	GIX
+genogroup	GX
+genogroup	GNA1
+genogroup	GNA2
+
+genogroup	GI.P
+genogroup	GII.P
+genogroup	GIII.P
+genogroup	GIV.P
+genogroup	GV.P
+genogroup	GVI.P
+genogroup	GVII.P
+genogroup	GNA1.P
+genogroup	GNA2.P
+genogroup	GX.P
+
+# ### genotype
+genotype	GI.1
+genotype	GI.2
+genotype	GI.3
+genotype	GI.4
+genotype	GI.5
+genotype	GI.6
+genotype	GI.7
+genotype	GI.8
+genotype	GI.9
+genotype	GII.1
+genotype	GII.2
+genotype	GII.3
+genotype	GII.4
+genotype	GII.5
+genotype	GII.6
+genotype	GII.7
+genotype	GII.8
+genotype	GII.9
+genotype	GII.10
+genotype	GII.11
+genotype	GII.12
+genotype	GII.13
+genotype	GII.14
+genotype	GII.16
+genotype	GII.17
+genotype	GII.18
+genotype	GII.19
+genotype	GII.20
+genotype	GII.21
+genotype	GII.22
+genotype	GII.23
+genotype	GII.24
+genotype	GII.25
+genotype	GII.26
+genotype	GII.27
+genotype	GII.NA1
+genotype	GII.NA2
+genotype	GIII.1
+genotype	GIII.2
+genotype	GIII.3
+genotype	GIV.1
+genotype	GIV.2
+genotype	GIV.NA1
+genotype	GV.1
+genotype	GV.2
+genotype	GVI.1
+genotype	GVI.2
+genotype	GVII.1
+genotype	GVIII
+genotype	GVIII.1
+genotype	GIX.1
+genotype	GX.1
+genotype	GNA1.1
+genotype	GNA2.1
+
+genotype	GI.P1
+genotype	GI.P2
+genotype	GI.P3
+genotype	GI.P4
+genotype	GI.P5
+genotype	GI.P6
+genotype	GI.P7
+genotype	GI.P8
+genotype	GI.P9
+genotype	GI.P10
+genotype	GI.P11
+genotype	GI.P12
+genotype	GI.P13
+genotype	GI.P14
+genotype	GI.PNA1
+genotype	GI.PNA2
+genotype	GI.PNA3
+genotype	GI.PNA4
+genotype	GII.P1
+genotype	GII.P2
+genotype	GII.P3
+genotype	GII.P4
+genotype	GII.P5
+genotype	GII.P6
+genotype	GII.P7
+genotype	GII.P8
+genotype	GII.P11
+genotype	GII.P12
+genotype	GII.P13
+genotype	GII.P15
+genotype	GII.P16
+genotype	GII.P17
+genotype	GII.P18
+genotype	GII.P20
+genotype	GII.P21
+genotype	GII.P22
+genotype	GII.P23
+genotype	GII.P24
+genotype	GII.P25
+genotype	GII.P26
+genotype	GII.P27
+genotype	GII.P28
+genotype	GII.P29
+genotype	GII.P30
+genotype	GII.P31
+genotype	GII.P32
+genotype	GII.P33
+genotype	GII.P34
+genotype	GII.P35
+genotype	GII.P36
+genotype	GII.P37
+genotype	GII.P38
+genotype	GII.P39
+genotype	GII.P40
+genotype	GII.P41
+genotype	GII.PNA1
+genotype	GII.PNA2
+genotype	GII.PNA3
+genotype	GII.PNA4
+genotype	GII.PNA5
+genotype	GII.PNA6
+genotype	GII.PNA7
+genotype	GII.PNA8
+genotype	GII.PNA9
+genotype	GIII.P1
+genotype	GIII.P2
+genotype	GIV.P1
+genotype	GIV.PNA1
+genotype	GV.P1
+genotype	GV.P2
+genotype	GVI.P1
+genotype	GVI.P2
+genotype	GVII.P1
+genotype	GNA1.P1
+genotype	GNA2.P1
+genotype	GX.P1
+
+# ### variant
+variant	2006a
+variant	2006b*
+variant	Allegany
+variant	Apeldoorn_2007
+variant	Apeldoorn_2008
+variant	Asia_2003
+variant	Bristol
+variant	CHDC_1970s
+variant	Cairo_2007
+variant	Camberwell_1994
+variant	DenHaag_2006
+variant	FarmingtonHills_2002
+variant	FarmingtonHills_2002*
+variant	Henry_2001
+variant	HongKong
+variant	Hunter_2004
+variant	Hunter_2004*
+variant	Japan_2001
+variant	Lordsdale_1993
+variant	NewOrleans_2009
+variant	NewOrleans_2009*
+variant	Osaka_2007
+variant	Richmond
+variant	SanFrancisco
+variant	Sydney_2012*
+variant	US95-96
+variant	US_1995/96*
+variant	Wichita
+variant	Yerseke_2006

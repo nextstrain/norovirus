@@ -119,9 +119,8 @@ curate:
     "url"
   ]
 
-# Nextclade parameters to include if you are running Nextclade as a part of your ingest workflow
-# Note that this requires a Nextclade dataset to already exist for your pathogen.
-nextclade:
+# Estimate gene coverage using Nextclade
+gene_coverage:
   # The FASTA and GFF references for running nextclade to get cdsCoverage
   dataset_reference: "../phylogenetic/defaults/all/reference.fasta"
   dataset_gff: "../phylogenetic/defaults/all/reference.gff3"
@@ -131,7 +130,6 @@ nextclade:
   # columns would be useful for your downstream phylogenetic analysis.
   field_map:
     seqName: "seqName"
-    #clade: "clade"
     coverage: "coverage"
     cdsCoverage: "cdsCoverage"
     totalMissing: "missing_data"
@@ -150,3 +148,32 @@ nextclade:
     cdsCoverage_field: "cdsCoverage"
     genes: "p48,NTPase,p22,VPg,3CLpro,RdRp,VP1,VP2"
     round_digits: 3
+
+# Nextclade parameters to include if you are running Nextclade as a part of your ingest workflow
+# Note that this requires a Nextclade dataset to already exist for your pathogen.
+nextclade:
+  # The name of the Nextclade dataset to use for running nextclade.
+  # Run `nextclade dataset list --search nextstrain/mumps` to get a list of available mumps datasets
+  # The dataset names listed should match `nextstrain/mumps/<dataset_name>`
+  dataset_name: ["RdRp","VP1"]
+  # The first column should be the original column name of the Nextclade TSV
+  # The second column should be the new column name to use in the final metadata TSV
+  # Nextclade can have pathogen specific output columns so make sure to check which
+  # columns would be useful for your downstream phylogenetic analysis.
+  RdRp:
+    field_map:
+      seqName: "seqName"
+      clade: "RdRp_nextclade"
+      genogroup: "RdRp_group"
+      genotype: "RdRp_type"
+      variant: "RdRp_variant"
+  VP1:
+    field_map:
+      seqName: "seqName"
+      clade: "VP1_nextclade"
+      genogroup: "VP1_group"
+      genotype: "VP1_type"
+      variant: "VP1_variant"
+  # This is the ID field you would use to match the Nextclade output with the record metadata.
+  # This should be the new name that you have defined in your field map.
+  id_field: "seqName"
