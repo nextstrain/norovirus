@@ -2,9 +2,9 @@ We gratefully acknowledge the authors, originating and submitting laboratories o
 
 **We maintain 14 views of norovirus evolution:**
 
-| group | genome | p48 | NTPase | p22 | VPg | 3CLpro | rdrp | VP1 | VP2 |
+| group | genome | p48 | NTPase | p22 | VPg | 3CLpro | RdRp | VP1 | VP2 |
 |:--|:--|:--|:--|:--|:--|:--|:--|:--|:--|
-| all | [genome](https://nextstrain.org/staging/norovirus/all/genome) | [p48](https://nextstrain.org/staging/norovirus/all/p48) | [NTPase](https://nextstrain.org/staging/norovirus/all/NTPase) | [p22](https://nextstrain.org/staging/norovirus/all/p22) | [VPg](https://nextstrain.org/staging/norovirus/all/VPg) | [3CLpro](https://nextstrain.org/staging/norovirus/all/3CLpro) | [rdrp](https://nextstrain.org/staging/norovirus/all/rdrp) | [VP1](https://nextstrain.org/staging/norovirus/all/VP1) | [VP2](https://nextstrain.org/staging/norovirus/all/VP2) |
+| all | [genome](https://nextstrain.org/staging/norovirus/all/genome) | [p48](https://nextstrain.org/staging/norovirus/all/p48) | [NTPase](https://nextstrain.org/staging/norovirus/all/NTPase) | [p22](https://nextstrain.org/staging/norovirus/all/p22) | [VPg](https://nextstrain.org/staging/norovirus/all/VPg) | [3CLpro](https://nextstrain.org/staging/norovirus/all/3CLpro) | [RdRp](https://nextstrain.org/staging/norovirus/all/RdRp/) | [VP1](https://nextstrain.org/staging/norovirus/all/VP1) | [VP2](https://nextstrain.org/staging/norovirus/all/VP2) |
 | GII.2 | [genome](https://nextstrain.org/staging/norovirus/GII.2/genome) | | | | | | | | |
 | GII.3 | [genome](https://nextstrain.org/staging/norovirus/GII.3/genome) | | | | | | | | |
 | GII.4 | [genome](https://nextstrain.org/staging/norovirus/GII.4/genome) | | | | | | | | |
