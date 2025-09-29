@@ -113,7 +113,6 @@ rule run_nextclade:
             --input-dataset {input.dataset:q} \
             --output-tsv {output.nextclade:q} \
             --output-fasta {output.alignment:q} \
-            --alignment-preset high-diversity \
             --min-length 1224 \
             --silent
         """
