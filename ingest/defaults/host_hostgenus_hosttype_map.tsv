@@ -1,0 +1,42 @@
+host	host_genus	host_type
+Apodemus agrarius	Apodemus	mouse
+Apodemus speciosus	Apodemus	mouse
+Apodemus sylvaticus	Apodemus	mouse
+Bos grunniens	Bos	cow
+Bos taurus	Bos	cow
+Bovidae	Bovidae	cow
+Canis lupus familiaris	Canis	dog
+Capra hircus	Capra	goat
+Dicentrarchus labrax	Dicentrarchus	fish
+Feliformia	Feliformia	cat
+Felis catus	Felis	cat
+Gallus gallus	Gallus	chicken
+Homo sapiens	Homo	human
+Homo	Homo	human
+Macaca mulatta	Macaca	primate
+Marmota himalayana	Marmota	marmot
+Mus musculus	Mus	mouse
+Mus	Mus	mouse
+Nasua nasua	Nasua	raccoon
+Neogale vison	Neogale	mink
+Neognathae	Neognathae	bird
+Nyctereutes procyonoides	Nyctereutes	raccoon dog
+Ovis aries	Ovis	sheep
+Paguma larvata	Paguma	civit
+Panthera leo	Panthera	cat
+Panthera onca	Panthera	cat
+Phocoena phocoena	Phocoena	porpoise
+Rattus norvegicus	Rattus	rat
+Rattus rattus	Rattus	rat
+Rattus tanezumi	Rattus	rat
+Rattus	Rattus	rat
+Rhinolophus affinis	Rhinolophus	bat
+Rhinolophus pearsonii	Rhinolophus	bat
+Rhinolophus pusillus	Rhinolophus	bat
+Rhinolophus sinicus	Rhinolophus	bat
+Sparus aurata	Sparus	fish
+Sus scrofa domesticus	Sus	pig
+Sus scrofa	Sus	pig
+Taphozous melanopogon	Taphozous	bat
+Vulpes	Vulpes	fox
+Zalophus californianus	Zalophus	sea lion

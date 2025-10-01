@@ -125,7 +125,17 @@ rule prepare_auspice_config:
               },
               {
                 "key": "host",
-                "title": "Host",
+                "title": "Host scientific",
+                "type": "categorical"
+              },
+              {
+                "key": "host_genus",
+                "title": "Host genus",
+                "type": "categorical"
+              },
+              {
+                "key": "host_type",
+                "title": "Host type",
                 "type": "categorical"
               },
               {
