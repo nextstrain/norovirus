@@ -1,22 +1,25 @@
 {
   "alignmentParams": {
     "minLength": 30,
-    "penaltyGapExtend": 1,
-    "penaltyGapOpen": 6,
-    "penaltyGapOpenInFrame": 7,
-    "penaltyGapOpenOutOfFrame": 8,
+    "penaltyGapExtend": 0,
+    "penaltyGapOpen": 10,
+    "penaltyGapOpenInFrame": 15,
+    "penaltyGapOpenOutOfFrame": 17,
     "penaltyMismatch": 1,
     "scoreMatch": 3,
     "noTranslatePastStop": false,
     "excessBandwidth": 20,
-    "terminalBandwidth": 50,
-    "allowedMismatches": 20,
-    "minMatchLength": 20,
+    "terminalBandwidth": 100,
+    "allowedMismatches": 15,
+    "minMatchLength": 30,
     "maxAlignmentAttempts": 5,
     "includeReference": true,
     "includeNearestNodeInfo": true,
     "retryReverseComplement": true,
-    "minSeedCover": 0.01
+    "minSeedCover": 0.1,
+    "kmerLength": 6,
+    "kmerDistance": 25,
+    "windowSize": 30
   },
   "attributes": {
     "name": "Norovirus ORF1 genotype (RdRp)",
