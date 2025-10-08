@@ -32,6 +32,7 @@ rule curate:
         sequences_ndjson="data/ncbi.ndjson",
         geolocation_rules=config["curate"]["local_geolocation_rules"],
         annotations=config["curate"]["annotations"],
+        host_map=config["curate"]["host_map"],
     output:
         metadata="data/all_metadata.tsv",
         sequences="results/sequences.fasta",
@@ -56,7 +57,7 @@ rule curate:
         id_field=config["curate"]["output_id_field"],
         sequence_field=config["curate"]["output_sequence_field"],
     shell:
-        """
+        r"""
         (cat {input.sequences_ndjson} \
             | augur curate rename \
                 --field-map {params.field_map} \
@@ -79,6 +80,12 @@ rule curate:
                 --abbr-authors-field {params.abbr_authors_field} \
             | augur curate apply-geolocation-rules \
                 --geolocation-rules {input.geolocation_rules} \
+            | ./scripts/map-new-fields \
+                --map-tsv {input.host_map} \
+                --map-id host \
+                --metadata-id host \
+                --map-fields host_genus host_type \
+                --pass-through \
             | augur curate apply-record-annotations \
                 --annotations {input.annotations} \
                 --id-field {params.annotations_id} \
