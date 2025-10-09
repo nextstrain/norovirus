@@ -52,7 +52,7 @@ rule filter:
         exclude = config['filter']['exclude'],
     output:
         sequences = "results/{group}/{gene}/filtered.fasta",
-        metadata = "results/{group}/{gene}/metadata.tsv",
+        metadata = "results/{group}/{gene}/filtered.tsv",
     benchmark:
         "benchmarks/{group}/{gene}/filter.txt",
     log:
