@@ -85,7 +85,7 @@ rule traits:
     """
     input:
         tree = "results/{group}/{gene}/tree.nwk",
-        metadata = "results/{group}/{gene}/metadata.tsv",
+        metadata = "results/{group}/{gene}/filtered.tsv",
     output:
         node_data = "results/{group}/{gene}/traits.json",
     log:
