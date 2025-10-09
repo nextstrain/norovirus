@@ -46,7 +46,7 @@ rule filter:
       - various criteria based on the auspice JSON target
     """
     input:
-        sequences = "data/sequences.fasta",
+        sequences = "results/sequences.fasta",
         metadata = "data/{gene}/metadata_merged.tsv",
         include = config['filter']['include'],
         exclude = config['filter']['exclude'],

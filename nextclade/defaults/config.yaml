@@ -11,10 +11,10 @@ groups: ['all']
 # {gene} represents the norovirus genes to focus on in each build
 genes: ['RdRp','VP1']
 
-# Sequences must be FASTA and metadata must be TSV
-# Both files must be zstd compressed
-sequences_url: "https://data.nextstrain.org/files/workflows/norovirus/sequences.fasta.zst"
-metadata_url: "https://data.nextstrain.org/files/workflows/norovirus/metadata.tsv.zst"
+inputs:
+  - name: ncbi
+    metadata: "https://data.nextstrain.org/files/workflows/norovirus/metadata.tsv.zst"
+    sequences: "https://data.nextstrain.org/files/workflows/norovirus/sequences.fasta.zst"
 
 strain_id_field: "accession"
 # Will be used to generate the group and gene level references
