@@ -21,46 +21,6 @@ This part of the workflow usually includes the following steps:
 See Augur's usage docs for these commands for more details.
 """
 
-rule download:
-    """Downloading sequences and metadata from data.nextstrain.org"""
-    output:
-        sequences = "data/sequences.fasta.zst",
-        metadata = "data/metadata.tsv.zst",
-    params:
-        sequences_url = config["sequences_url"],
-        metadata_url = config["metadata_url"],
-    benchmark:
-        "benchmarks/download.txt",
-    log:
-        "logs/download.txt",
-    shell:
-        r"""
-        exec &> >(tee {log:q})
-
-        curl -fsSL --compressed {params.sequences_url:q} --output {output.sequences}
-        curl -fsSL --compressed {params.metadata_url:q} --output {output.metadata}
-        """
-
-rule decompress:
-    """Decompressing sequences and metadata"""
-    input:
-        sequences = "data/sequences.fasta.zst",
-        metadata = "data/metadata.tsv.zst"
-    output:
-        sequences = "data/sequences.fasta",
-        metadata = "data/metadata.tsv",
-    benchmark:
-        "benchmarks/decompress.txt",
-    log:
-        "logs/decompress.txt",
-    shell:
-        r"""
-        exec &> >(tee {log:q})
-
-        zstd -d -c {input.sequences} > {output.sequences}
-        zstd -d -c {input.metadata} > {output.metadata}
-        """
-
 def _query_params(wildcards):
     """
     Generate the query for filtering Norovirus samples based on the combination of wildcards values
@@ -85,12 +45,12 @@ rule filter:
       - various criteria based on the auspice JSON target
     """
     input:
-        sequences = "data/sequences.fasta",
-        metadata = "data/metadata.tsv",
+        sequences = "results/sequences.fasta",
+        metadata = "results/metadata.tsv",
         exclude = config['filter']['exclude']
     output:
         sequences = "results/{group}/{gene}/filtered.fasta",
-        metadata = "results/{group}/{gene}/metadata.tsv",
+        metadata = "results/{group}/{gene}/filtered.tsv",
     benchmark:
         "benchmarks/{group}/{gene}/filter.txt",
     log:

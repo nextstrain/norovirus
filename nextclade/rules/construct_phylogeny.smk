@@ -64,7 +64,7 @@ rule refine:
     input:
         tree = "results/{group}/{gene}/tree_raw.nwk",
         alignment = "results/{group}/{gene}/aligned.fasta",
-        metadata = "results/{group}/{gene}/metadata.tsv"
+        metadata = "results/{group}/{gene}/filtered.tsv",
     output:
         tree = "results/{group}/{gene}/tree.nwk",
         node_data = "results/{group}/{gene}/branch_lengths.json"
