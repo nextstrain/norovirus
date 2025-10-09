@@ -32,7 +32,7 @@ rule colors:
     input:
         color_schemes = config['colors']['color_schemes'],
         color_orderings = config['colors']['color_orderings'],
-        metadata = "results/{group}/{gene}/metadata.tsv",
+        metadata = "results/{group}/{gene}/filtered.tsv",
     output:
         colors = "results/{group}/{gene}/colors.tsv"
     log:
@@ -244,7 +244,7 @@ rule export:
     """Exporting data files for for auspice"""
     input:
         tree = "results/{group}/{gene}/tree.nwk",
-        metadata = "results/{group}/{gene}/metadata.tsv",
+        metadata = "results/{group}/{gene}/filtered.tsv",
         branch_lengths = "results/{group}/{gene}/branch_lengths.json",
         nt_muts = "results/{group}/{gene}/nt_muts.json",
         aa_muts = "results/{group}/{gene}/aa_muts.json",
@@ -282,7 +282,7 @@ rule tip_frequencies:
     """
     input:
         tree = "results/{group}/{gene}/tree.nwk",
-        metadata = "results/{group}/{gene}/metadata.tsv",
+        metadata = "results/{group}/{gene}/filtered.tsv",
     output:
         tip_freq = "auspice/norovirus_{group}_{gene}_tip-frequencies.json"
     benchmark:
