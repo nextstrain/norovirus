@@ -32,13 +32,13 @@ rule colors:
     input:
         color_schemes = config['colors']['color_schemes'],
         color_orderings = config['colors']['color_orderings'],
-        metadata = "results/{group}/{gene}/filtered.tsv",
+        metadata = "results/metadata.tsv",
     output:
-        colors = "results/{group}/{gene}/colors.tsv"
+        colors = "results/colors.tsv"
     log:
-        "logs/{group}/{gene}/colors.txt",
+        "logs/colors.txt",
     benchmark:
-        "benchmarks/{group}/{gene}/colors.txt"
+        "benchmarks/colors.txt"
     shell:
         r"""
         python3 {workflow.basedir}/../shared/vendored/scripts/assign-colors \
@@ -249,7 +249,7 @@ rule export:
         nt_muts = "results/{group}/{gene}/nt_muts.json",
         aa_muts = "results/{group}/{gene}/aa_muts.json",
         traits = "results/{group}/{gene}/traits.json",
-        colors = "results/{group}/{gene}/colors.tsv",
+        colors = "results/colors.tsv",
         auspice_config = config['export']['auspice_config'],
         description = config['export']['description'],
     output:
