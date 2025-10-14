@@ -52,7 +52,7 @@ rule colors:
         "benchmarks/{group}/{gene}/colors.txt"
     shell:
         r"""
-        python3 ../phylogenetic/scripts/assign-colors.py \
+        python3 {workflow.basedir}/../shared/vendored/scripts/assign-colors \
             --color-schemes {input.color_schemes:q} \
             --ordering {input.color_orderings:q} \
             --metadata {input.metadata:q} \
