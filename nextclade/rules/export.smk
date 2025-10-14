@@ -43,7 +43,8 @@ rule colors:
     input:
         color_schemes = config['colors']['color_schemes'],
         color_orderings = config['colors']['color_orderings'],
-        metadata = "results/{group}/{gene}/metadata.tsv",
+        # Generate colors per Nextclade dataset to account for differences in clade nomenclature
+        metadata = "results/{group}/{gene}/filtered.tsv",
     output:
         colors = "results/{group}/{gene}/colors.tsv"
     log:
@@ -52,7 +53,7 @@ rule colors:
         "benchmarks/{group}/{gene}/colors.txt"
     shell:
         r"""
-        python3 ../phylogenetic/scripts/assign-colors.py \
+        python3 {workflow.basedir}/../shared/vendored/scripts/assign-colors \
             --color-schemes {input.color_schemes:q} \
             --ordering {input.color_orderings:q} \
             --metadata {input.metadata:q} \
@@ -199,7 +200,7 @@ rule export:
     """Exporting data files for for auspice"""
     input:
         tree = "results/{group}/{gene}/tree.nwk",
-        metadata = "results/{group}/{gene}/metadata.tsv",
+        metadata = "results/{group}/{gene}/filtered.tsv",
         branch_lengths = "results/{group}/{gene}/branch_lengths.json",
         nt_muts = "results/{group}/{gene}/nt_muts.json",
         aa_muts = "results/{group}/{gene}/aa_muts.json",
