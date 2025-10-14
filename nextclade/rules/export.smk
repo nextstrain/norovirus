@@ -43,6 +43,7 @@ rule colors:
     input:
         color_schemes = config['colors']['color_schemes'],
         color_orderings = config['colors']['color_orderings'],
+        # Generate colors per Nextclade dataset to account for differences in clade nomenclature
         metadata = "results/{group}/{gene}/filtered.tsv",
     output:
         colors = "results/{group}/{gene}/colors.tsv"
