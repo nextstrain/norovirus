@@ -32,16 +32,16 @@ rule colors:
     input:
         color_schemes = config['colors']['color_schemes'],
         color_orderings = config['colors']['color_orderings'],
-        metadata = "results/{group}/{gene}/metadata.tsv",
+        metadata = "results/metadata.tsv",
     output:
-        colors = "results/{group}/{gene}/colors.tsv"
+        colors = "results/colors.tsv"
     log:
-        "logs/{group}/{gene}/colors.txt",
+        "logs/colors.txt",
     benchmark:
-        "benchmarks/{group}/{gene}/colors.txt"
+        "benchmarks/colors.txt"
     shell:
         r"""
-        python3 scripts/assign-colors.py \
+        python3 {workflow.basedir}/../shared/vendored/scripts/assign-colors \
             --color-schemes {input.color_schemes:q} \
             --ordering {input.color_orderings:q} \
             --metadata {input.metadata:q} \
@@ -244,12 +244,12 @@ rule export:
     """Exporting data files for for auspice"""
     input:
         tree = "results/{group}/{gene}/tree.nwk",
-        metadata = "results/{group}/{gene}/metadata.tsv",
+        metadata = "results/{group}/{gene}/filtered.tsv",
         branch_lengths = "results/{group}/{gene}/branch_lengths.json",
         nt_muts = "results/{group}/{gene}/nt_muts.json",
         aa_muts = "results/{group}/{gene}/aa_muts.json",
         traits = "results/{group}/{gene}/traits.json",
-        colors = "results/{group}/{gene}/colors.tsv",
+        colors = "results/colors.tsv",
         auspice_config = config['export']['auspice_config'],
         description = config['export']['description'],
     output:
@@ -282,7 +282,7 @@ rule tip_frequencies:
     """
     input:
         tree = "results/{group}/{gene}/tree.nwk",
-        metadata = "results/{group}/{gene}/metadata.tsv",
+        metadata = "results/{group}/{gene}/filtered.tsv",
     output:
         tip_freq = "auspice/norovirus_{group}_{gene}_tip-frequencies.json"
     benchmark:
