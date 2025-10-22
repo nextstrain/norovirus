@@ -65,6 +65,10 @@ FEATURES             Location/Qualifiers
                      /gene="rdrp"
                      /product="RNA-directed RNA polymerase"
      gene            5091..6737
+                     /gene="ORF2"
+     CDS             5091..6737
+                     /gene="ORF2"
+     gene            5091..6737
                      /gene="VP1"
      CDS             5091..6737
                      /gene="VP1"
@@ -81,6 +85,10 @@ FEATURES             Location/Qualifiers
                      TRFTPVGIGVDNEADFQQWSLPDYSGQFTHNMNLAPAVAPNFPGEQLLFFRSQLPSSG
                      GRSNGILDCLVPQEWVQHFYQESAPAQTQVALVRYVNPDTGRVLFEAKLHKLGFMTIA
                      KNGDSPITVPPNGYFRFESWVNPFYTLAPMGTGNGRRRIQ"
+     gene            6737..7501
+                     /gene="ORF3"
+     CDS             6737..7501
+                     /gene="ORF3"
      gene            6737..7501
                      /gene="VP2"
      CDS             6737..7501

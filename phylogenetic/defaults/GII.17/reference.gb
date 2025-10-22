@@ -79,10 +79,20 @@ FEATURES             Location/Qualifiers
                      /gene="RdRp"
                      /product="RdRp"
      gene            5094..6716
+                     /gene="ORF2"
+     CDS             5094..6716
+                     /gene="ORF2"
+                     /product="ORF2"
+     gene            5094..6716
                      /gene="VP1"
      CDS             5094..6716
                      /gene="VP1"
                      /product="VP1"
+     gene            6716..7495
+                     /gene="ORF3"
+     CDS             6716..7495
+                     /gene="ORF3"
+                     /product="ORF3"
      gene            6716..7495
                      /gene="VP2"
      CDS             6716..7495
