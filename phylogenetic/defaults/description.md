@@ -16,7 +16,7 @@ We gratefully acknowledge the authors, originating and submitting laboratories o
 Norovirus samples are genetically typed based on a polymerase region (RdRp) and capsid region (VP1) of the genome, between which is a known recombination site. The resolution of norovirus typing has undergone multiple changes ([Zheng et al., 2006](https://doi.org/10.1016/j.virol.2005.11.015); [Eden et al., 2013](https://doi.org/10.1128/jvi.03464-12); [Chhabra et al., 2019](https://doi.org/10.1099/jgv.0.001318); [Tatusov et al., 2020](https://doi.org/10.1016/j.jcv.2020.104718)), but generally are split into a "genogroup", "genotype", and "variant" classification for VP1 (and "P-group", "P-type", and "variant" for RdRp). We provide group, type, and variant levels of resolution of clade coloring:
 
 <p align="center">
-     <img src="https://raw.githubusercontent.com/nextstrain/norovirus/f24f2e058b6807ac6b09497776122d03dea5b44d/images/nextclade_group_type_variant.png" alt="Norovirus typing resolution plot" width="600"/>
+     <img src="https://raw.githubusercontent.com/nextstrain/norovirus/70a5c20d9c62bfe6c34a28a67f322b388cd5fe4e/images/nextclade_group_type_variant.png" alt="Norovirus typing resolution plot" width="600"/>
 </p>
 
 #### Underlying data
