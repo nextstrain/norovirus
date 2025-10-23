@@ -31,6 +31,11 @@ FEATURES             Location/Qualifiers
                      /country="China: Hong Kong"
                      /collection_date="05-Jan-1978"
                      /note="genotype: GII.3"
+     gene            5..5110
+                     /gene="ORF1"
+     CDS             5..5110
+                     /gene="ORF1"
+                     /product="ORF1"
      gene            5..1000
                      /gene="p48"
      CDS             5..1000
@@ -60,10 +65,14 @@ FEATURES             Location/Qualifiers
                      /product="3C-like protease"
                      /note="3CLpro; calicivirin"
      gene            3578..5107
-                     /gene="rdrp"
+                     /gene="RdRp"
      CDS             3578..5107
-                     /gene="rdrp"
+                     /gene="RdRp"
                      /product="RNA-directed RNA polymerase"
+     gene            5091..6737
+                     /gene="ORF2"
+     CDS             5091..6737
+                     /gene="ORF2"
      gene            5091..6737
                      /gene="VP1"
      CDS             5091..6737
@@ -81,6 +90,10 @@ FEATURES             Location/Qualifiers
                      TRFTPVGIGVDNEADFQQWSLPDYSGQFTHNMNLAPAVAPNFPGEQLLFFRSQLPSSG
                      GRSNGILDCLVPQEWVQHFYQESAPAQTQVALVRYVNPDTGRVLFEAKLHKLGFMTIA
                      KNGDSPITVPPNGYFRFESWVNPFYTLAPMGTGNGRRRIQ"
+     gene            6737..7501
+                     /gene="ORF3"
+     CDS             6737..7501
+                     /gene="ORF3"
      gene            6737..7501
                      /gene="VP2"
      CDS             6737..7501

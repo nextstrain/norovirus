@@ -1,20 +1,20 @@
 ##gff-version 3
-##sequence-region KJ407072_REF 1 7526
-KJ407072_REF	Genbank	gene	5	5098	.	+	.	ID=gene-POL;Name=POL
-KJ407072_REF	Genbank	CDS	5	5098	.	+	.	ID=cds-POL;Parent=gene-POL;Name=POL
-KJ407072_REF	Genbank	gene	5	1006	.	+	.	ID=gene-p48;Name=p48
-KJ407072_REF	Genbank	CDS	5	1006	.	+	.	ID=cds-p48;Parent=gene-p48;Name=p48
-KJ407072_REF	Genbank	gene	1007	2104	.	+	.	ID=gene-NTPase;Name=NTPase
-KJ407072_REF	Genbank	CDS	1007	2104	.	+	.	ID=cds-NTPase;Parent=gene-NTPase;Name=NTPase
-KJ407072_REF	Genbank	gene	2105	2620	.	+	.	ID=gene-p22;Name=p22
-KJ407072_REF	Genbank	CDS	2105	2620	.	+	.	ID=cds-p22;Parent=gene-p22;Name=p22
-KJ407072_REF	Genbank	gene	2621	3022	.	+	.	ID=gene-VPg;Name=VPg
-KJ407072_REF	Genbank	CDS	2621	3022	.	+	.	ID=cds-VPg;Parent=gene-VPg;Name=VPg
-KJ407072_REF	Genbank	gene	3023	3565	.	+	.	ID=gene-3CLpro;Name=3CLpro
-KJ407072_REF	Genbank	CDS	3023	3565	.	+	.	ID=cds-3CLpro;Parent=gene-3CLpro;Name=3CLpro
-KJ407072_REF	Genbank	gene	3566	5095	.	+	.	ID=gene-rdrp;Name=rdrp
-KJ407072_REF	Genbank	CDS	3566	5095	.	+	.	ID=cds-rdrp;Parent=gene-rdrp;Name=rdrp
-KJ407072_REF	Genbank	gene	5079	6722	.	+	.	ID=gene-VP1;Name=VP1
-KJ407072_REF	Genbank	CDS	5079	6722	.	+	.	ID=cds-VP1;Parent=gene-VP1;Name=VP1
-KJ407072_REF	Genbank	gene	6722	7501	.	+	.	ID=gene-VP2;Name=VP2
-KJ407072_REF	Genbank	CDS	6722	7501	.	+	.	ID=cds-VP2;Parent=gene-VP2;Name=VP2
+##sequence-region NC_040876_REF 1 7521
+NC_040876_REF	Genbank	gene	5	5098	.	+	.	ID=gene-ORF1;Name=ORF1
+NC_040876_REF	Genbank	CDS	5	5098	.	+	.	ID=cds-ORF1;Parent=gene-ORF1;Name=ORF1
+NC_040876_REF	Genbank	gene	5	1006	.	+	.	ID=gene-p48;Name=p48
+NC_040876_REF	Genbank	CDS	5	1006	.	+	.	ID=cds-p48;Parent=gene-p48;Name=p48
+NC_040876_REF	Genbank	gene	1007	2104	.	+	.	ID=gene-NTPase;Name=NTPase
+NC_040876_REF	Genbank	CDS	1007	2104	.	+	.	ID=cds-NTPase;Parent=gene-NTPase;Name=NTPase
+NC_040876_REF	Genbank	gene	2105	2623	.	+	.	ID=gene-p22;Name=p22
+NC_040876_REF	Genbank	CDS	2105	2623	.	+	.	ID=cds-p22;Parent=gene-p22;Name=p22
+NC_040876_REF	Genbank	gene	2624	3022	.	+	.	ID=gene-VPg;Name=VPg
+NC_040876_REF	Genbank	CDS	2624	3022	.	+	.	ID=cds-VPg;Parent=gene-VPg;Name=VPg
+NC_040876_REF	Genbank	gene	3023	3565	.	+	.	ID=gene-3CLpro;Name=3CLpro
+NC_040876_REF	Genbank	CDS	3023	3565	.	+	.	ID=cds-3CLpro;Parent=gene-3CLpro;Name=3CLpro
+NC_040876_REF	Genbank	gene	3566	5095	.	+	.	ID=gene-RdRp;Name=RdRp
+NC_040876_REF	Genbank	CDS	3566	5095	.	+	.	ID=cds-RdRp;Parent=gene-RdRp;Name=RdRp
+NC_040876_REF	Genbank	gene	5079	6722	.	+	.	ID=gene-VP1;Name=VP1
+NC_040876_REF	Genbank	CDS	5079	6722	.	+	.	ID=cds-VP1;Parent=gene-VP1;Name=VP1
+NC_040876_REF	Genbank	gene	6722	7498	.	+	.	ID=gene-VP2;Name=VP2
+NC_040876_REF	Genbank	CDS	6722	7498	.	+	.	ID=cds-VP2;Parent=gene-VP2;Name=VP2

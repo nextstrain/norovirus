@@ -47,120 +47,57 @@ FEATURES             Location/Qualifiers
                      /db_xref="GeneID:38168209"
      CDS             5..5113
                      /gene="ORF1"
-                     /locus_tag="D9V38_gp1"
-                     /codon_start=1
                      /product="nonstructural polyprotein"
-                     /protein_id="YP_009518835.1"
-                     /db_xref="GeneID:38168209"
-                     /translation="MKMASNDASAAVAGKNNNNDKEKSSSDSLFANMSVTFKKALGAR
-                     SKQPPPGETKQIQKPPRPPTPELVKRIPPPPPNGEDEPGIVYKVGEGVSGLPDLTTVV
-                     QPDAQNTAYSVPPLSQREVGEAKEPLPGSILEMWDGEIYHYGLYVERGHVLGVHKPPA
-                     AISLAKIEITPLSLYWRVVYTPQYLIDPGTLKNLSGETFPYTAFDNNCYAFCCWVLDL
-                     NDSWLSRRMIQRTTGFFKPYQDWNRKPLPTMDEPKIKKAANAVLCALSSLFTRPIKDI
-                     IGKLRPLNILNILATCDWTFAGIVESLILLAELFGVFWTPPDVSAMIAPLLGDYEMQG
-                     PEDLAVELVPVVMGGIGLVLGFTKEKIGKMLSSAATTLRACKDLGSYGLEILKLVMKW
-                     FFPKKEEANELAMVRAIEDAVLDLEAIENNHMTTLLKDKDSLATYMRTLDLEEEKARK
-                     LSTKSASPDIVGTINALLARIAAARSLVHKAKEELSSRQRPVVVMISGRPGIGKTHLA
-                     RELAKKVASTLSGDQRIGLVPRNGVDHWDAYKGERVVLWDDYGMSNPIQDALRLQELA
-                     DTCPLTLNCDRIENKGKVFDSDAIIITTNLANPAPLDYVNFEACSRRIDFLVYADAPD
-                     IEKAKRDFPGQPDMWKDHFRPDFSHIKLQLAPQGGFDKNGNTPHGKGVVKSLTIGSLI
-                     ARASGLLHERMDEFELQGSDLPTFNFDRNKVAAFRQLAAENKYGLMDTLRVGNQLKSV
-                     KTLDELKQAIKNISIKKCQIVYNGCTYTMESDGRGKVVVEKVQNATVQTNNELVGALH
-                     HLRSARIRYYVKCFQEAIYSLLQIAGAAFVTSRIVRRMNISNLWSKPPIEEGDEPEDR
-                     GGCPKPRDEDDLTIDSRDIKVEGKKGKNKSGRGKKHTAFSSKGLSDEEYDEYKRIREE
-                     RNGKYSIEEYLQDRDRYYEELAIAKATEEDFCEEEEIKIRQRIFRPTRKQRKEERATL
-                     GLVTGSEIRKRNPDDFKPKGKLWADDNRSVDYNERIDFEAPPSVWSRIVNFGTGWGFW
-                     VSPSLFITSTHVIPKGITEAFGVPINQIQIHKSGEFCRLRFPKPIRPDVSGMILEEGA
-                     PEGTVVSILIKRTTGELMPLAVRMGTHATMKIQGRTVGGQMGMLLTGSNAKSMDLGTT
-                     PGDCGCPYIYKRGNDLVVIGVHTAAARGGNTVICATQGSEGEATLEGSDNKGTYCGAP
-                     ILGPGNAPKLSTKTKFWRSSNAPLPPGTYEPAYLGGRDPRVKGGPSLQQVMRDQLKPF
-                     TEPRGKPPNPNVLESAKKTIINVLEQTIDPPQKWSYAQACASLDKTTSSGYPHHVRKN
-                     DYWSGESFTGKLADQASKANLMYEEGKHMQPVYTAALKDELVKTDKIYGKIKKRLLWG
-                     SDLSTMIRCARAFGGLMDEFKANCITLPIRVGMNMNEDGPIIFEKHSRYRYHYDADYS
-                     RWDSTQQRAVLEAALEIMVRFSAEPQLAQIVAEDLLSPSVVDVGDFKIAINEGLPSGV
-                     PCTSQWNSIAHWLLTLCALSEVTGLGPDIIQANSMYSFYGDDEIVSTDIKLDPEKLTA
-                     KLKEYGLKPTRPDKTEGPLVISEDLNGLTFLRRTVTRDPAGWFGKLDQNSILRQLYWT
-                     RGPNHEDPSETMIPHAQRPVQLMALLGESSLHGPSFYSKVSKLVISELKEGGMDFYVP
-                     RQESMSRWMRFSDLSTWEGDRNLAPSFVNEDGVE"
      gene            5..1003
                      /gene="p48"
      CDS             5..1003
                      /gene="p48"
-                     /locus_tag="D9V38_gp1"
                      /product="p48"
-                     /protein_id="YP_009528581.1"
      gene            1004..2101
                      /gene="NTPase"
      CDS             1004..2101
                      /gene="NTPase"
-                     /locus_tag="D9V38_gp1"
                      /product="NTPase"
-                     /protein_id="YP_009528582.1"
      gene            2102..2638
                      /gene="p22"
      CDS             2102..2638
                      /gene="p22"
-                     /locus_tag="D9V38_gp1"
                      /product="p22"
-                     /protein_id="YP_009538337.1"
      gene            2639..3037
                      /gene="VPg"
      CDS             2639..3037
                      /gene="VPg"
-                     /locus_tag="D9V38_gp1"
                      /product="VPg"
-                     /protein_id="YP_009528583.1"
      gene            3038..3580
                      /gene="3CLpro"
      CDS             3038..3580
                      /gene="3CLpro"
-                     /locus_tag="D9V38_gp1"
-                     /product="Pro"
-                     /protein_id="YP_009538338.1"
+                     /product="3CLPro"
      gene            3581..5110
                      /gene="RdRp"
      CDS             3581..5110
                      /gene="RdRp"
-                     /locus_tag="D9V38_gp1"
                      /product="RdRp"
-                     /protein_id="YP_009538339.1"
+     gene            5094..6716
+                     /gene="ORF2"
+     CDS             5094..6716
+                     /gene="ORF2"
+                     /product="ORF2"
      gene            5094..6716
                      /gene="VP1"
-                     /locus_tag="D9V38_gp2"
-                     /db_xref="GeneID:38168207"
      CDS             5094..6716
                      /gene="VP1"
-                     /locus_tag="D9V38_gp2"
-                     /codon_start=1
                      /product="VP1"
-                     /protein_id="YP_009518836.1"
-                     /db_xref="GeneID:38168207"
-                     /translation="MKMASNDAAPSNDGAAGLVPEGNNETLPLEPVAGAAIAAPVTGQ
-                     NNIIDPWIRTNFVQAPNGEFTVSPRNSPGEILLNLELGPDLNPYLAHLSRMYNGYAGG
-                     VEVQVLLAGNAFTAGKILFAAVPPNFPVEFLSPAQITMLPHLIVDVRTLEPIMIPLPD
-                     VRNTFFHYSNQPNSRMRLVAMLYTPLRSNGSGDDVFTVSCRVLTRPTPDFEFTYLVPP
-                     SVESKTKPFSLPILTLSELTNSRFPVPIDSLFTAQNNVLQVQCQNGRCTLDGELQGTT
-                     QLLPSGICAFRGRVTAQINQRDRWHMQLQNLNGTTYDPTDDVPAPLGTPDFKGVVFGM
-                     VSQRNVGNDAPGSTRAQQAWVSTYSPQFVPKLGSVNLRISDNDDFQFQPTKFTPVGVN
-                     DDDDGHPFRQWELPNYSGELTLNMNLAPPVAPNFPGEQLLFFRSFVPCSGGYNQGIID
-                     CLIPQEWIQHFYQESAPSQSDVALIRYVNPDTGRTLFEAKLHRSGYITVAHSGDYPLV
-                     VPANGHFRFDSWVNQFYSLAPMGTGNGRRRAQ"
+     gene            6716..7495
+                     /gene="ORF3"
+     CDS             6716..7495
+                     /gene="ORF3"
+                     /product="ORF3"
      gene            6716..7495
                      /gene="VP2"
-                     /locus_tag="D9V38_gp3"
-                     /db_xref="GeneID:38168208"
      CDS             6716..7495
                      /gene="VP2"
-                     /locus_tag="D9V38_gp3"
-                     /codon_start=1
                      /product="VP2"
-                     /protein_id="YP_009518837.1"
-                     /db_xref="GeneID:38168208"
-                     /translation="MAGAFIAGLAGDMLTSSVGSLVNAGANAINQKIDFENNKQLQSA
-                     SFQHDKEMLQAQVRATKQLQSEMIALKQGVLAAGGFSPTDAARGSIGAPMTKVLDWSG
-                     TRYWAPNSTKTTGYSGQFTSSPVHMSSPNAPQSKPAKPRSLAPSSSSSSVYSMYTQST
-                     HLTSGSSSNASSASTKLTNLSSGSSQNRTAEWVNQQRSLSPFMSGALNISHVTPPSSR
-                     ASSSGTVSTVPKEVLDSWTSAFNTHRQPLFAHLRVRGESRV"
      3'UTR           7496..7556
 ORIGIN
         1 gtgaatgaag atggcgtcta acgacgcttc cgctgccgtt gctggcaaaa acaacaacaa
