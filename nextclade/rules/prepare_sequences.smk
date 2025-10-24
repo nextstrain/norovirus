@@ -101,30 +101,35 @@ rule parse_reference:
           --output {output.output}
         """
 
-rule align:
+rule align_nextclade:
     """
     Aligning sequences to {input.reference}
       - filling gaps with N
     """
     input:
         sequences = "results/{group}/{gene}/filtered.fasta",
-        reference = "results/defaults/norovirus_reference_{group}_{gene}.gb"
+        annotation = config['assemble_dataset']['annotation'],
+        pathogen_json = config['assemble_dataset']['pathogen_json'],
+        reference = config['assemble_dataset']['reference'],
     output:
-        alignment = "results/{group}/{gene}/alignment.fasta"
-    benchmark:
-        "benchmarks/{group}/{gene}/align.txt",
+        alignment = "results/{group}/{gene}/alignment.fasta",
     log:
         "logs/{group}/{gene}/align.txt",
+    benchmark:
+        "benchmarks/{group}/{gene}/align.txt",
+    params:
+        translations = "results/{group}/{gene}/translations",
     shell:
         r"""
         exec &> >(tee {log:q})
 
-        augur align \
-            --sequences {input.sequences:q} \
-            --reference-sequence {input.reference:q} \
-            --output {output.alignment:q} \
-            --fill-gaps \
-            --nthreads 4
+        nextclade run \
+            --input-ref {input.reference:q} \
+            --input-annotation {input.annotation:q} \
+            --output-fasta {output.alignment:q} \
+            --input-pathogen-json {input.pathogen_json:q} \
+            --output-translations {params.translations:q}/gene.{{cds}}.fasta \
+            {input.sequences:q}
         """
 
 rule parse_gene:
