@@ -19,11 +19,30 @@ This part of the workflow usually includes the following steps:
 See Augur's usage docs for these commands for more details.
 """
 
+rule add_outgroup:
+    """Add outgroup"""
+    input:
+        alignment = "results/{group}/{gene}/aligned.fasta",
+        outgroup = "defaults/outgroup.fasta",
+    output:
+        alignment_with_outgroup = "results/{group}/{gene}/aligned_with_outgroup.fasta",
+    log:
+        "logs/{group}/{gene}/add-outgroup.txt",
+    benchmark:
+        "benchmarks/{group}/{gene}/add-outgroup.txt",
+    shell:
+        """
+        augur align \
+            --sequences {input.outgroup} \
+            --existing-alignment {input.alignment} \
+            --output {output.alignment_with_outgroup} \
+            2>&1 | tee {log}
+        """
 
 rule tree:
     """Building tree"""
     input:
-        alignment = "results/{group}/{gene}/aligned.fasta"
+        alignment = "results/{group}/{gene}/aligned_with_outgroup.fasta"
     output:
         tree = "results/{group}/{gene}/tree_raw.nwk"
     benchmark:
@@ -77,13 +96,17 @@ rule refine:
         root = lambda wildcards: config['refine']['root'].get(wildcards.group, {}).get(wildcards.gene, config['refine']['root']['default']),
         clock_rate_params = lambda wildcards: _clock_rate_params(wildcards),
         id_field = config['strain_id_field'],
+        outgroup = "NC_027026_outgroup",
     shell:
         r"""
         exec &> >(tee {log:q})
 
         augur refine \
             --tree {input.tree:q} \
-            --root {params.root} \
+            --root {params.outgroup} \
+            --remove-outgroup \
+            --timetree \
+            --date-confidence \
             --alignment {input.alignment:q} \
             --metadata {input.metadata:q} \
             --metadata-id-columns {params.id_field} \
