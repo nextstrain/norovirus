@@ -71,7 +71,6 @@ rule filter:
             --metadata-id-columns {params.id_field:q} \
             {params.filter_params} \
             --query {params.query_params:q} \
-            --exclude-all \
             --include {input.include:q} \
             --exclude {input.exclude:q} \
             --output-sequences {output.sequences:q} \
