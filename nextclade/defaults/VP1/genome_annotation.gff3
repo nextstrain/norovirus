@@ -1,3 +1,3 @@
 ##gff-version 3
-##sequence-region MK073894_REF 1 1623
-MK073894_REF	feature	gene	1	1623	.	+	.	codon_start=1;gene=VP1;gene_name=VP1;
+##sequence-region NC_039477_REF 1 1623
+NC_039477_REF	feature	gene	1	1623	.	+	.	codon_start=1;gene=VP1;gene_name=VP1
