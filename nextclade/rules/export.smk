@@ -144,6 +144,11 @@ rule prepare_auspice_config:
                 "key": "country",
                 "title": "Country",
                 "type": "categorical"
+              },
+              {
+                "key": "literature_source",
+                "title": "Literature source",
+                "type": "categorical"
               }
             ],
             "geo_resolutions": [
