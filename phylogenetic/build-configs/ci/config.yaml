@@ -1,6 +1,11 @@
 # This configuration file contains the custom configurations parameters
 # for the CI workflow to run with the example data.
 
+# {group} represents different genotypes to be analyzed
+groups: ['all']
+# {gene} represents the norovirus genes to focus on in each build
+genes: ['genome', 'VP1']
+
 inputs:
   - name: ncbi
     metadata: "example_data/metadata.tsv"
