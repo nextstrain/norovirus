@@ -115,6 +115,7 @@ rule align:
         "benchmarks/{group}/{gene}/align.txt",
     log:
         "logs/{group}/{gene}/align.txt",
+    threads: 4
     shell:
         r"""
         exec &> >(tee {log:q})
@@ -124,7 +125,7 @@ rule align:
             --reference-sequence {input.reference:q} \
             --output {output.alignment:q} \
             --fill-gaps \
-            --nthreads 4
+            --nthreads {threads}
         """
 
 rule parse_gene:

@@ -29,6 +29,7 @@ rule tree:
         "benchmarks/{group}/{gene}/tree.txt",
     log:
         "logs/{group}/{gene}/tree.txt",
+    threads: 4
     shell:
         r"""
         exec &> >(tee {log:q})
@@ -36,7 +37,7 @@ rule tree:
         augur tree \
             --alignment {input.alignment:q} \
             --output {output.tree:q} \
-            --nthreads 4
+            --nthreads {threads}
         """
 
 def _clock_rate_params(wildcards):
