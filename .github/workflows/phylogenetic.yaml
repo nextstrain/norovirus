@@ -192,11 +192,11 @@ jobs:
       # the phylogenetic build outputs
       artifact-name: phylogenetic_genes-build-output
       artifact-paths: |
-        phylogenetic_genes/auspice/
-        phylogenetic_genes/results/
-        phylogenetic_genes/benchmarks/
-        phylogenetic_genes/logs/
-        phylogenetic_genes/.snakemake/log/
+        phylogenetic/auspice/
+        phylogenetic/results/
+        phylogenetic/benchmarks/
+        phylogenetic/logs/
+        phylogenetic/.snakemake/log/
 
   summary:
     runs-on: ubuntu-latest
