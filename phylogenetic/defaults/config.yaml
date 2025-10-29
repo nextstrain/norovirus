@@ -6,9 +6,9 @@
 
 # Define wildcards used for building trees in the workflow, also used in the intermediate files or auxillariary default file names.
 # {group} represents different genotypes to be analyzed
-groups: ['GII.6', 'GII.4', 'GII.2', 'GII.3', 'GII.17', 'all']
+groups: ['GII.6', 'GII.4', 'GII.2', 'GII.3', 'GII.17']
 # {gene} represents the norovirus genes to focus on in each build
-genes: ['genome']
+genes: ['genome', 'VP1', 'RdRp']
 
 inputs:
   - name: ncbi
