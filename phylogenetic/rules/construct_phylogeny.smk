@@ -90,6 +90,6 @@ rule refine:
             --metadata-id-columns {params.id_field} \
             --output-tree {output.tree:q} \
             --output-node-data {output.node_data:q} \
-            --stochastic-resolve \
-            {params.clock_rate_params}
+            {params.clock_rate_params} \
+            --stochastic-resolve
         """
