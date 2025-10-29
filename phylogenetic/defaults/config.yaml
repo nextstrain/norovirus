@@ -20,7 +20,9 @@ strain_id_field: "accession"
 reference: defaults/{group}/reference.gb
 
 filter:
-  exclude: defaults/exclude.txt
+  exclude:
+    default: defaults/exclude.txt
+    GII.4: defaults/GII.4/exclude.txt
   min_coverage: 0.8
   filter_params: --group-by year VP1_nextclade RdRp_nextclade --sequences-per-group 30 --min-date 1950 --exclude-ambiguous-dates-by year --query-columns is_lab_host:str --exclude-where is_lab_host='true'
 
