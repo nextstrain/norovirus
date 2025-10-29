@@ -110,7 +110,7 @@ rule align:
         "benchmarks/{group}/{gene}/align.txt",
     log:
         "logs/{group}/{gene}/align.txt",
-    threads: 4
+    threads: 1
     shell:
         r"""
         exec &> >(tee {log:q})

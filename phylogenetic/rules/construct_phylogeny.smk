@@ -30,7 +30,7 @@ rule tree:
         "benchmarks/{group}/{gene}/tree.txt",
     log:
         "logs/{group}/{gene}/tree.txt",
-    threads: 4
+    threads: 1
     shell:
         r"""
         exec &> >(tee {log:q})
