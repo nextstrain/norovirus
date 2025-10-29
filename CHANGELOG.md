@@ -6,11 +6,14 @@ the outputs of the workflows.
 
 ## 2025
 
+* 29 October 2025: phylogenetic and nextclade - use Snakemake threads for `align` and `tree` rules ([#41][])
+  The default is set to 1 thread for `align` and `tree` because this was faster
+  on GitHub Actions with 4 cores. If you are running the workflow on a larger machine
+  and want to increase the number of threads, use `--set-threads` to override the default.
+
 * 22 October 2025: phylogenetic - Update alignment reference to RefSeq ([#37][])
   * GII.4 reference used for the all builds had a truncated VP2
   * Update builds to the RefSeq references instead where possible
-
-[#37]: https://github.com/nextstrain/norovirus/pull/37
 
 * 15 October 2025: phylogenetic and nextclade - Update to color handling ([#34][])
   * phylogenetic colors - generate one colors.tsv to be used with all builds for consistency
@@ -36,3 +39,5 @@ inputs:
 ```
 
 [#34]: https://github.com/nextstrain/norovirus/pull/34
+[#37]: https://github.com/nextstrain/norovirus/pull/37
+[#41]: https://github.com/nextstrain/norovirus/pull/41
