@@ -8,7 +8,7 @@
 # {group} represents different genotypes to be analyzed
 groups: ['GII.6', 'GII.4', 'GII.2', 'GII.3', 'GII.17']
 # {gene} represents the norovirus genes to focus on in each build
-genes: ['genome', 'VP1', 'RdRp']
+genes: ['genome', 'VP1', 'RdRp', 'ORF1', 'ORF2', 'ORF3']
 
 inputs:
   - name: ncbi
