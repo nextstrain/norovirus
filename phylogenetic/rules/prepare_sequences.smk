@@ -47,7 +47,7 @@ rule filter:
     input:
         sequences = "results/sequences.fasta",
         metadata = "results/metadata.tsv",
-        exclude = config['filter']['exclude']
+        exclude = lambda wildcards: config['filter']['exclude'].get(wildcards.group, config['filter']['exclude']['default']),
     output:
         sequences = "results/{group}/{gene}/filtered.fasta",
         metadata = "results/{group}/{gene}/filtered.tsv",
