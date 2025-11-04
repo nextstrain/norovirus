@@ -52,7 +52,7 @@ def _clock_rate_params(wildcards):
 
     else leave blank
     """
-    clock_rate = config['refine']['clock_rate'].get(wildcards.group, {}).get(wildcards.gene, "")
+    clock_rate = config['refine'].get('clock_rate', {}).get(wildcards.group, {}).get(wildcards.gene, "")
     if clock_rate !="":
         return f' --clock-rate {clock_rate} '
     else:

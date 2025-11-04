@@ -9,3 +9,7 @@
 groups: ['all']
 # {gene} represents the norovirus genes to focus on in each build
 genes: ['genome', '3CLpro', 'NTPase', 'p22', 'p48', 'RdRp', 'VP1', 'VP2', 'VPg']
+
+refine:
+  root:
+    default: mid_point
