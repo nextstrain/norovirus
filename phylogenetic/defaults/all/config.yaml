@@ -11,5 +11,4 @@ groups: ['all']
 genes: ['genome', '3CLpro', 'NTPase', 'p22', 'p48', 'RdRp', 'VP1', 'VP2', 'VPg']
 
 refine:
-  root:
-    default: mid_point
+  outgroup: NC_027026_outgroup

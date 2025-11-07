@@ -19,11 +19,41 @@ This part of the workflow usually includes the following steps:
 See Augur's usage docs for these commands for more details.
 """
 
+rule add_outgroup:
+    """Add outgroup"""
+    input:
+        alignment = "results/{group}/{gene}/aligned.fasta",
+        outgroup = "defaults/outgroup.fasta",
+    output:
+        alignment_with_outgroup = "results/{group}/{gene}/aligned_with_outgroup.fasta",
+    log:
+        "logs/{group}/{gene}/add-outgroup.txt",
+    benchmark:
+        "benchmarks/{group}/{gene}/add-outgroup.txt",
+    shell:
+        """
+        augur align \
+            --sequences {input.outgroup} \
+            --existing-alignment {input.alignment} \
+            --output {output.alignment_with_outgroup} \
+            2>&1 | tee {log}
+        """
+
+def _alignment(wildcards):
+    """
+    Based on if outgroup rooting is specified in the config file, return the needed alignment file
+    """
+    outgroup = config['refine'].get('outgroup', "")
+    if outgroup != "":
+        return "results/{group}/{gene}/aligned_with_outgroup.fasta"
+    else:
+        return "results/{group}/{gene}/aligned.fasta"
+
 
 rule tree:
     """Building tree"""
     input:
-        alignment = "results/{group}/{gene}/aligned.fasta"
+        alignment = lambda wildcards: _alignment(wildcards),
     output:
         tree = "results/{group}/{gene}/tree_raw.nwk"
     benchmark:
@@ -58,6 +88,12 @@ def _clock_rate_params(wildcards):
     else:
         return ""
 
+def _root_params(wildcards):
+    outgroup = config['refine'].get('outgroup', '')
+    if outgroup !="":
+        return f'{outgroup} --remove-outgroup'
+    else:
+        return config['refine']['root'].get(wildcards.group, {}).get(wildcards.gene, config['refine']['root']['default']),
 
 rule refine:
     """
@@ -65,7 +101,7 @@ rule refine:
     """
     input:
         tree = "results/{group}/{gene}/tree_raw.nwk",
-        alignment = "results/{group}/{gene}/aligned.fasta",
+        alignment = lambda wildcards: _alignment(wildcards),
         metadata = "results/{group}/{gene}/filtered.tsv"
     output:
         tree = "results/{group}/{gene}/tree.nwk",
@@ -75,7 +111,7 @@ rule refine:
     log:
         "logs/{group}/{gene}/refine.txt",
     params:
-        root = lambda wildcards: config['refine']['root'].get(wildcards.group, {}).get(wildcards.gene, config['refine']['root']['default']),
+        root = lambda wildcards: _root_params(wildcards),
         clock_rate_params = lambda wildcards: _clock_rate_params(wildcards),
         id_field = config['strain_id_field'],
     shell:
