@@ -29,6 +29,33 @@ filter:
 refine:
   root:
     default: best --timetree --date-confidence --clock-filter-iqd 4 --date-inference marginal
+    # Estimated from auspice build https://github.com/nextstrain/norovirus/issues/22#issuecomment-3221851561
+    all:
+      p48: DQ366347 --timetree --date-confidence --clock-filter-iqd 4 --date-inference marginal
+      VP2: best --timetree --date-confidence
+      genome: best --timetree --date-confidence
+  clock_rate:
+    all:
+      genome: 0.00328
+      p48: 0.00409
+      NTPase: 0.00174
+      p22: 0.00174
+      VPg: 0.00660
+      3CLpro: 0.00331
+      RdRp: 0.00135
+      VP1: 0.00136
+      VP2: 0.00228
+    GII.2:
+      RdRp: 0.000346
+    GII.3:
+      RdRp: 0.00156
+    GII.4:
+      RdRp: 0.00177
+    GII.6:
+      RdRp: 0.00199
+    GII.17:
+      RdRp: 0.00133
+
 
 traits:
   default: region country ORF1_type ORF2_type VP1_nextclade VP1_group VP1_type VP1_variant RdRp_nextclade RdRp_group RdRp_type RdRp_variant host

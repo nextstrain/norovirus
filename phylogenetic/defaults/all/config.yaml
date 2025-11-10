@@ -10,5 +10,6 @@ groups: ['all']
 # {gene} represents the norovirus genes to focus on in each build
 genes: ['genome', '3CLpro', 'NTPase', 'p22', 'p48', 'RdRp', 'VP1', 'VP2', 'VPg']
 
-refine:
-  outgroup: NC_027026_outgroup
+# Timetree still performs better than outgroup
+# refine:
+#   outgroup: NC_027026_outgroup
