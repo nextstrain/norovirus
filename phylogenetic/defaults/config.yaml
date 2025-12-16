@@ -57,7 +57,7 @@ refine:
       genome: 0.00142
 
 traits:
-  default: region country ORF1_type ORF2_type VP1_nextclade VP1_group VP1_type VP1_variant RdRp_nextclade RdRp_group RdRp_type RdRp_variant host
+  default: region country ORF1_type ORF2_type VP1_group VP1_type VP1_variant RdRp_group RdRp_type RdRp_variant host
   sampling_bias_correction: 3
 
 colors:
