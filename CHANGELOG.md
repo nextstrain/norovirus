@@ -42,4 +42,4 @@ inputs:
 [#34]: https://github.com/nextstrain/norovirus/pull/34
 [#37]: https://github.com/nextstrain/norovirus/pull/37
 [#41]: https://github.com/nextstrain/norovirus/pull/41
-[#44]: https://github.com/nextstrain/norovirus/pull/45
+[#45]: https://github.com/nextstrain/norovirus/pull/45
