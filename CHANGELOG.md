@@ -6,6 +6,7 @@ the outputs of the workflows.
 
 ## 2025
 
+* 18 December 2025: phylogenetic - drop separate "VP1 Genotype (Nextclade)" and "RdRp Genotype (Nextclade)" coloring options since we already have [VP1|RdRp] group, type, and variant coloring ([#45][])
 * 29 October 2025: phylogenetic and nextclade - use Snakemake threads for `align` and `tree` rules ([#41][])
   The default is set to 1 thread for `align` and `tree` because this was faster
   on GitHub Actions with 4 cores. If you are running the workflow on a larger machine
@@ -41,3 +42,4 @@ inputs:
 [#34]: https://github.com/nextstrain/norovirus/pull/34
 [#37]: https://github.com/nextstrain/norovirus/pull/37
 [#41]: https://github.com/nextstrain/norovirus/pull/41
+[#45]: https://github.com/nextstrain/norovirus/pull/45

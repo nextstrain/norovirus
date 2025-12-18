@@ -57,7 +57,7 @@ rule prepare_auspice_config:
         "benchmarks/{group}/{gene}/prepare_auspice_config.txt"
     params:
         title = "Real-time tracking of Norovirus {group} {gene} virus evolution",
-        default_color_by = lambda wildcard: r"VP1_nextclade" if wildcard.group in ['all'] else r"RdRp_nextclade",
+        default_color_by = lambda wildcard: r"VP1_type" if wildcard.group in ['all'] else r"RdRp_type",
         gene_coverage_coloring = lambda wildcard: {"key": f"{wildcard.gene}_coverage","title": f"{wildcard.gene} coverage","type": "continuous"} if wildcard.gene != "genome" else None
     run:
         data = {
@@ -84,11 +84,6 @@ rule prepare_auspice_config:
                 "type": "categorical"
               },
               {
-                "key": "VP1_nextclade",
-                "title": "Vp1 Genotype (Nextclade)",
-                "type": "categorical"
-              },
-              {
                 "key": "VP1_group",
                 "title": "Vp1 group (Nextclade)",
                 "type": "categorical"
@@ -101,11 +96,6 @@ rule prepare_auspice_config:
               {
                 "key": "VP1_variant",
                 "title": "Vp1 variant (Nextclade)",
-                "type": "categorical"
-              },
-              {
-                "key": "RdRp_nextclade",
-                "title": "RdRp Genotype (Nextclade)",
                 "type": "categorical"
               },
               {
@@ -212,14 +202,34 @@ rule prepare_auspice_config:
                     "description": "Norovirus RdRp Genotype (based on current tree)"
                   },
                   {
-                    "name": "VP1_nextclade",
-                    "displayName": "Vp1 Genotype (Nextclade)",
-                    "description": "Norovirus Vp1 Genotype (based on current tree)"
+                    "name": "VP1_group",
+                    "displayName": "Vp1 Group (Nextclade)",
+                    "description": "Norovirus Vp1 Group (based on current tree)"
                   },
                   {
-                    "name": "RdRp_nextclade",
-                    "displayName": "RdRp Genotype (Nextclade)",
-                    "description": "Norovirus RdRp Genotype (based on current tree)"
+                    "name": "VP1_type",
+                    "displayName": "Vp1 Type (Nextclade)",
+                    "description": "Norovirus Vp1 Type (based on current tree)"
+                  },
+                  {
+                    "name": "VP1_variant",
+                    "displayName": "Vp1 Variant (Nextclade)",
+                    "description": "Norovirus Vp1 Variant (based on current tree)"
+                  },
+                  {
+                    "name": "RdRp_group",
+                    "displayName": "RdRp Group (Nextclade)",
+                    "description": "Norovirus RdRp Group (based on current tree)"
+                  },
+                  {
+                    "name": "RdRp_type",
+                    "displayName": "RdRp Type (Nextclade)",
+                    "description": "Norovirus RdRp Type (based on current tree)"
+                  },
+                  {
+                    "name": "RdRp_variant",
+                    "displayName": "RdRp Variant (Nextclade)",
+                    "description": "Norovirus RdRp Variant (based on current tree)"
                   }
                 ],
                 "pathogen": {
