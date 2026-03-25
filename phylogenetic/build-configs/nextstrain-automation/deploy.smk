@@ -5,7 +5,7 @@ Uploads the build defined as the default output of the workflow through
 the `all` rule from Snakefille
 """
 
-# Copied from: https://github.com/nextstrain/ncov/blob/60d4bca0932a379bb88c493f88b7b3249edc581e/workflow/snakemake_rules/export_for_nextstrain.smk#L332C1-L354C62
+# Copied from: https://github.com/nextstrain/ncov/blob/36de9576d228fa53ebe127ff800a693de60cee0c/workflow/snakemake_rules/export_for_nextstrain.smk#L332-L355
 #
 # We limit the number of concurrent `nextstrain deploy` jobs by using a custom
 # resource, concurrent_deploys, for the rule deploy_single (below).  This is
@@ -29,7 +29,8 @@ the `all` rule from Snakefille
 #
 # ¹ <https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html#limits-invalidations>
 # ² <https://github.com/nextstrain/cli/blob/017c5380/nextstrain/cli/command/build.py#L149-L166>
-workflow.global_resources.setdefault("concurrent_deploys", 2)
+if "concurrent_deploys" not in workflow.global_resources:
+    workflow.global_resources["concurrent_deploys"] = 2
 
 rule deploy_single:
     input:
