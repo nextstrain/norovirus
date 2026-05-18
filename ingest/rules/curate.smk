@@ -68,6 +68,7 @@ rule curate:
             | augur curate format-dates \
                 --date-fields {params.date_fields} \
                 --expected-date-formats {params.expected_date_formats} \
+                --failure-reporting "warn" \
             | augur curate parse-genbank-location \
                 --location-field {params.genbank_location_field} \
             | augur curate titlecase \
