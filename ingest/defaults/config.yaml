@@ -150,7 +150,7 @@ gene_coverage:
   id_field: "seqName"
   coverage:
     cdsCoverage_field: "cdsCoverage"
-    genes: "p48,NTPase,p22,VPg,3CLpro,RdRp,VP1,VP2"
+    genes: "p48,NTPase,p22,VPg,3CLpro,RdRp,VP1,VP2,ORF1,ORF2,ORF3"
     round_digits: 3
 
 # Nextclade parameters to include if you are running Nextclade as a part of your ingest workflow

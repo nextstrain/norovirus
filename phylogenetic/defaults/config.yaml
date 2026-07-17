@@ -6,9 +6,9 @@
 
 # Define wildcards used for building trees in the workflow, also used in the intermediate files or auxillariary default file names.
 # {group} represents different genotypes to be analyzed
-groups: ['GII.6', 'GII.4', 'GII.2', 'GII.3', 'GII.17', 'all']
+groups: ['GII.6', 'GII.4', 'GII.2', 'GII.3', 'GII.17']
 # {gene} represents the norovirus genes to focus on in each build
-genes: ['genome']
+genes: ['ORF1', 'ORF2', 'ORF3', 'RdRp', 'VP1']
 
 inputs:
   - name: ncbi
@@ -20,20 +20,20 @@ strain_id_field: "accession"
 reference: defaults/{group}/reference.gb
 
 filter:
-  exclude: defaults/exclude.txt
+  exclude:
+    default: defaults/exclude.txt
+    GII.4: defaults/GII.4/exclude.txt
   min_coverage: 0.8
   filter_params: --group-by year VP1_nextclade RdRp_nextclade --sequences-per-group 30 --min-date 1950 --exclude-ambiguous-dates-by year --query-columns is_lab_host:str --exclude-where is_lab_host='true'
 
 refine:
   root:
     default: best --timetree --date-confidence --clock-filter-iqd 4 --date-inference marginal
+    # Estimated from auspice build https://github.com/nextstrain/norovirus/issues/22#issuecomment-3221851561
     all:
       p48: DQ366347 --timetree --date-confidence --clock-filter-iqd 4 --date-inference marginal
       VP2: best --timetree --date-confidence
       genome: best --timetree --date-confidence
-    GII.4:
-      genome: mid_point --timetree --date-confidence
-  # Estimated from auspice build https://github.com/nextstrain/norovirus/issues/22#issuecomment-3221851561
   clock_rate:
     all:
       genome: 0.00328
@@ -46,15 +46,16 @@ refine:
       VP1: 0.00136
       VP2: 0.00228
     GII.2:
-      genome: 0.000211
+      RdRp: 0.000346
     GII.3:
-      genome: 0.000688
+      RdRp: 0.00156
     GII.4:
-      genome: 0.000874
+      RdRp: 0.00177
     GII.6:
-      genome: 0.000135
+      RdRp: 0.00199
     GII.17:
-      genome: 0.00142
+      RdRp: 0.00133
+
 
 traits:
   default: region country ORF1_type ORF2_type VP1_group VP1_type VP1_variant RdRp_group RdRp_type RdRp_variant host
