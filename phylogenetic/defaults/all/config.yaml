@@ -8,4 +8,8 @@
 # {group} represents different genotypes to be analyzed
 groups: ['all']
 # {gene} represents the norovirus genes to focus on in each build
-genes: ['3CLpro', 'NTPase', 'p22', 'p48', 'RdRp', 'VP1', 'VP2', 'VPg']
+genes: ['genome', '3CLpro', 'NTPase', 'p22', 'p48', 'RdRp', 'VP1', 'VP2', 'VPg']
+
+# Timetree still performs better than outgroup
+# refine:
+#   outgroup: NC_027026_outgroup

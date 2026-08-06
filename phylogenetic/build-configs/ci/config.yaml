@@ -2,7 +2,7 @@
 # for the CI workflow to run with the example data.
 
 # {group} represents different genotypes to be analyzed
-groups: ['all']
+groups: ['GII.2']
 # {gene} represents the norovirus genes to focus on in each build
 genes: ['genome', 'VP1']
 

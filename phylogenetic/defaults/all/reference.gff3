@@ -14,7 +14,11 @@ NC_039477_REF	Genbank	gene	3029	3571	.	+	.	ID=gene-3CLpro;Name=3CLpro
 NC_039477_REF	Genbank	CDS	3029	3571	.	+	.	ID=cds-3CLpro;Parent=gene-3CLpro;Name=3CLpro
 NC_039477_REF	Genbank	gene	3572	5101	.	+	.	ID=gene-RdRp;Name=RdRp
 NC_039477_REF	Genbank	CDS	3572	5101	.	+	.	ID=cds-RdRp;Parent=gene-RdRp;Name=RdRp
+NC_039477_REF	Genbank	gene	5085	6707	.	+	.	ID=gene-ORF2;Name=ORF2
+NC_039477_REF	Genbank	CDS	5085	6707	.	+	.	ID=cds-ORF2;Parent=gene-ORF2;Name=ORF2
 NC_039477_REF	Genbank	gene	5085	6707	.	+	.	ID=gene-VP1;Name=VP1
 NC_039477_REF	Genbank	CDS	5085	6707	.	+	.	ID=cds-VP1;Parent=gene-VP1;Name=VP1
+NC_039477_REF	Genbank	gene	6707	7513	.	+	.	ID=gene-ORF3;Name=ORF3
+NC_039477_REF	Genbank	CDS	6707	7513	.	+	.	ID=cds-ORF3;Parent=gene-ORF3;Name=ORF3
 NC_039477_REF	Genbank	gene	6707	7513	.	+	.	ID=gene-VP2;Name=VP2
 NC_039477_REF	Genbank	CDS	6707	7513	.	+	.	ID=cds-VP2;Parent=gene-VP2;Name=VP2
