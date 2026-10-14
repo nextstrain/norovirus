@@ -4,6 +4,11 @@ We use this CHANGELOG to document breaking changes, new features, bug fixes,
 and config value changes that may affect both the usage of the workflows and
 the outputs of the workflows.
 
+## 2026
+
+* 14 October 2026: phylogenetic - support use of cached remote inputs
+    * See https://github.com/nextstrain/shared/pull/87 for more details.
+
 ## 2025
 
 * 18 December 2025: phylogenetic - drop separate "VP1 Genotype (Nextclade)" and "RdRp Genotype (Nextclade)" coloring options since we already have [VP1|RdRp] group, type, and variant coloring ([#45][])
